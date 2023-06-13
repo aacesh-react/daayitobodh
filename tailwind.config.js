@@ -6,6 +6,7 @@ export default {
       spacing: {
         xl: "76.25rem",
         "xl-p": "1250px",
+        px: "15px",
       },
       colors: {
         blue: {
@@ -20,12 +21,13 @@ export default {
         },
       },
       fontSize: {
-        sm: ["1.125rem"],
+        sm: ["1.125rem"],  //18px
         md: ["1.5625rem"],
         lg: ["2.4375rem"],
+        30: ["1.875rem"],
       },
       aspectRatio: {
-        main: '1.65',
+        main: "1.65",
       },
     },
   },

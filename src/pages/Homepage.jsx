@@ -3,6 +3,8 @@ import Golardha from "../features/main/components/Golardha";
 import GyanBigyan from "../features/main/components/GyanBigyan";
 import Hero from "../features/main/components/Hero";
 import ItihasBodh from "../features/main/components/ItihasBodh";
+import Jankari from "../features/main/components/Jankari";
+import Kala from "../features/main/components/Kala";
 import Khabar from "../features/main/components/Khabar";
 import MultiAdd from "../features/main/components/MultiAdd";
 import Sahitya from "../features/main/components/Sahitya";
@@ -23,6 +25,8 @@ const Homepage = () => {
       <Swasthya />
       <MultiAdd />
       <Sahitya />
+      <Kala />
+      <Jankari />
     </div>
   );
 };

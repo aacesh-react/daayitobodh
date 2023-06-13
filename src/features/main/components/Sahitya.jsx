@@ -1,8 +1,132 @@
+import NewsCard from "./NewsCard";
+import img from "../../../assets/img.jpg";
+import { Link } from "react-router-dom";
 
 const Sahitya = () => {
-  return (
-    <div>Sahitya</div>
-  )
-}
+  const data = [
+    {
+      type: `कथा`,
+      name: `क्लियापाट्रा`,
+      writer: `कन्हैया नासननी`,
+    },
+    {
+      type: `कविता`,
+      name: `चुनावमा`,
+      writer: `विनाेदविक्रम केसी`,
+    },
+    {
+      type: `समालाेचना`,
+      name: `पारिजातका कथाहरुमा महिला समानताका कुराहरु`,
+      writer: `शारदारमण नेपाल`,
+    },
+    {
+      type: `अनुदित`,
+      name: `जामुनकाे रुख`,
+      writer: `कृष्णचन्दर`,
+    },
+  ];
 
-export default Sahitya
+  const baalSansaar = [
+    {
+      title: `संसारमा सबैभन्दा निडर काे ?`,
+      heading: `अकबर–वीरबलकाे किस्सा`,
+    },
+    {
+      title: `संसारमा सबैभन्दा निडर काे ?`,
+      heading: `चिनियाँ नीतिकथा`,
+    },
+    {
+      title: `संसारमा सबैभन्दा निडर काे ?`,
+      heading: `नसरुद्दिन हाेजाकाे किस्सा`,
+    },
+    {
+      title: `रमिलाकाे खैलाैना`,
+      heading: `बालकथा`,
+    },
+  ];
+
+  return (
+    <div className="flex flex-col items-center w-full">
+      <div className="flex w-xl-p">
+        {/* left */}
+        <div className="flex flex-col">
+          <h3 className="heading-main px-[15px]">साहित्य</h3>
+          <div className="flex ">
+            <div className="flex w-[558px] ">
+              <div className="flex  w-full px-px ">
+                <NewsCard
+                  img={img}
+                  imgStyle={"w-full h-[422px] object-cover"}
+                  heading={"एउटा गधा जजकाे मूल्याङ्कनमा सुन्दरी प्रतियाेगिता"}
+                  headingStyle={"heading-big text-30"}
+                />
+              </div>
+            </div>
+            <div className="flex">
+              <ul className="w-[353px]">
+                {data.map((value, index) => (
+                  <li
+                    className={`my-[1rem] ${index == 0 && "mt-0"} 
+                    ${index == data.length - 1 && "mb-0"} 
+                    flex h-[113px] justify-between`}
+                    key={index}
+                  >
+                    <div className="flex flex-col w-full pr-[10px]">
+                      <h3 className="heading-main text-sm p-0 border-b  border-b-red-primary border-b-[2px]">
+                        {value.type}
+                      </h3>
+                      <h3 className=" text-end text-sm pt-[1rem] line-clamp-2">
+                        {value.name}
+                      </h3>
+                      <h3 className="text-end font-[400]">{value.writer}</h3>
+                    </div>
+                    <div className="h-full shrink-0">
+                      <img
+                        className="h-full w-[143px] object-cover"
+                        src={img}
+                        alt="img"
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* right */}
+        <div className="flex">
+          <div className="flex px-px w-[339px]">
+            <div className=" w-full px-px border border-black border-[2px] flex flex-col">
+              <h3 className="heading-main">बालसंसार</h3>
+              <NewsCard
+                img={img}
+                imgStyle={"w-full h-[165px] "}
+                heading={"बढी बाेल्ने बानीेले ज्यान गुमायाे !"}
+                headingStyle={"heading-big text-[1.5rem] pb-[0px]"}
+                author={"हिताेपदेशका कथा"}
+                authorStyle={"font-[400]"}
+              />
+              <div className="flex">
+                <ul>
+                  {baalSansaar.map((value, index) => (
+                    <li className="my-[1rem]" key={index}>
+                      <Link>
+                        <h3 className="heading-big text-sm py-[4px]">
+                          {value.title}
+                        </h3>
+                      </Link>
+                      <h3 className="font-[400]">{value.heading}</h3>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr className="mt-[2rem] w-xl border border-[2px]" />
+    </div>
+  );
+};
+
+export default Sahitya;
