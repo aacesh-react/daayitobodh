@@ -17,43 +17,45 @@ const Swasthya = () => {
     },
   ];
   return (
-    <div className="flex justify-center bg-yellow-bg">
-      <div className="flex flex-col w-xl-p py-[2rem]">
-        <h3 className="heading-main px-[15px]">स्वास्थ्य–जीवनशैली</h3>
-        <div className="flex">
+    <div className="flex justify-center bg-yellow-bg w-full">
+      <div className="flex flex-col w-full lg:w-lg-p xl:w-xl-p lg:py-[2rem]">
+        <h3 className="title-small lg:heading-main px-[15px]">
+          स्वास्थ्य–जीवनशैली
+        </h3>
+        <div className="flex w-ful flex-col lg:flex-row">
           {/* left         */}
-          <div className="flex px-[15px] w-[755px] relative">
-            <div className="flex">
+          <div className="flex w-full px-px lg:w-[577.5px] xl:w-[755px] relative">
+            <div className="flex bg-blue-200 w-full">
               <img
-                className="h-[471px] w-full object-cover brightness-75"
+                className=" h-[471px] w-full object-cover brightness-75"
                 src={img}
                 alt="img"
               />
             </div>
-            <div className="absolute bottom-[5%] left-[10%]">
-              <h3 className="heading-big text-white w-[469px] text-[1.875rem] font-[poppins]">
+            <div className="absolute  px-[2rem] left-0 bottom-[5%] lg:left-[10%]">
+              <h3 className=" text-lg xl:heading-big text-white xl:w-[469px] lg:text-[1.875rem] font-[poppins]">
                 बुढ्यौलीमा 'भुल्ने बिरामी'बाट बच्ने हो ? भिटामीन डी उपयोगी हुन
                 सक्छ !
               </h3>
             </div>
           </div>
           {/* right         */}
-          <div className="flex  w-[495px]">
+          <div className="flex w-full py-[1rem] lg:py-0 lg:w-[412.5px] xl:w-[525px]">
             <ul>
               {data.map((value, index) => (
                 <li
                   key={index}
-                  className={`h-[141px] px-[15px] my-[1.5rem] ${index == 0 && "mt-0"} ${
-                    index == 2 && "mb-0"
-                  } `}
+                  className={`h-[141px] px-[15px] my-[1.5rem] ${
+                    index == 0 && "mt-0"
+                  } ${index == 2 && "mb-0"} `}
                 >
                   <CardRow
                     img={img}
-                    imgStyle={"w-[175px] h-[141px] object-cover"}
+                    imgStyle={"w-[175px] h-[116px] lg:h-[141px]  object-cover"}
                     title={value.title}
-                    titleStyle={"heading-main text-[18px]"}
+                    titleStyle={"title-small text-sm xl:text-md"}
                     heading={value.heading}
-                    headingStyle={"heading-big text-[1.5rem]"}
+                    headingStyle={" text-sm xl:text-md line-clamp-3"}
                   />
                 </li>
               ))}

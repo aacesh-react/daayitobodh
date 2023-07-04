@@ -47,23 +47,23 @@ const Sahitya = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="flex w-xl-p">
+      <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p">
         {/* left */}
-        <div className="flex flex-col">
-          <h3 className="heading-main px-[15px]">साहित्य</h3>
-          <div className="flex ">
-            <div className="flex w-[558px] ">
+        <div className="flex flex-col lg:w-[660px] xl:w-[941px]">
+          <h3 className="title-small lg:heading-main px-px">साहित्य</h3>
+          <div className="flex flex-col lg:flex-row ">
+            <div className="flex lg:w-[330px]  xl:w-[588px] ">
               <div className="flex  w-full px-px ">
                 <NewsCard
                   img={img}
-                  imgStyle={"w-full h-[422px] object-cover"}
+                  imgStyle={"w-full  h-[256px] lg:h-[422px] object-cover"}
                   heading={"एउटा गधा जजकाे मूल्याङ्कनमा सुन्दरी प्रतियाेगिता"}
-                  headingStyle={"heading-big text-30"}
+                  headingStyle={" text-md lg:heading-big text-30"}
                 />
               </div>
             </div>
-            <div className="flex">
-              <ul className="w-[353px]">
+            <div className="flex w-full lg:w-[330px] xl:w-[353px]  p-px lg:p-0">
+              <ul className="w-full ">
                 {data.map((value, index) => (
                   <li
                     className={`my-[1rem] ${index == 0 && "mt-0"} 
@@ -72,10 +72,10 @@ const Sahitya = () => {
                     key={index}
                   >
                     <div className="flex flex-col w-full pr-[10px]">
-                      <h3 className="heading-main text-sm p-0 border-b  border-b-red-primary border-b-[2px]">
+                      <h3 className="heading-main text-sm p-0 border-b  border-b-red-primary border-b-[2px] line-clamp-2">
                         {value.type}
                       </h3>
-                      <h3 className=" text-end text-sm pt-[1rem] line-clamp-2">
+                      <h3 className=" text-end text-sm pt-[.5rem] line-clamp-2">
                         {value.name}
                       </h3>
                       <h3 className="text-end font-[400]">{value.writer}</h3>
@@ -94,10 +94,10 @@ const Sahitya = () => {
           </div>
         </div>
         {/* right */}
-        <div className="flex">
-          <div className="flex px-px w-[339px]">
+        <div className="flex w-full lg:w-[330px] xl:w-[339px]">
+          <div className="flex px-px w-full ">
             <div className=" w-full px-px border border-black border-[2px] flex flex-col">
-              <h3 className="heading-main">बालसंसार</h3>
+              <h3 className=" title-small lg:heading-main">बालसंसार</h3>
               <NewsCard
                 img={img}
                 imgStyle={"w-full h-[165px] "}
@@ -124,7 +124,7 @@ const Sahitya = () => {
           </div>
         </div>
       </div>
-      <hr className="mt-[2rem] w-xl border border-[2px]" />
+      <hr className="hidden lg:block lg:w-lg mt-[2rem] xl:w-xl border border-[2px]" />
     </div>
   );
 };

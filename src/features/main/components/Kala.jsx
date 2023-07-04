@@ -41,14 +41,14 @@ const Kala = () => {
     { heading: `वर्नाड शा र सुन्दरीकाे विवाह प्रस्ताव` },
   ];
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex w-xl-p py-[1rem] ">
+    <div className="flex flex-col items-center bg-white w-full">
+      <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p py-[1rem] ">
         {/* left */}
-        <div className="flex flex-col">
-          <h3 className="heading-main px-px">कला–मनाेरञ्जन</h3>
-          <div className="flex">
-            <div className="flex w-[322px]">
-              <ul className="pl-px pr-[30px]">
+        <div className="flex flex-col lg:w-[660px] xl:w-[930px] ">
+          <h3 className="title-small  lg:heading-main px-px">कला–मनाेरञ्जन</h3>
+          <div className="flex flex-col lg:flex-row ">
+            <div className="flex w-full lg:w-[247.5px] xl:w-[322px]">
+              <ul className="px-px w-full  lg:pr-[30px]">
                 {kalaData.map((value, index) => (
                   <li
                     className={`${
@@ -56,7 +56,7 @@ const Kala = () => {
                     } `}
                     key={index}
                   >
-                    <h3 className="heading-main text-sm">{value.type}</h3>
+                    <h3 className="title-small text-sm">{value.type}</h3>
                     <Link>
                       <span className="text-sm inline-block">
                         {value.title}
@@ -69,16 +69,17 @@ const Kala = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-[579px]">
-              <div className="w-full">
+            <div className="lg:w-[412.5px] xl:w-[579px]">
+              <div className="w-full px-px py-[1rem] lg:px-0">
                 <NewsCard
                   img={img}
-                  heading={"गीतसङ्गीत"}
-                  headingStyle={"heading-main text-sm"}
-                  author={
+                  imgStyle= {"h-[226px] lg:h-[400px]"}
+                  title={"गीतसङ्गीत"}
+                  titleStyle={"title-small lg:text-xl"}
+                  heading={
                     "किन याैनका चाैघेरा वरिपरि घुम्छ प्रकाश सपुतका गीतहरु ?"
                   }
-                  authorStyle={"heading-big"}
+                  headingStyle={"text-sm lg:heading-big  "}
                 />
               </div>
             </div>
@@ -87,18 +88,18 @@ const Kala = () => {
         {/* right */}
 
         <div className="flex">
-          <div className="flex w-[349px] px-px ">
+          <div className="flex lg:w-[330px] xl:w-[350px] px-px ">
             <div className="flex flex-col border border-[2px] border-black">
               <h3 className="heading-main px-px">प्रेरक</h3>
               <div className="flex">
                 <ul className="px-px">
                   {prerak.map((value, index) => (
-                    <li className="h-[98px] my-[1rem] border" key={index}>
+                    <li className="flex items-center h-[98px] my-[1rem] border" key={index}>
                       <CardRow
                         img={img}
-                        imgStyle={"w-[139px] h-[98px]"}
+                        imgStyle={"w-[140px] lg:w-[120px] xl:w-[140px] h-[98px]"}
                         heading={value.heading}
-                        headingStyle={"text-sm"}
+                        headingStyle={"text-sm line-clamp-4"}
                       />
                       {/* <Link>{value.heading}</Link> */}
                     </li>
@@ -109,7 +110,7 @@ const Kala = () => {
           </div>
         </div>
       </div>
-      <hr   className="w-xl border-[2px]"/>
+      <hr   className= " hidden lg:block lg:w-lg xl:w-xl border-[2px]"/>
     </div>
   );
 };

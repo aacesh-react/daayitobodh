@@ -15,11 +15,9 @@ const CardRow = ({
           <img className={`${imgStyle}`} src={img} alt="img" />
         </Link>
       </div>
-      <div className="flex flex-col pl-[10px] justify-center">
-        <h3 className={`${titleStyle} py-0 `}>{title}</h3>
-        <Link
-        
-        >
+      <div className="flex flex-col pl-[10px] ">
+        <h3 className={`${titleStyle} py-0  `}>{title}</h3>
+        <Link>
           <h3 className={`${headingStyle}`}>{heading}</h3>
         </Link>
       </div>

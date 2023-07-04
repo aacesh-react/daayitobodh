@@ -41,24 +41,24 @@ const Jankari = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center pt-[1rem]">
-      <div className="flex w-xl-p ">
+    <div className="flex w-full bg-white justify-center pt-[1rem]">
+      <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p ">
         {/* left */}
-        <div className="flex flex-col">
-          <h3 className="heading-main px-px">जानकारी</h3>
-          <div className="flex ">
-            <div className="w-[558px] px-px">
+        <div className="flex flex-col lg:w-[660px] xl:w-[930px]">
+          <h3 className="title-small lg:heading-main px-px">जानकारी</h3>
+          <div className="flex flex-col lg:flex-row ">
+            <div className="w-full lg:w-[360px] xl:w-[560px] px-px">
               <NewsCard
                 img={img}
-                imgStyle={"w-full h-[422px]"}
+                imgStyle={"w-full h-[256px] lg:h-[422px]"}
                 heading={
                   "शारीरिक व्यायाम कुन समयमा गर्नु राम्राे: बिहान कि दिउँसाे ?"
                 }
-                headingStyle={"heading-big"}
+                headingStyle={"text-md py-[1rem]  lg:heading-big"}
               />
             </div>
             <div className="flex">
-              <ul className="w-[353px]">
+              <ul className=" px-px pb-[1rem] lg:px-0 lg:w-[300px] xl:w-[370px]">
                 {jankari.map((value, index) => (
                   <li
                     className={`my-[1rem] ${index == 0 && "mt-0"} 
@@ -70,7 +70,7 @@ const Jankari = () => {
                       img={img}
                       imgStyle={"w-[143px] h-full"}
                       heading={value.heading}
-                      headingStyle={"text-sm"}
+                      headingStyle={"text-sm line-clamp-5"}
                     />
                   </li>
                 ))}
@@ -80,17 +80,17 @@ const Jankari = () => {
         </div>
 
         {/* right */}
-        <div className="flex">
-          <div className="flex px-px w-[339px]">
+        <div className="flex w-full">
+          <div className="flex  px-px w-full  lg:w-[330px] xl:w-[350px]">
             <div className=" w-full px-px border border-black border-[2px] flex flex-col">
-              <h3 className="heading-main">विचित्र संसार</h3>
+              <h3 className="title-small lg:heading-main">विचित्र संसार</h3>
               <NewsCard
                 img={img}
                 imgStyle={"w-full h-[165px] "}
                 heading={"टाउकाे काटिँदा पनि बँचेकाे कुखुरा"}
                 headingStyle={"heading-big text-[1.5rem] pb-[0px]"}
                 author={"हिताेपदेशका कथा"}
-                authorStyle={"font-[400]"}
+                authorStyle={"font-[400] pt-[.5rem]"}
               />
               <div className="flex">
                 <ul>
@@ -98,7 +98,7 @@ const Jankari = () => {
                     <li className="my-[1rem]" key={index}>
                       <CardRow
                         img={img}
-                        imgStyle={"w-[6rem]"}
+                        imgStyle={"w-[6rem] h-[4rem]"}
                         heading={value.heading}
                         headingStyle={"font-[400]"}
                         title={value.title}
