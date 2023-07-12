@@ -70,7 +70,7 @@ const Jankari = () => {
                       img={img}
                       imgStyle={"w-[143px] h-full"}
                       heading={value.heading}
-                      headingStyle={"text-sm line-clamp-5"}
+                      headingStyle={"text-sm font-[300] line-clamp-5"}
                     />
                   </li>
                 ))}
@@ -83,7 +83,7 @@ const Jankari = () => {
         <div className="flex w-full">
           <div className="flex  px-px w-full  lg:w-[330px] xl:w-[350px]">
             <div className=" w-full px-px border border-black border-[2px] flex flex-col">
-              <h3 className="title-small lg:heading-main">विचित्र संसार</h3>
+              <h3 className="title-small lg:heading-main lg:text-sm">विचित्र संसार</h3>
               <NewsCard
                 img={img}
                 imgStyle={"w-full h-[165px] "}

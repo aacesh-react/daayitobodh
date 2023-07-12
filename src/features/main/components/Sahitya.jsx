@@ -97,7 +97,7 @@ const Sahitya = () => {
         <div className="flex w-full lg:w-[330px] xl:w-[339px]">
           <div className="flex px-px w-full ">
             <div className=" w-full px-px border border-black border-[2px] flex flex-col">
-              <h3 className=" title-small lg:heading-main">बालसंसार</h3>
+              <h3 className=" title-small lg:text-sm lg:heading-main">बालसंसार</h3>
               <NewsCard
                 img={img}
                 imgStyle={"w-full h-[165px] "}

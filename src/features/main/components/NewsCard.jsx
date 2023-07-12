@@ -17,7 +17,7 @@ const NewsCard = ({
   return (
     <div className={`${type == "row" ? "flex" : "flex flex-col "} w-full `}>
       <div className="shrink-0">
-        <Link>
+        <Link to={"news/category/news"}>
           <img
             className={` ${
               type == "row" ? "w-[120px]" : "w-full"
@@ -31,13 +31,13 @@ const NewsCard = ({
         className={`${
           type == "row"
             ? "flex pl-px  "
-            : "flex flex-col pt-[.5rem] pb-[1rem] lg:pb-[1.5rem]"
+            : "flex flex-col pt-[.5rem] pb-[1rem] lg:pb-[0rem]"
         } w-full `}
       >
         <Link>
           <h3 className={titleStyle}>{title} </h3>
         </Link>
-        <Link className="">
+        <Link className="" to={"news/category/news"}>
           <h3 className={headingStyle}>{heading} </h3>
         </Link>
         <Link>

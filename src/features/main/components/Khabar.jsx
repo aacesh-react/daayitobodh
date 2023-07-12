@@ -10,7 +10,7 @@ const Khabar = () => {
       <div className=" w-full flex-col lg:flex-row lg:w-lg-p xl:w-xl-p  flex">
         {/* khabar */}
         <div className="flex flex-col lg:w-[578px] xl:w-[820px]">
-          <h3 className=" title-small px-px w-full  lg:heading-main lg:px-px">खबर</h3>
+          <h3 className=" title-small px-px w-full   text-heading-main  lg:px-px">खबर</h3>
           <div className="flex px-px">
             <NewsCard
               img={img}
@@ -53,10 +53,10 @@ const Khabar = () => {
                 img={img}
                 imgStyle={"w-[189px] h-full object-cover"}
                 title={"अर्थतन्त्र"}
-                titleStyle={"text-red-primary text-[18px]"}
+                titleStyle={"text-red-primary  text-[18px]"}
                 heading={`प्रचण्डका भारत भ्रमण: एजेण्डा बन्न नसकेका केही अनुत्तरित
                 सवालहरु !`}
-                headingStyle={"heading-big  text-sm lg:text-md line-clamp-3"}
+                headingStyle={"heading-big font-[300] text-sm lg:text-md line-clamp-3"}
               />
             </div>
             <div className="px-px h-[130px] lg:h-[164px] mb-[1rem]">
@@ -67,7 +67,7 @@ const Khabar = () => {
                 title={"बहस"}
                 titleStyle={"text-red-primary text-[18px]"}
                 heading={`नयाँ बजेटले जर्जर अर्थतन्त्रलाई त्राण दिन सक्ला ?`}
-                headingStyle={"heading-big  text-sm lg:text-md line-clamp-3"}
+                headingStyle={"heading-big font-[300] text-sm lg:text-md line-clamp-3"}
               />
             </div>
             <div className="px-px h-[130px] lg:h-[164px] mb-[1rem]">
@@ -79,7 +79,7 @@ const Khabar = () => {
                 titleStyle={"text-red-primary text-[18px]"}
                 heading={`
                 भारतलाई बिजुली बेचेर धनी बन्ने सपना: कति यथार्थवादी ?`}
-                headingStyle={"heading-big  text-sm lg:text-md line-clamp-3"}
+                headingStyle={"heading-big font-[300]  text-sm lg:text-md line-clamp-3"}
               />
             </div>
             <div className="px-px h-[130px] lg:h-[164px] mb-[1rem]">
@@ -90,7 +90,7 @@ const Khabar = () => {
                 title={"न्यायालय"}
                 titleStyle={"text-red-primary text-[18px]"}
                 heading={`रुस–युक्रेन युद्ध: के विश्व फेरि भयानक महामन्दीतिर जाँदैछ ?`}
-                headingStyle={"heading-big  text-sm lg:text-md line-clamp-3"}
+                headingStyle={"heading-big font-[300] text-sm lg:text-md line-clamp-3"}
               />
             </div>
           </div>

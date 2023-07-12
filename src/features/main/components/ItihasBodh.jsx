@@ -39,7 +39,7 @@ const ItihasBodh = () => {
               />
             </div>
           </div>
-          <div className="flex lg:w-[442px] xl:w-[614px] ">
+          <div className="flex lg:w-[442px] xl:w-[614px]  ">
             <div className="flex w-full">
               <div className="flex  overflow-x-scroll lg:overflow-auto lg:flex-wrap">
                 {data.map((news, index) => (
@@ -53,7 +53,7 @@ const ItihasBodh = () => {
                         "h-[192px] lg:h-[130px] xl:h-[192px] object-cover"
                       }
                       heading={news.heading}
-                      headingStyle={"text-sm line-clamp-3"}
+                      headingStyle={"text-sm  font-[300] line-clamp-3"}
                     />
                   </div>
                 ))}

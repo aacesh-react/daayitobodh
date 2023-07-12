@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
 
@@ -19,9 +20,12 @@ const Swasthya = () => {
   return (
     <div className="flex justify-center bg-yellow-bg w-full">
       <div className="flex flex-col w-full lg:w-lg-p xl:w-xl-p lg:py-[2rem]">
-        <h3 className="title-small lg:heading-main px-[15px]">
-          स्वास्थ्य–जीवनशैली
-        </h3>
+        <Link to={"/news/swasthya"}>
+          <h3 className="title-small lg:heading-main px-[15px]">
+            स्वास्थ्य–जीवनशैली
+          </h3>
+        </Link>
+
         <div className="flex w-ful flex-col lg:flex-row">
           {/* left         */}
           <div className="flex w-full px-px lg:w-[577.5px] xl:w-[755px] relative">
@@ -32,7 +36,7 @@ const Swasthya = () => {
                 alt="img"
               />
             </div>
-            <div className="absolute  px-[2rem] left-0 bottom-[5%] lg:left-[10%]">
+            <div className="absolute  px-[2rem] left-0 bottom-[8%] lg:left-[10%]">
               <h3 className=" text-lg xl:heading-big text-white xl:w-[469px] lg:text-[1.875rem] font-[poppins]">
                 बुढ्यौलीमा 'भुल्ने बिरामी'बाट बच्ने हो ? भिटामीन डी उपयोगी हुन
                 सक्छ !
@@ -55,7 +59,7 @@ const Swasthya = () => {
                     title={value.title}
                     titleStyle={"title-small text-sm xl:text-md"}
                     heading={value.heading}
-                    headingStyle={" text-sm xl:text-md line-clamp-3"}
+                    headingStyle={" text-sm font-[300] xl:text-md line-clamp-3"}
                   />
                 </li>
               ))}

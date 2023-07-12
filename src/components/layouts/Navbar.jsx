@@ -6,6 +6,7 @@ import CarouselCard from "../shared/CarouselCard";
 import MobileNav from "../shared/MobileNav";
 import { PiUserThin } from "react-icons/pi";
 import Title from "../shared/Title";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -43,9 +44,12 @@ const Navbar = () => {
           />
           
         </div> */}
-        <Title />
+        {/* <Title /> */}
+        <Link className="flex h-[175px] w-full  justify-center" to={"/"}>
+          <img className="h-[] object-cover" src={logo} alt="" />
+        </Link>
         <div className={`hidden lg:block flex w-full`}>
-          <div className="flex w-full h-[3rem]  border-y-[3px] border-blue-secondary">
+          <div className="flex w-full h-[3rem]  border-y-[3px] border-heading-main">
             <ul className=" w-full flex items-center justify-between ">
               {navItems.map((value, index) => (
                 <li key={index} className="flex">
@@ -54,8 +58,8 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
-              <Link className=" text-blue-primary" to={"/login"}>
-                <PiUserThin className="h-[32px]  w-[32px] border rounded-full border-blue-secondary p-[2px]  text-bg-secondary cursor-pointer " />
+              <Link className=" text-heading-main" to={"/login"}>
+                <PiUserThin className="h-[32px]  w-[32px] border rounded-full border-heading-main p-[2px]  text-bg-secondary cursor-pointer " />
               </Link>
             </ul>
           </div>

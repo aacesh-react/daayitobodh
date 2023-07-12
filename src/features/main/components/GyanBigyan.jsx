@@ -23,10 +23,10 @@ const gyanRight = [
     heading:
       "तपाईकाे कम्प्युटर ल्यापटप सुस्त चल्छ ? मिलाउनाेस् यी सेटिङ्गहरु ! स्पीडमा चल्न थाल्छ !",
   },
-  {
-    heading:
-      "माेबाइल फाेन चलाउँदा अपनाउनाेस् यी सावधानीहरु ! अन्यथा ह्याकरले लुट्ला नि !",
-  },
+  // {
+  //   heading:
+  //     "माेबाइल फाेन चलाउँदा अपनाउनाेस् यी सावधानीहरु ! अन्यथा ह्याकरले लुट्ला नि !",
+  // },
 ];
 
 import NewsCard from "./NewsCard";
@@ -51,17 +51,17 @@ const GyanBigyan = () => {
               </div>
               <div className="flex flex-col w-full px-[15px]">
                 <Link>
-                  <h3 className="text-sm py-[10px]">
+                  <h3 className="text-sm font-[300] py-[10px]">
                     किन फुल्५ कपाल ? कपाल फुल्न नदिन याे उपाय गर्नाेस्
                   </h3>
                 </Link>
                 <Link>
-                  <h3 className="text-sm py-[10px]">
+                  <h3 className="text-sm font-[300]  py-[10px]">
                     सामसङको ग्यालेक्सी एस–२३ बजारमा
                   </h3>
                 </Link>
                 <Link>
-                  <h3 className="text-sm py-[10px]">
+                  <h3 className="text-sm font-[300]  py-[10px]">
                     टिकटककै बाटाे पछ्याउँदै फेसबुक र इन्स्टाग्राम पनि ! ब्लुक
                     टिककाे अब पैसा लाग्ने
                   </h3>
@@ -98,7 +98,7 @@ const GyanBigyan = () => {
                         "h-full w-[80px] lg:w-[100px] xl:w-[150px] object-cover"
                       }
                       heading={value.heading}
-                      headingStyle={"text-sm w-full line-clamp-3 lg:leading-[1.4] "}
+                      headingStyle={"text-sm w-full line-clamp-3 font-[300]  lg:leading-[1.4] "}
                     />
                   </li>
                 ))}

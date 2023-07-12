@@ -39,7 +39,7 @@ const Golardha = () => {
                           img={img}
                           imgStyle={" h-[120px] xl:h-[192px] object-cover"}
                           heading={news}
-                          headingStyle={"text-sm  line-clamp-3"}
+                          headingStyle={"text-sm font-[300] line-clamp-3"}
                         />
                       </li>
                     ))}
