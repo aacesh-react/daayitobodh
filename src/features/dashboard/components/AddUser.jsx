@@ -1,5 +1,11 @@
+import SignupPage from "../../../pages/SignupPage";
+
 const AddUser = () => {
-  return <div>AddUser</div>;
+  return (
+    <div>
+      <SignupPage />
+    </div>
+  );
 };
 
 export default AddUser;

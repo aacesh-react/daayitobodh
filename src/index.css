@@ -76,6 +76,18 @@ input:-webkit-autofill {
     padding: 15px 0;
   }
 
+  .multiSelectContainer {
+    position: relative;
+    text-align: left;
+    width: 100%;
+    background-color: red;
+  }
+
+  /* .option {
+    color: red;
+
+  } */
+
 
   /* <h3 className="text-[1.5rem] text-red-primary py-[1rem]"> 
 /*  */

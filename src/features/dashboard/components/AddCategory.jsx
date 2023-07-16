@@ -1,22 +1,25 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addCategory } from "../../../app/features/category/categorySlice";
 import FormInputField from "../../../components/shared/FormInputField";
 
 const AddCategory = () => {
   const initialValues = {
-    category: "",
+    categoryName: "",
   };
 
   const validationData = {
-    category: false,
+    categoryName: false,
   };
 
   const [formData, setFormData] = useState(initialValues);
   const [validationError, setValidationError] = useState(validationData);
+  const dispatch = useDispatch();
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
+    console.log(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
@@ -25,12 +28,23 @@ const AddCategory = () => {
 
   const validationOutput = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
+
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
       : setValidationError((prev) => ({ ...prev, [name]: true }));
   };
 
-  const formSubmitHanlder = (e) => {};
+  const formSubmitHanlder = async (e) => {
+    e.preventDefault();
+    console.log("form data:", formData);
+    try {
+      const result = await dispatch(addCategory(formData)).unwrap();
+      console.log("result:", result);
+    } catch (error) {
+      console.log("err:", error);
+    }
+  };
   return (
     <div className="flex bg-white w-full  px-px   ">
       <div className="flex flex-col py-[15px]  w-full">
@@ -46,12 +60,12 @@ const AddCategory = () => {
           >
             <div className="flex flex-col  w-full   sm:w-[510px] md:w-full ">
               <FormInputField
-                name={"category"}
+                name={"categoryName"}
                 label={"Name"}
                 placeholder={"Type category name"}
                 onchangeHandler={inputChangeHandler}
                 onBlurHandler={validationOutput}
-                validationError={validationError.category}
+                validationError={validationError.categoryName}
                 errorMessage={"Category is required."}
                 type={"text"}
                 className={"flex flex-col px-[15px] w-full mb-[28.8px] "}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { register } from "../app/features/auth/authSlice";
 import FormInputField from "../components/shared/FormInputField";
 
 const SignupPage = () => {
@@ -7,7 +9,6 @@ const SignupPage = () => {
     firstName: "",
     lastName: "",
     email: "",
-    number: "",
     password: "",
     confirmPassword: "",
   };
@@ -16,7 +17,6 @@ const SignupPage = () => {
     firstName: false,
     lastName: false,
     email: false,
-    number: false,
     password: false,
     confirmPassword: false,
   };
@@ -27,7 +27,7 @@ const SignupPage = () => {
   const [conPassErrMessage, setConPassErrMessage] = useState(
     "Confirm password is required."
   );
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log("sign up page");
 
@@ -43,7 +43,6 @@ const SignupPage = () => {
       formData.firstName &&
       formData.lastName &&
       formData.email &&
-      formData.number &&
       formData.password &&
       formData.confirmPassword
     ) {
@@ -69,7 +68,6 @@ const SignupPage = () => {
       formData.firstName &&
       formData.lastName &&
       formData.email &&
-      formData.number &&
       formData.password &&
       formData.confirmPassword
     ) {
@@ -80,28 +78,19 @@ const SignupPage = () => {
   const formSubmitHanlder = async (e) => {
     e.preventDefault();
     console.log("form submit handler");
-    navigate("/user/profile");
-    // try {
-    //   console.log("form data:", formData);
-    //   const result = await dispatch(register(formData)).unwrap();
-    //   console.log(
-    //     "result in signup form fubmit handler: ",
-    //     result.data,
-    //     result.token
-    //   );
-    //   closeModal();
-    //   loginHandler("login");
-    //   // if (result) {
-    //   //   await dispatch(
-    //   //     getUserCart({ userId: result.data.id, accessToken: result.token })
-    //   //   ).unwrap();
-    //   // }
-
-    //   navigate("/");
-    // } catch (error) {
-    //   toast.error("Unable to sign up, please try again");
-    //   console.log(error);
-    // }
+    // navigate("/user/profile");
+    try {
+      console.log("form data:", formData);
+      const result = await dispatch(register(formData)).unwrap();
+      console.log(
+        "result in signup form fubmit handler: ",
+        result
+        // result.token
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(":", error);
+    }
   };
 
   return (
@@ -167,7 +156,7 @@ const SignupPage = () => {
                     "flex flex-col px-[15px] w-full mb-[28.8px] sm:w-1/2 "
                   }
                 />
-                <FormInputField
+                {/* <FormInputField
                   name={"number"}
                   label={"Number"}
                   placeholder={"98XXXXXXXX"}
@@ -179,7 +168,7 @@ const SignupPage = () => {
                   className={
                     "flex flex-col px-[15px] w-full mb-[28.8px] sm:w-1/2 "
                   }
-                />
+                /> */}
                 <FormInputField
                   name={"password"}
                   label={"Choose a password"}

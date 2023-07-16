@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import MainContent from "../features/dashboard/components/MainContent";
 
 const DashboardPage = () => {
   const [itemId, setItemId] = useState(null);
   const [showItems, setShowItems] = useState(false);
-  const [itemToShow, setItemToShow] = useState(undefined);
+
+  // const [itemToShow, setItemToShow] = useState(undefined);
+
+  let { contentId } = useParams();
 
   const selectItemsHandler = (id) => {
     console.log("id:", id);
@@ -49,18 +54,20 @@ const DashboardPage = () => {
                     : "max-h-0 duration-1000"
                 } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-px bg-gray-100 `}
               >
-                <span
+                <Link
                   className="py-[1rem]"
-                  onClick={(e) => itemClickHandler("categories")}
+                  // onClick={(e) => itemClickHandler("categories")}
+                  to={"/admin/dashboard/categories"}
                 >
                   Categories
-                </span>
-                <span
+                </Link>
+                <Link
                   className="pb-[1rem]"
-                  onClick={(e) => itemClickHandler("addCategory")}
+                  // onClick={(e) => itemClickHandler("addCategory")}
+                  to={"/admin/dashboard/addCategory"}
                 >
                   Add Category
-                </span>
+                </Link>
               </div>
             </div>
           </li>
@@ -84,18 +91,20 @@ const DashboardPage = () => {
                     : "max-h-0 duration-1000"
                 } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-px bg-gray-100 `}
               >
-                <span
+                <Link
                   className="py-[1rem]"
-                  onClick={(e) => itemClickHandler("subcategories")}
+                  // onClick={(e) => itemClickHandler("subcategories")}
+                  to={"/admin/dashboard/subcategories"}
                 >
                   Sub categories
-                </span>
-                <span
+                </Link>
+                <Link
                   className="pb-[1rem]"
-                  onClick={(e) => itemClickHandler("addSubcategory")}
+                  // onClick={(e) => itemClickHandler("addSubcategory")}
+                  to={"/admin/dashboard/addSubcategory"}
                 >
                   Add Sub-Category
-                </span>
+                </Link>
               </div>
             </div>
           </li>
@@ -119,18 +128,20 @@ const DashboardPage = () => {
                     : "max-h-0 duration-1000"
                 } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-px bg-gray-100 `}
               >
-                <span
+                <Link
                   className="py-[1rem]"
-                  onClick={(e) => itemClickHandler("news")}
+                  // onClick={(e) => itemClickHandler("news")}
+                  to={"/admin/dashboard/news"}
                 >
                   News
-                </span>
-                <span
+                </Link>
+                <Link
                   className="pb-[1rem]"
-                  onClick={(e) => itemClickHandler("addNews")}
+                  // onClick={(e) => itemClickHandler("addNews")}
+                  to={"/admin/dashboard/addNews"}
                 >
                   Add News
-                </span>
+                </Link>
               </div>
             </div>
           </li>
@@ -154,25 +165,26 @@ const DashboardPage = () => {
                     : "max-h-0 duration-1000"
                 } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-[2rem]  `}
               >
-                <span
+                <Link
                   className="py-[1rem]"
-                  onClick={(e) => itemClickHandler("users")}
+                  // onClick={(e) => itemClickHandler("users")}
+                  to={"/admin/dashboard/users"}
                 >
                   Users
-                </span>
-                <span
+                </Link>
+                {/* <span
                   className="pb-[1rem]"
                   onClick={(e) => itemClickHandler("addUser")}
                 >
                   Add Users
-                </span>
+                </span> */}
               </div>
             </div>
           </li>
         </ul>
       </div>
       {/* right  */}
-      <MainContent itemName={itemToShow} />
+      <MainContent itemName={contentId} />
     </div>
   );
 };

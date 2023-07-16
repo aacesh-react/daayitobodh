@@ -7,13 +7,35 @@ import MobileNav from "../shared/MobileNav";
 import { PiUserThin } from "react-icons/pi";
 import Title from "../shared/Title";
 import logo from "../../assets/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getMe } from "../../app/features/auth/authSlice";
 
 const Navbar = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  // console.log("logged in:", auth);
 
   const showMobileNavHandler = (e) => {
     setShowMobileNav((prev) => !prev);
   };
+  // useEffect(() => {
+  //   console.log("use effect");
+  //   (async function me() {
+  //     try {
+  //       const result = await dispatch(getMe(auth.accessToken)).unwrap();
+  //       console.log(
+  //         "result in navbar effect ",
+  //         result
+  //         // result.token
+  //       );
+  //     } catch (error) {
+  //       console.log("error:", error);
+  //     }
+  //   })();
+  // }, []);
+
   return (
     <div className="flex w-full bg-white justify-center ">
       <div className="flex flex-col w-full lg:w-lg-p  xl:w-xl-p px-px  items-center ">
@@ -44,10 +66,10 @@ const Navbar = () => {
           />
           
         </div> */}
-        {/* <Title /> */}
-        <Link className="flex h-[175px] w-full  justify-center" to={"/"}>
-          <img className="h-[] object-cover" src={logo} alt="" />
-        </Link>
+        <Title />
+        {/* <Link className="flex h-[175px] w-full  justify-center" to={"/"}>
+          <img className=" object-cover" src={logo} alt="" />
+        </Link> */}
         <div className={`hidden lg:block flex w-full`}>
           <div className="flex w-full h-[3rem]  border-y-[3px] border-heading-main">
             <ul className=" w-full flex items-center justify-between ">
@@ -58,7 +80,10 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
-              <Link className=" text-heading-main" to={"/login"}>
+              <Link
+                className=" text-heading-main"
+                to={`${auth.loggedIn ? "/user/profile" : "/login"}`}
+              >
                 <PiUserThin className="h-[32px]  w-[32px] border rounded-full border-heading-main p-[2px]  text-bg-secondary cursor-pointer " />
               </Link>
             </ul>

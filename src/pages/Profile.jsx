@@ -12,23 +12,23 @@ import Navbar from "../components/layouts/Navbar";
 import EditProfile from "../features/profile/components/EditProfile";
 import Password from "../features/profile/components/Password";
 import Title from "../components/shared/Title";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../app/features/auth/authSlice";
 // import { useDispatch, useSelector } from "react-redux";
 // import { logout } from "../app/features/auth/authSlice";
 // import { toast } from "react-toastify";
 
 const Profile = () => {
   const { id } = useParams();
-  // const { loggedIn } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const [activeNavItem, setActiveNavItem] = useState(id);
-  //   const dispatch = useDispatch();
+  const [role, setRole] = useState("user");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const navItemClickHandler = (e) => {
-    // e.preventDefault();
-    console.log(e.currentTarget.id);
     setActiveNavItem(e.currentTarget.id);
   };
-  console.log("id:", id);
 
   let navItemComponent;
   if (id == "profile") {
@@ -39,13 +39,18 @@ const Profile = () => {
   }
   const logoutHandler = async (e) => {
     e.preventDefault();
-    // try {
-    //   const data = await dispatch(logout()).unwrap();
-    //   toast.success("User logout successfully");
-    //   navigate("/");
-    // } catch (err) {
-    //   toast.error("Not logout");
-    // }
+    try {
+      const data = await dispatch(logout()).unwrap();
+      navigate("/");
+    } catch (err) {}
+  };
+
+  const dashboardHandler = (e) => {
+    if (user.roles.includes("admin")) {
+      navigate("/admin/dashboard/home");
+    }
+    if (user.roles.includes("editor")) {
+    }
   };
 
   return (
@@ -73,13 +78,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="flex py-[1rem] justify-center w-full ">
+        <div className="flex pb-[1rem] justify-center w-full ">
           <div className="flex flex-col w-full  items-center md:w-[720px] lg:w-[960px] xl:w-[1140px]">
-            <div className="flex w-full py-[.5rem] px-[15px]   text-gray-secondary justify-center  md:w-[480px] lg:w-[640px] xl:w-[760px]">
+            <div className="flex w-full    px-[15px]   text-gray-secondary   md:w-[480px] lg:w-[640px] xl:w-[760px]">
               <ul
-                className={`flex w-full  items-center  text-center   border-b text-gray-500 sm:border-b-0 `}
+                className={`flex w-full  items-center py-[.5rem]  text-center  border-b   text-gray-500 sm:border-b-0 `}
               >
-                <li className="w-full flex justify-center items-center  lg:w-[120px]">
+                <li className="w-[100px] flex justify-center items-center  lg:w-[120px]">
                   <Link
                     id="profile"
                     className={` ${
@@ -94,7 +99,7 @@ const Profile = () => {
                     </span>
                   </Link>
                 </li>
-                <li className="w-full flex justify-center items-center">
+                <li className="w-[100px] flex justify-center items-center  lg:w-[120px]">
                   <Link
                     id={"password"}
                     className={` ${
@@ -108,6 +113,19 @@ const Profile = () => {
                       &nbsp;Password
                     </span>
                   </Link>
+                </li>
+                <li
+                  className={`${
+                    user?.roles.includes("admin") ||
+                    user?.roles.includes("author")
+                      ? "block"
+                      : "hidden"
+                  } flex justify-end flex-1 w-full`}
+                >
+                  <button
+                    className="btn  "
+                    onClick={(e) => dashboardHandler(e)}
+                  >{`Goto dashboard`}</button>
                 </li>
               </ul>
             </div>

@@ -1,28 +1,20 @@
 import { useState } from "react";
 import { PiUserThin } from "react-icons/pi";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../../app/features/auth/authSlice";
 import FormInputField from "../../../components/shared/FormInputField";
-// import { toast } from "react-toastify";
-// import userLogo from "../assets/user.png";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getMe, updateUser } from "../../../app/features/auth/authSlice";
 
 const EditProfile = () => {
-  //   const { user } = useSelector((state) => state.auth);
-  //   const dispatch = useDispatch();
-  const user = {
-    firstName: "Ashish",
-    lastName: "Magar",
-    email: "ashish@gmail.com",
-    number: 1111111111,
-  };
-  const inittialValues = {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const initialValues = {
     firstName: user?.firstName,
     lastName: user?.lastName,
     email: user?.email,
-    number: user?.number,
   };
 
-  const [formData, setFormData] = useState(inittialValues);
+  const [formData, setFormData] = useState(initialValues);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -30,17 +22,12 @@ const EditProfile = () => {
   };
 
   const saveButtonHandler = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const data = await dispatch(updateUser(formData)).unwrap();
-    //   if (data) {
-    //     await dispatch(getMe()).unwrap();
-    //   }
-    //   toast.success("User updated!");
-    // } catch (err) {
-    //   console.log(err.message);
-    //   toast.error("User not updated");
-    // }
+    e.preventDefault();
+    try {
+      const data = await dispatch(updateUser({ userData: formData })).unwrap();
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -82,7 +69,7 @@ const EditProfile = () => {
                 }
                 labelClassName={"text-gray-500"}
               />
-              <FormInputField
+              {/* <FormInputField
                 name={"number"}
                 label={"phone number"}
                 placeholder={""}
@@ -92,7 +79,7 @@ const EditProfile = () => {
                   "flex flex-col px-[15px] w-full mb-[28.8px] md:w-1/2 text-gray-500 "
                 }
                 labelClassName={"text-gray-500"}
-              />
+              /> */}
               <FormInputField
                 name={"email"}
                 label={"email"}

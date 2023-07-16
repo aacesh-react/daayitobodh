@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { login } from "../app/features/auth/authSlice";
 import FormInputField from "../components/shared/FormInputField";
 
 function setWithExpiry(key, value, ttl) {
@@ -27,7 +29,10 @@ const LoginPage = () => {
 
   const [formData, setFormData] = useState(initialValues);
   const [validationError, setValidationError] = useState(validationData);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log("location:", location.state?.from.pathname);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -45,9 +50,16 @@ const LoginPage = () => {
       : setValidationError((prev) => ({ ...prev, [name]: true }));
   };
 
-  const formSubmitHanlder = (e) => {
+  const formSubmitHanlder = async (e) => {
     e.preventDefault();
-    navigate("/user/profile");
+    console.log("formData:", formData);
+    try {
+      let data = await dispatch(login(formData)).unwrap();
+      console.log("data:", data);
+      navigate(location.state?.from.pathname || "/");
+    } catch (error) {
+      console.log("err:", error);
+    }
   };
   return (
     <div className="flex w-full h-screen bg-gray-200 items-center justify-center">

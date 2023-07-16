@@ -1,0 +1,28 @@
+const endpoints = {
+  // apiBaseURL: 'import.meta.env.MAGAR_APP_BASE_URI',
+  // apiBaseURL: "https://foodmandu-clone.netlify.app/api/api/v1",
+  apiBaseURL: "http://localhost:5000/api/v1",
+  roles: "roles",
+  userRoles: "user/roles",
+  // viteApp: import.meta.env.MAGAR_APP_TITLE,
+  // banners: 'banners',
+  // bannersById: 'banners/:id',
+  // commityMembers: 'commity-members',
+  // commityMembersById: 'commity-members/:id',
+  // departments: 'departments',
+  // departmentById: 'departments/:id',
+  // login: 'users/login',
+  // memberships: 'memberships',
+  // members: 'members',
+  // membersById: 'members/:id',
+  // news: 'news',
+  // newsById: 'news/:id',
+  // nmos: 'nmos',
+  // nmosById: 'nmos/:id',
+  // notifications: 'notifications',
+  // notificationById: 'notifications/:id',
+  // register: 'users/register',
+  // users: 'users',
+};
+
+export default endpoints;

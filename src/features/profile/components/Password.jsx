@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../../app/features/auth/authSlice";
 // import { updateUser } from "../../../app/features/auth/authSlice";
 import FormInputField from "../../../components/shared/FormInputField";
 // import { toast } from "react-toastify";
@@ -24,7 +25,7 @@ const Password = () => {
   const [formData, setFormData] = useState(initialValues);
   // const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
   const [inputErr, setInputErr] = useState(errorInitialValue);
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   //   const { user } = useSelector((state) => state.auth);
   // console.log("formdata change password:", formData);
   const inputChangeHandler = (e) => {
@@ -81,14 +82,16 @@ const Password = () => {
 
   const saveButtonHandler = async (e) => {
     e.preventDefault();
+    console.log("form data:", formData);
     // formData.email = user.email;
-    // try {
-    //   let data = await dispatch(updateUser(formData)).unwrap();
-    //   toast.success("Password updated!");
-    // } catch (error) {
-    //   console.log("error:", error);
-    //   toast.error(error.message);
-    // }
+    try {
+      let data = await dispatch(
+        updateUser({ userData: formData, type: "changePassword" })
+      ).unwrap();
+      console.log("data:", data);
+    } catch (error) {
+      console.log("error:", error);
+    }
     // setFormData(initialValues);
   };
   return (
