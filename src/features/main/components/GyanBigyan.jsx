@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
+import { getCategoryNews } from "../../../utilities/news";
 
 const gyanRight = [
   {
@@ -31,15 +33,41 @@ const gyanRight = [
 
 import NewsCard from "./NewsCard";
 const GyanBigyan = () => {
+  const { homepageNews } = useSelector((state) => state.news);
+  const newsArray = getCategoryNews(homepageNews, "ज्ञान–विज्ञान", 10);
+  const leftNewsArray = newsArray.slice(0, 4);
+  const rightNewsArray = newsArray.slice(5, 10);
   return (
     <div className="flex justify-center">
       <div className=" w-full  flex flex-col lg:w-lg-p xl:w-xl-p">
-        <h1 className="title-small lg:heading-main px-[15px]">ज्ञान विज्ञान</h1>
+        <h1 className="heading-main py-[1rem] px-[15px]">ज्ञान–विज्ञान</h1>
         <div className="flex flex-col lg:flex-row ">
           {/*left  */}
           <div className="flex w-full pb-[1rem]  lg:w-[240px] xl:w-[278px]">
             <div className="flex flex-col ">
-              <div className="w-full px-[15px]">
+              <ul>
+                {leftNewsArray.map((news, index) =>
+                  index == 0 ? (
+                    <div className="w-full px-[15px]" key={index}>
+                      <NewsCard
+                        img={news.coverImage}
+                        imgStyle={" h-[256px] lg:h-[146px] object-cover"}
+                        heading={news.heading}
+                        headingStyle={"text-md line-clamp-3 "}
+                      />
+                    </div>
+                  ) : (
+                    <li className="px-px" key={index}>
+                      <Link>
+                        <h3 className="text-sm line-clamp-3 font-[300] py-[10px]">
+                          {news.heading}
+                        </h3>
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+              {/* <div className="w-full px-[15px]">
                 <NewsCard
                   img={img}
                   imgStyle={" h-[256px] lg:h-[146px] object-cover"}
@@ -66,39 +94,43 @@ const GyanBigyan = () => {
                     टिककाे अब पैसा लाग्ने
                   </h3>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
+
           {/*middle  */}
           <div className="flex lg:w-[400px] xl:w-[536px] px-[15px]">
             <div className="flex">
               <NewsCard
-                img={img}
+                img={newsArray[4].coverImage}
                 imgStyle={"h-[256px] lg:h-[364px] object-cover"}
-                heading={
-                  "कृत्रिम बाैद्धकताकाे बहस: के च्याट जीपीटीले मानिसलाई पंगु बनाउँछ?"
+                heading={newsArray[4].heading}
+                headingStyle={
+                  "text-md line-clamp-3 lg:leading-[1.4] lg:heading-big"
                 }
-                headingStyle={"text-md  lg:leading-[1.4] lg:heading-big"}
               />
             </div>
           </div>
+
           {/*right  */}
           <div className="flex w-full lg:w-[350px] xl:w-[466px]  ">
             <div className="flex flex-col">
               <ul>
-                {gyanRight.map((value, index) => (
+                {rightNewsArray.map((news, index) => (
                   <li
                     className="flex  px-px h-[80px]  xl:h-[100px] w-full mb-[1rem]"
                     key={index}
                   >
                     <NewsCard
                       type={"row"}
-                      img={img}
+                      img={news.coverImage}
                       imgStyle={
                         "h-full w-[80px] lg:w-[100px] xl:w-[150px] object-cover"
                       }
-                      heading={value.heading}
-                      headingStyle={"text-sm w-full line-clamp-3 font-[300]  lg:leading-[1.4] "}
+                      heading={news.heading}
+                      headingStyle={
+                        "text-sm w-full line-clamp-3 font-[300]  lg:leading-[1.4] "
+                      }
                     />
                   </li>
                 ))}

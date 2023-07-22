@@ -32,13 +32,13 @@ input:-webkit-autofill {
   .title-small {
     font-size: 1.5rem;
     color: #8B0304;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
   }
 
   .heading-main {
     font-size: 1.5rem;
-    color: #8B0304;
-    /* padding: 1rem 15px; */
+    color: #aa7b2c;
+    /* padding: 1rem 0; */
   }
 
   .heading-big {

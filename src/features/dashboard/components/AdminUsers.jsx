@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import { Multiselect } from "multiselect-react-dropdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdOutlineModeEdit, MdOutlineDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, getUsers } from "../../../app/features/auth/authSlice";
@@ -15,6 +15,7 @@ import {
   deleteByUserAndRole,
 } from "../../../app/features/userRole/userRoleSlice";
 import DeleteModal from "../../../components/shared/DeleteModal";
+import { useEffect } from "react";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -23,15 +24,6 @@ const AdminUsers = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(undefined);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const style = {
-    multiselectContainer: {
-      // width: "500px",
-    },
-    option: {
-      color: "red",
-    },
-  };
 
   const closeModal = () => {
     setShowModal(false);
@@ -39,7 +31,6 @@ const AdminUsers = () => {
   };
 
   const deleteButtonHandler = (user) => {
-    console.log("delete button handler:", user.id);
     setUser(user);
     setModalType("delete");
     setShowModal(true);
@@ -98,8 +89,6 @@ const AdminUsers = () => {
       userId: user.id,
       role: role.name,
     };
-    console.log("data:", data);
-
     try {
       let result = await dispatch(addUserRole(data)).unwrap();
       setUsers((prev) =>
@@ -122,19 +111,17 @@ const AdminUsers = () => {
   };
 
   useEffect(() => {
-    const allUsers = async () => {
+    async function allUsers() {
       try {
         const accessToken = getCookie("accessToken");
-        const data = await dispatch(getUsers(accessToken)).unwrap();
-        // console.log("data:", data.data[1]);
-        setUsers(data.data);
+        const userData = await dispatch(getUsers(accessToken)).unwrap();
+        setUsers(userData.data);
         const roleData = await dispatch(getRoles(accessToken)).unwrap();
-        // console.log("roleData:", roleData.data);
         setRoles(roleData.data);
       } catch (error) {
         console.log("err:", error);
       }
-    };
+    }
     allUsers();
   }, []);
 
@@ -187,6 +174,7 @@ const AdminUsers = () => {
                 </td>
                 {/* <td className="border p-[.5rem]">{user.roles.toString()}</td> */}
                 <TableAction
+                hideEdit={true}
                   deleteButtonHandler={(e) => deleteButtonHandler(user)}
                 />
               </tr>

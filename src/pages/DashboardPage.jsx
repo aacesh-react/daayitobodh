@@ -10,6 +10,7 @@ const DashboardPage = () => {
 
   // const [itemToShow, setItemToShow] = useState(undefined);
 
+
   let { contentId } = useParams();
 
   const selectItemsHandler = (id) => {
@@ -184,7 +185,8 @@ const DashboardPage = () => {
         </ul>
       </div>
       {/* right  */}
-      <MainContent itemName={contentId} />
+      <MainContent/>
+      {/* <MainContent itemName={contentId} /> */}
     </div>
   );
 };

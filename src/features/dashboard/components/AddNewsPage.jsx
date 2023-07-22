@@ -1,33 +1,38 @@
 import { data } from "autoprefixer";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getCategories } from "../../../app/features/category/categorySlice";
+import { addNews } from "../../../app/features/news/newsSlice";
 import FormInputField from "../../../components/shared/FormInputField";
 import Select from "../../../components/shared/Select";
+import { validateForm } from "../../../utilities/formValidaton";
 import NewsContent from "./NewsContent";
 
-export const categories = ["sahitye", "bigyan"];
+// export const categories = ["sahitye", "bigyan"];
 
 const AddNews = () => {
   const initialValues = {
-    category: "",
-    subCategory: "",
-    heading: "",
-    content: "",
-    author: "",
-    image: "",
+    heading: null,
+    content: null,
+    categoryId: null,
+    subcategoryId: null,
   };
 
   const validationData = {
-    category: false,
-    subCategory: false,
     heading: false,
     content: false,
-    author: false,
+    categoryId: false,
+    subcategoryId: false,
   };
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState(initialValues);
   const [validationError, setValidationError] = useState(validationData);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const dispatch = useDispatch();
+  console.log("C:", categories);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -48,7 +53,41 @@ const AddNews = () => {
   const selectHandler = (e) => {
     const { name, value } = e.currentTarget;
     console.log(name, value);
-    setFormData((prev) => ({ ...prev, category: value }));
+    if (!value) {
+      setFormData((prev) => ({ ...prev, [name]: null }));
+      return;
+    }
+    let id;
+    if (name == "categoryId") {
+      console.log("cat:", categories);
+      const selectedCategory = categories.find(
+        (category) => category.name == value
+      );
+      console.log("category:", selectedCategory);
+
+      id = selectedCategory.id;
+      setSelectedCategory(selectedCategory);
+      setFormData((prev) => ({ ...prev, [name]: id, subcategoryId: null }));
+
+      // selectedCategory.subcategories
+      //   ? setFormData((prev) => ({ ...prev, [name]: id, subcategoryId: null }))
+      //   : setFormData((prev) => ({
+      //       ...prev,
+      //       [name]: id,
+      //       subcategoryId: value,
+      //     }));
+
+      var childSelect = document.getElementById("selectSubcategory");
+      // Clear the selection in the child select
+      childSelect.selectedIndex = 0;
+    }
+    if (name == "subcategoryId") {
+      const selectedSubcategory = selectedCategory.subcategories?.find(
+        (subcategory) => subcategory.subcategoryName == value
+      );
+      id = selectedSubcategory.subcategoryId.toString();
+      setFormData((prev) => ({ ...prev, [name]: id }));
+    }
   };
 
   const imageHandler = (e) => {
@@ -64,26 +103,57 @@ const AddNews = () => {
   const formSubmitHanlder = async (e) => {
     e.preventDefault();
     console.log("formdata:", formData);
-    const data = new FormData();
-    console.log("selected image:", selectedImage);
-    data.append("image", selectedImage);
-    data.set("category", formData.category);
-    data.set("subCategory", formData.subCategory);
-    data.set("heading", formData.heading);
-    data.set("content", formData.content);
-    data.set("author", formData.author);
-    try {
-      let res = await axios({
-        url: "http://localhost:5000/",
-        method: "POST",
-        data,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error.message);
+    const dataToValidate = {
+      heading: formData.heading,
+      content: formData.content,
+      categoryId: formData.categoryId,
+    };
+    const hasEmptyData = validateForm(dataToValidate, setValidationError);
+    console.log("hasEmptyData:", hasEmptyData);
+
+    if (!hasEmptyData) {
+      console.log("passed");
+      const data = new FormData();
+      data.append("image", selectedImage);
+      data.set("heading", formData.heading);
+      data.set("content", formData.content);
+      data.set("categoryId", formData.categoryId);
+      data.set("subcategoryId", formData.subcategoryId);
+      console.log("data:", data);
+      try {
+        const result = await dispatch(addNews(data)).unwrap();
+        console.log("result:", result);
+      } catch (error) {
+        console.log("Err:", error);
+      }
     }
+
+    // try {
+    //   let res = await axios({
+    //     url: "http://localhost:5000/",
+    //     method: "POST",
+    //     data,
+    //     headers: { "Content-Type": "multipart/form-data" },
+    //   });
+    //   console.log(res.data);
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
+  useEffect(() => {
+    console.log("use effect");
+    (async function () {
+      try {
+        const result = await dispatch(getCategories({ sub: true })).unwrap();
+        console.log("result:", result.data);
+        setCategories(result.data);
+        setSelectedCategory(result.data[0]);
+      } catch (error) {
+        console.log("err:", error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="flex bg-white w-full  px-px   ">
       <div className="flex flex-col py-[15px]  w-full">
@@ -99,21 +169,27 @@ const AddNews = () => {
               <div className="flex flex-col w-full pb-[1rem] px-px">
                 <label className="py-[1rem] text-xs">Select Category:</label>
                 <Select
-                  data={categories}
+                  data={categories.map((category) => category.name)}
                   changeHandler={selectHandler}
                   style={"h-[41px]"}
-                  name={"category"}
+                  name={"categoryId"}
+                  defaultOption={"Select a category"}
+                  id={"selectCategory"}
                 />
               </div>
-              <div className="flex flex-col w-full pb-[1rem] px-px">
+              <div className={`  flex flex-col w-full pb-[1rem] px-px`}>
                 <label className="py-[1rem] text-xs">
                   Select Sub-Category:
                 </label>
                 <Select
-                  data={categories}
+                  data={selectedCategory?.subcategories?.map(
+                    (subcategory) => subcategory.subcategoryName
+                  )}
                   changeHandler={selectHandler}
                   style={"h-[41px]"}
-                  name={"subCategory"}
+                  name={"subcategoryId"}
+                  defaultOption={"Select a subcategory"}
+                  id={"selectSubcategory"}
                 />
               </div>
 
@@ -130,7 +206,7 @@ const AddNews = () => {
                 inputClassName={"border"}
               />
 
-              <FormInputField
+              {/* <FormInputField
                 name={"author"}
                 label={"Author"}
                 placeholder={"Enter news author"}
@@ -141,7 +217,7 @@ const AddNews = () => {
                 type={"text"}
                 className={"flex flex-col px-[15px]  w-full mb-[28.8px] "}
                 inputClassName={"border"}
-              />
+              /> */}
               <div className="w-full h-[41px] px-px ">
                 <label className="py-[1rem] text-xs pr-[1rem]">
                   Select Image:

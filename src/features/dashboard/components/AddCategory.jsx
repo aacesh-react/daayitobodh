@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addCategory } from "../../../app/features/category/categorySlice";
 import FormInputField from "../../../components/shared/FormInputField";
+import { validateForm } from "../../../utilities/formValidaton";
 
 const AddCategory = () => {
   const initialValues = {
@@ -19,7 +20,6 @@ const AddCategory = () => {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
@@ -28,19 +28,36 @@ const AddCategory = () => {
 
   const validationOutput = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
       : setValidationError((prev) => ({ ...prev, [name]: true }));
   };
 
+  // const validateForm = () => {
+  //   let hasEmptyData = false;
+  //   for (const name in formData) {
+  //     if (Object.hasOwnProperty.call(formData, name)) {
+  //       const value = formData[name];
+  //       value
+  //         ? setValidationError((prev) => ({ ...prev, [name]: false }))
+  //         : setValidationError((prev) => ({ ...prev, [name]: true }));
+  //       if (!value) {
+  //         hasEmptyData = true;
+  //       }
+  //     }
+  //   }
+  //   return hasEmptyData;
+  // };
+
   const formSubmitHanlder = async (e) => {
     e.preventDefault();
-    console.log("form data:", formData);
+    const hasEmptyData = validateForm(formData, setValidationError);
+    if (hasEmptyData) {
+      return;
+    }
     try {
       const result = await dispatch(addCategory(formData)).unwrap();
-      console.log("result:", result);
+      setFormData(initialValues);
     } catch (error) {
       console.log("err:", error);
     }
@@ -65,6 +82,7 @@ const AddCategory = () => {
                 placeholder={"Type category name"}
                 onchangeHandler={inputChangeHandler}
                 onBlurHandler={validationOutput}
+                value={formData.categoryName}
                 validationError={validationError.categoryName}
                 errorMessage={"Category is required."}
                 type={"text"}
@@ -73,13 +91,7 @@ const AddCategory = () => {
               <div className="px-[15px] flex items-center mb-[0.5rem]"></div>
             </div>
             <div className=" w-full px-px py-[.5rem]">
-              <button
-                className="btn w-full  "
-                name="addCategory"
-                onClick={(e) => {
-                  // loginHanlder(e);
-                }}
-              >
+              <button className="btn w-full  " name="addCategory">
                 Add Category
               </button>
             </div>

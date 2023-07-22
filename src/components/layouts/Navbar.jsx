@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../features/navbar/data/navbar";
 import Caraousel from "../shared/Caraousel";
@@ -8,7 +8,7 @@ import { PiUserThin } from "react-icons/pi";
 import Title from "../shared/Title";
 import logo from "../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 import { getMe } from "../../app/features/auth/authSlice";
 
 const Navbar = () => {
@@ -20,16 +20,13 @@ const Navbar = () => {
   const showMobileNavHandler = (e) => {
     setShowMobileNav((prev) => !prev);
   };
+  // const [latestNews, setLatestNews] = useState([]);
   // useEffect(() => {
-  //   console.log("use effect");
-  //   (async function me() {
+  //   (async function getLatestNews() {
   //     try {
-  //       const result = await dispatch(getMe(auth.accessToken)).unwrap();
-  //       console.log(
-  //         "result in navbar effect ",
-  //         result
-  //         // result.token
-  //       );
+  //       const latestNews = await newsService.getLatestNews(10);
+  //       console.log("latest news:", latestNews);
+  //       setLatestNews(latestNews);
   //     } catch (error) {
   //       console.log("error:", error);
   //     }
@@ -39,43 +36,19 @@ const Navbar = () => {
   return (
     <div className="flex w-full bg-white justify-center ">
       <div className="flex flex-col w-full lg:w-lg-p  xl:w-xl-p px-px  items-center ">
-        {/* <MobileNav  showMenuItems= {true}/> */}
-        {/* <div className="flex w-full">
-          <div className="flex justify-between  border-b items-center h-[72px] w-full text-blue-primary  relative lg:justify-center lg:h-[160px]">
-            <div className="lg:hidden">
-              <PiUserThin className="h-[32px]  w-[32px] border rounded-full border-blue-secondary p-[2px]  text-bg-secondary xl:hidden" />
-            </div>
-            <h3 className=" text-[30px] lg:text-[124px] inline-block ">
-              दायित्वबोध
-            </h3>
-            <div className="flex lg:hidden " onClick={showMobileNavHandler}>
-              <div className="flex flex-col w-[28px] ">
-                <hr className="w-full border-blue-secondary py-[4px]" />
-                <hr className="w-full border-blue-secondary py-[4px]" />
-                <hr className="w-full border-blue-secondary py-[4px]" />
-              </div>
-            </div>
-            <span className=" hidden lg:block lg:text-[21px]  font-[500] absolute  lg:bottom-[10px] lg:right-[222px] xl:right-[368px]">
-              बिचारनिर्माणको दिशामा सार्थक पहल
-            </span>
-          </div>
-          <MobileNav
-            showMenuItems={showMobileNav}
-            menuItems={navItems}
-            closeMenuItems={showMobileNavHandler}
-          />
-          
-        </div> */}
         <Title />
         {/* <Link className="flex h-[175px] w-full  justify-center" to={"/"}>
           <img className=" object-cover" src={logo} alt="" />
         </Link> */}
-        <div className={`hidden lg:block flex w-full`}>
+        <div className={`hidden lg:block flex w-full `}>
           <div className="flex w-full h-[3rem]  border-y-[3px] border-heading-main">
             <ul className=" w-full flex items-center justify-between ">
               {navItems.map((value, index) => (
                 <li key={index} className="flex">
-                  <Link className="text-[17px] font-bold" to={`/news/${value}`}>
+                  <Link
+                    className="text-[17px] font-bold"
+                    to={`/news/${value}`}
+                  >
                     {value}
                   </Link>
                 </li>
@@ -92,9 +65,7 @@ const Navbar = () => {
 
         {/* Carausel */}
         <div className="w-full  py-[1rem]">
-          <Caraousel>
-            <CarouselCard />
-          </Caraousel>
+          <Caraousel />
         </div>
       </div>
     </div>

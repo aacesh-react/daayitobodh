@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,9 +8,23 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay } from "swiper";
+import newsService from "../../app/features/news/newsService";
+import CarouselCard from "./CarouselCard";
 
 const Carausel = ({ children }) => {
   const data = [1, 3, 4, 5, 6, , 8, 9, 0, 1, 2];
+  const [latestNews, setLatestNews] = useState([]);
+  useEffect(() => {
+    (async function getLatestNews() {
+      try {
+        const result = await newsService.getLatestNews(10);
+        setLatestNews(result.data);
+      } catch (error) {
+        console.log("error:", error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="w-full">
       <Swiper
@@ -41,8 +55,10 @@ const Carausel = ({ children }) => {
         modules={[Autoplay]}
       >
         <ul>
-          {data.map((value, index) => (
-            <SwiperSlide key={index}>{children}</SwiperSlide>
+          {latestNews.map((news, index) => (
+            <SwiperSlide key={index}>
+              <CarouselCard news={news} />
+            </SwiperSlide>
           ))}
         </ul>
       </Swiper>

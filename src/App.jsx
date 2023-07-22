@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { getMe } from "./app/features/auth/authSlice";
+import { getHomepageNews } from "./app/features/news/newsSlice";
 import Navbar from "./components/layouts/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedRoutesComponent from "./components/ProtectedRouteComponent";
 import Caraousel from "./components/shared/Caraousel";
 import Pagination from "./components/shared/Paginaton";
+import AdminUsers from "./features/dashboard/components/AdminUsers";
 import CategoryPage from "./pages/CategoryPage";
 import DashboardPage from "./pages/DashboardPage";
 import Homepage from "./pages/Homepage";
@@ -20,14 +22,19 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const accessToken = getCookie("accessToken");
+
   useEffect(() => {
-    (async function me() {
+    (async function fetchData() {
       try {
-        const result = await dispatch(getMe(accessToken)).unwrap();
+        const limit = 10;
+        const homepageNews = await dispatch(getHomepageNews(limit)).unwrap();
+        if (accessToken) {
+          const result = await dispatch(getMe(accessToken)).unwrap();
+        }
+        setIsLoading(false);
       } catch (error) {
         console.log("err:", error);
       } finally {
-        setIsLoading(false);
       }
     })();
   }, []);
@@ -41,9 +48,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/users" element={<AdminUsers />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/news/:category" element={<CategoryPage />} />
+          <Route path="/news/:categoryName" element={<CategoryPage />} />
           <Route path="/news/:category/:newsId" element={<NewsPage />} />
           <Route element={<ProtectedRoutesComponent reader={true} />}>
             <Route path="/user/:id" element={<Profile />} />
@@ -56,12 +64,12 @@ function App() {
               </ProtectedRoute>
             }
           /> */}
-          <Route element={<ProtectedRoutesComponent admin={true} />}>
-            <Route
-              path="/admin/dashboard/:contentId"
-              element={<DashboardPage />}
-            />
-          </Route>
+          {/* <Route element={<ProtectedRoutesComponent admin={true} />}> */}
+          <Route
+            path="/admin/dashboard/:contentId"
+            element={<DashboardPage />}
+          />
+          {/* </Route> */}
         </Routes>
       </Router>
     </>

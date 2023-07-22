@@ -11,10 +11,10 @@ const CardRow = ({
   authorStyle,
 }) => {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full h-full">
       <div className="flex shrink-0 ">
         <Link>
-          <img className={`${imgStyle}`} src={img} alt="img" />
+          <img className={`${imgStyle} rounded`} src={img} alt="img" />
         </Link>
       </div>
       <div className="flex flex-col pl-[10px] rounded ">

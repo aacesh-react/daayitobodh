@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { MdOutlineLogout } from "react-icons/md";
 import { PiUserThin } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, redirect } from "react-router-dom";
+import { Navigate, useNavigate, redirect, useParams } from "react-router-dom";
 import { logout } from "../../../app/features/auth/authSlice";
 import AddCategory from "./AddCategory";
 import AddNews from "./AddNewsPage";
@@ -18,9 +18,10 @@ const MainContent = ({ itemName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const profileRef = useRef();
+  let { contentId } = useParams();
 
   let mainElement;
-  switch (itemName) {
+  switch (contentId) {
     case "categories":
       mainElement = <AdminCategories />;
       break;
@@ -81,9 +82,6 @@ const MainContent = ({ itemName }) => {
     }
   }, [showProfile]);
 
-  if (isLoading) {
-    return <div></div>;
-  }
   return (
     <div className="flex  flex-col w-full font-[300]">
       <div className="flex  w-full justify-end h-[63px] border-b">

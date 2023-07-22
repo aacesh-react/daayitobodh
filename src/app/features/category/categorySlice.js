@@ -7,6 +7,15 @@ const initialState = {
   hasError: false,
 };
 
+const updateStateCategories = (categories, category) => {
+  return categories.map((currCategory) => {
+    if (currCategory.id == category.id) {
+      currCategory = { ...currCategory, ...category };
+    }
+    return currCategory;
+  });
+};
+
 export const addCategory = createAsyncThunk(
   "categories/add",
   async (data, thunkAPI) => {
@@ -18,16 +27,27 @@ export const addCategory = createAsyncThunk(
   }
 );
 
-// export const getRoles = createAsyncThunk(
-//   "roles/getAll",
-//   async (accessToken, thunkAPI) => {
-//     try {
-//       return await categoryService.getRoles(accessToken);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+export const getCategories = createAsyncThunk(
+  "categories/getAll",
+  async ({ limit, page, sub }, thunkAPI) => {
+    try {
+      return await categoryService.getCategories(limit, page, sub);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateCategory = createAsyncThunk(
+  "categories/update",
+  async (data, thunkAPI) => {
+    try {
+      return await categoryService.updateCategory(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 // export const deleteByUserAndRole = createAsyncThunk(
 //   "user/roles/delete",
@@ -61,33 +81,53 @@ export const categorySlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addCategory.fulfilled, (state, action) => {
+        console.log("fullfilled data:", action.payload.data);
         state.isLoading = false;
         state.hasError = false;
-        state.categories = [...state.categories].push(action.payload.data);
+        state.categories = [...state.categories, action.payload.data];
       })
       .addCase(addCategory.rejected, (state) => {
         state.isLoading = false;
         state.hasError = true;
       })
-      // .addCase(getRoles.pending, (state) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(getRoles.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.hasError = false;
-      //   state.roles = action.payload.data;
-      // })
-      // .addCase(getRoles.rejected, (state) => {
-      //   state.isLoading = false;
-      //   state.roles = [];
-      //   state.hasError = true;
-      // })
+      .addCase(getCategories.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.hasError = false;
+        if (action.payload.message == "Categories") {
+          state.categories = action.payload.data;
+        }
+      })
+      .addCase(getCategories.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      })
+      .addCase(updateCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.hasError = false;
+        state.categories = updateStateCategories(
+          state.categories,
+          action.payload.data
+        );
+      })
+      .addCase(updateCategory.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      })
       .addCase(deleteCategory.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(deleteCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.hasError = false;
+        state.categories = [...state.categories].filter(
+          (category) => category.id != action.payload.data.id
+        );
       })
       .addCase(deleteCategory.rejected, (state) => {
         state.isLoading = false;

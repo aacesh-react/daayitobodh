@@ -16,7 +16,7 @@ export default {
           gray: "#F1F1F1",
         },
         heading: {
-          main: " #aa7b2c",
+          main: "#aa7b2c",
         },
         brown: {
           heading: "#A37224",

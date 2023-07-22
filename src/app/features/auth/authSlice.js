@@ -37,7 +37,7 @@ export const getMe = createAsyncThunk(
   }
 );
 export const getUsers = createAsyncThunk(
-  "auth/users/updateUser",
+  "auth/users/getAll",
   async (accessToken, thunkAPI) => {
     try {
       return await authService.getUsers(accessToken);
@@ -87,8 +87,8 @@ export const resetPassword = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  "auth/users",
-  async ({userData, type}, thunkAPI) => {
+  "auth/users/update",
+  async ({ userData, type }, thunkAPI) => {
     try {
       return await authService.updateUser(userData, type);
     } catch (error) {
