@@ -121,7 +121,7 @@ const AdminSubcategories = () => {
   }, [activePage]);
 
   return (
-    <div className="flex w-full bg-white p-px ">
+    <div className="flex w-full bg-white p-px text-black">
       <div className="flex flex-col w-full py-[15px] border ">
         <h3 className=" px-px text-[1.5rem] font-[500] pb-[1rem] ">
           Sub Categories
@@ -142,8 +142,13 @@ const AdminSubcategories = () => {
             </thead>
             <tbody>
               {subcategories.map((subcategory, index) => (
-                <tr key={index}>
-                  <td className="border p-[.5rem]">{index + 1}</td>
+                <tr
+                  className={`  ${index % 2 === 0 && "bg-bg-brown"}`}
+                  key={index}
+                >
+                  <td className="border p-[.5rem]">
+                    {(activePage - 1) * 10 + index + 1}
+                  </td>
                   <td className="border p-[.5rem]">{subcategory.name}</td>
                   <td className="border p-[.5rem]">
                     {subcategory.categoryName}

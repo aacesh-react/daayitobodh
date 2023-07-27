@@ -17,6 +17,9 @@ import NewsPage from "./pages/NewsPage";
 import Profile from "./pages/Profile";
 import SignupPage from "./pages/SignupPage";
 import { getCookie } from "./pkg/universalCookies";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/layouts/Footer";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,10 +31,10 @@ function App() {
       try {
         const limit = 10;
         const homepageNews = await dispatch(getHomepageNews(limit)).unwrap();
+        setIsLoading(false);
         if (accessToken) {
           const result = await dispatch(getMe(accessToken)).unwrap();
         }
-        setIsLoading(false);
       } catch (error) {
         console.log("err:", error);
       } finally {
@@ -40,7 +43,7 @@ function App() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return <div></div>;
   }
 
   return (
@@ -52,7 +55,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/news/:categoryName" element={<CategoryPage />} />
-          <Route path="/news/:category/:newsId" element={<NewsPage />} />
+          <Route path="/news/:categoryName/:newsId" element={<NewsPage />} />
           <Route element={<ProtectedRoutesComponent reader={true} />}>
             <Route path="/user/:id" element={<Profile />} />
           </Route>
@@ -71,7 +74,9 @@ function App() {
           />
           {/* </Route> */}
         </Routes>
+        <Footer />
       </Router>
+      <ToastContainer />
     </>
   );
 }

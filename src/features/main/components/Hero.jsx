@@ -9,6 +9,7 @@ import NewsCard from "./NewsCard";
 
 const Hero = () => {
   const { homepageNews } = useSelector((state) => state.news);
+  console.log("homepagenews:", homepageNews);
   const mukhyaNewsArray = getNews(homepageNews, true, "मुख्य", 3);
   const aparadhNewsArray = getNews(homepageNews, true, "अपराध", 1);
   const baicharikiNewsArray = getNews(homepageNews, true, "वैचारिकी", 3);
@@ -22,7 +23,7 @@ const Hero = () => {
           <h3 className="heading-main py-[1rem]">मुख्य</h3>
           <div className="flex w-full">
             <ul>
-              {mukhyaNewsArray.map((news, index) =>
+              {mukhyaNewsArray?.map((news, index) =>
                 index == 0 ? (
                   <li key={index}>
                     <div className="flex w-full  ">
@@ -31,12 +32,17 @@ const Hero = () => {
                         heading={news.heading}
                         headingStyle={"text-md lg:text-md line-clamp-3"}
                         imgStyle={"h-[200px] w-full lg:w-[330px] "}
+                        newsId={news.newsId}
+                        categoryName={news.categoryName}
                       />
                     </div>
                   </li>
                 ) : (
                   <li className=" py-[.5rem] leading-[1.5]" key={index}>
-                    <Link className="text-sm lg:text-[1.5rem] font-[300] line-clamp-3">
+                    <Link
+                      className="text-sm lg:text-[1.5rem] font-[300] line-clamp-3"
+                      to={`/news/${news.categoryName}/${news.newsId}`}
+                    >
                       {news.heading}
                     </Link>
                   </li>
@@ -52,14 +58,18 @@ const Hero = () => {
             <h3 className="heading-main  py-[1rem]">अपराध</h3>
             <div className="flex w-full flex-col ">
               <div className=" w-full ">
-                <NewsCard
-                  heading={aparadhNewsArray[0].heading}
-                  img={aparadhNewsArray[0].coverImage}
-                  headingStyle={" text-md lg:text-[3rem]"}
-                  imgStyle={" w-full aspect-[1.65]"}
-                  author={aparadhNewsArray[0].createdBy}
-                  authorStyle={"font-[300] text-[1.5rem] "}
-                />
+                {aparadhNewsArray && (
+                  <NewsCard
+                    heading={aparadhNewsArray[0].heading}
+                    img={aparadhNewsArray[0].coverImage}
+                    headingStyle={" text-md lg:text-[3rem]"}
+                    imgStyle={" w-full aspect-[1.65]"}
+                    author={aparadhNewsArray[0].createdBy}
+                    authorStyle={"font-[300] text-[1.5rem] "}
+                    newsId={aparadhNewsArray[0].newsId}
+                    categoryName={aparadhNewsArray[0].categoryName}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -72,7 +82,7 @@ const Hero = () => {
             <div className="flex flex-col">
               <div className="flex w-full">
                 <ul className="w-full">
-                  {baicharikiNewsArray.map((news, index) =>
+                  {baicharikiNewsArray?.map((news, index) =>
                     index == 0 ? (
                       <div className="flex flex-col" key={index}>
                         <div className=" pb-[1rem]  lg:pb-0 ">
@@ -83,12 +93,18 @@ const Hero = () => {
                             imgStyle={" w-full aspect-[1.65] "}
                             author={news.createdBy}
                             authorStyle={"font-[300] text-[1rem] "}
+                            newsId={news.newsId}
+                            categoryName={news.categoryName}
                           />
                         </div>
                       </div>
                     ) : (
                       <li className="py-[15px] w-full " key={index}>
-                        <h3 className="text-sm line-clamp-3">{news.heading}</h3>
+                        <Link to={`/news/${news.categoryName}/${news.id}`}>
+                          <h3 className="text-sm line-clamp-3">
+                            {news.heading}
+                          </h3>
+                        </Link>
                         <span className="font-[300]">{news.createdBy}</span>
                       </li>
                     )

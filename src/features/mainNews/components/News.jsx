@@ -1,4 +1,9 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import newsService from "../../../app/features/news/newsService";
 import img from "../../../assets/img.jpg";
+import { getCategoryNews } from "../../../utilities/news";
 import NewsCard from "../../main/components/NewsCard";
 
 const sambandhit = [
@@ -16,9 +21,43 @@ const sambandhit = [
 ];
 
 const News = () => {
+  const { categoryName, newsId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [news, setNews] = useState({});
+  const { homepageNews } = useSelector((state) => state.news);
+  const sambandhitNewsArray = getCategoryNews(homepageNews, categoryName, 3);
+  console.log("newsArray:", sambandhitNewsArray);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    (async function () {
+      try {
+        const result = await newsService.getNewsById(newsId);
+        console.log("result:", result.data);
+        setNews(result.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("error:", error);
+      }
+    })();
+  }, [newsId]);
+
+  if (isLoading) {
+    <div></div>;
+  }
   return (
     <div className="flex flex-col w-full">
       <div className="flex w-full flex-col font-[400] text-sm">
+        <h3 className="text-xxl px-px py-[1rem] font-[700]">{news.heading}</h3>
+        <div
+          className="px-px"
+          dangerouslySetInnerHTML={{ __html: news.content }}
+        />
+      </div>
+      {/* <div className="flex w-full flex-col font-[400] text-sm">
         <h3 className="text-xxl px-px font-[700]">
           नरेनको शतकमा नेपालले दियो मलेसियालाई २५३ रनको चुनौतीपूर्ण लक्ष्य
         </h3>
@@ -77,18 +116,25 @@ const News = () => {
             गरेको थियो ।
           </p>
         </div>
-      </div>
+      </div> */}
       {/* sambandhit news */}
       <div className="flex flex-col w-full ">
-        <h3
-          className="title-small text-md px-px"
-        >सम्बन्धित खबर </h3>
+        <h3 className="heading-main  py-[1rem] px-px">सम्बन्धित खबर</h3>
         <ul className=" w-full flex">
-          {sambandhit.map((value, index) => (
-            <li className="inline w-1/3 px-px" key={index}>
-              <NewsCard img={img}
-                imgStyle= {"w-full aspect-[1.77]"}
-              heading={value.heading} />
+          {sambandhitNewsArray.map((news, index) => (
+            <li
+              className="inline w-1/3 px-px"
+              key={index}
+              onClick={scrollToTop}
+            >
+              <NewsCard
+                img={news.coverImage}
+                imgStyle={"w-full aspect-[3/2]"}
+                heading={news.heading}
+                headingStyle={"line-clamp-3"}
+                newsId={news.id}
+                categoryName={news.categoryName}
+              />
             </li>
           ))}
         </ul>

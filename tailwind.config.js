@@ -14,6 +14,7 @@ export default {
         bg: {
           brown: "#F1E7CE",
           gray: "#F1F1F1",
+          golden: "hsla(37.619, 59%, 42%, .5)",
         },
         heading: {
           main: "#aa7b2c",

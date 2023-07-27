@@ -30,7 +30,7 @@ const login = async (userData) => {
       path: "/",
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     };
-    setCookie("accessToken", response.data.accessToken, tokenOptions);
+    setCookie("accessToken", response.data.accessToken, {tokenOptions});
     localStorage.setItem("user", JSON.stringify(response.data.data));
   }
   return response.data;

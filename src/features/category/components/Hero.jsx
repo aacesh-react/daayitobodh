@@ -15,6 +15,7 @@ const data = [
 const Hero = ({ categoryName }) => {
   const { homepageNews } = useSelector((state) => state.news);
   const newsArray = getCategoryNews(homepageNews, categoryName, 5);
+  console.log("news array:", newsArray);
   const leftNews = newsArray[0];
   const rightNewsArray = newsArray.slice(1, 5);
 
@@ -27,14 +28,18 @@ const Hero = ({ categoryName }) => {
         <div className="flex flex-col w-full lg:flex-row">
           {/* left */}
           <div className="flex w-full py-[1rem] lg:w-[495px] xl:w-[666px] px-px">
-            <NewsCard
-              img={leftNews.coverImage}
-              imgStyle={"w-full h-[256px] lg:h-[407px]"}
-              heading={leftNews.heading}
-              headingStyle={"text-md lg:text-lg pt-[1rem]"}
-              author={leftNews.createdBy}
-              authorStyle={"text-sm"}
-            />
+            {leftNews && (
+              <NewsCard
+                img={leftNews.coverImage}
+                imgStyle={"w-full h-[256px] lg:h-[407px]"}
+                heading={leftNews.heading}
+                headingStyle={"text-md lg:text-lg pt-[1rem]"}
+                author={leftNews.createdBy}
+                authorStyle={"text-sm"}
+                newsId={leftNews.newsId}
+                categoryName={leftNews.categoryName}
+              />
+            )}
           </div>
           {/* right */}
           <div className="flex py-[1rem]">
@@ -46,6 +51,8 @@ const Hero = ({ categoryName }) => {
                     imgStyle={"aspect-[3/2]"}
                     heading={news.heading}
                     headingStyle={"text-sm pt-[.5rem] line-clamp-2"}
+                    newsId={news.newsId}
+                    categoryName={news.categoryName}
                   />
                 </li>
               ))}

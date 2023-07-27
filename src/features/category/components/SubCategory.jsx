@@ -49,9 +49,11 @@ const SubCategory = ({ categoryName }) => {
                   imgStyle={"aspect-[3/2]"}
                   // imgStyle={"h-[256px] lg:h-[122px] aspect-video w-full"}
                   title={item.subcategoryName}
-                  titleStyle={"text-sm text-brown-heading py-[.5rem]"}
+                  titleStyle={"text-sm text-heading-main py-[.5rem]"}
                   heading={item.newsArray[0].heading}
-                  headingStyle={"pb-[1rem] line-clamp-3"}
+                  headingStyle={"pb-[1rem] text-[1.125rem] line-clamp-3"}
+                  newsId={item.newsArray[0].newsId}
+                  categoryName={item.newsArray[0].categoryName}
                 />
               </li>
             ))}

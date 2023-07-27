@@ -4,6 +4,7 @@ import img from "../../../assets/img.jpg";
 import img2 from "../../../assets/img2.jpg";
 import { useSelector } from "react-redux";
 import { getCategoryNews } from "../../../utilities/news";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -28,19 +29,25 @@ const ItihasBodh = () => {
   return (
     <div className="flex justify-center bg-white w-full">
       <div className="flex w-full flex-col lg:w-lg-p xl:w-xl-p ">
-        <h3 className=" heading-main py-[1rem] px-px">इतिहासबाेध</h3>
+        <h3 className=" heading-main py-[1rem] px-px">
+          <Link to={"news/इतिहासबाेध"}>इतिहासबाेध</Link>
+        </h3>
         <div className="flex flex-col lg:flex-row">
           {/* left side */}
           <div className="lg:w-[548px] xl:w-[666px] px-[15px]">
             <div className="w-full py-[1rem] lg:py-0">
-              <NewsCard
-                img={itihasbodhNewsArray[0].coverImage}
-                imgStyle={"h-[256px] lg:h-[407px] object-cover"}
-                heading={itihasbodhNewsArray[0].heading}
-                headingStyle={" text-md pt-[1rem] lg:heading-big"}
-                author={itihasbodhNewsArray[0].createdBy}
-                authorStyle={"text-[1.125rem] lg:leading-[1.5]"}
-              />
+              {itihasbodhNewsArray[0] && (
+                <NewsCard
+                  img={itihasbodhNewsArray[0].coverImage}
+                  imgStyle={"h-[256px] lg:h-[407px] object-cover"}
+                  heading={itihasbodhNewsArray[0].heading}
+                  headingStyle={" text-md pt-[1rem] lg:heading-big"}
+                  author={itihasbodhNewsArray[0].createdBy}
+                  authorStyle={"text-[1.125rem] lg:leading-[1.5]"}
+                  newsId={itihasbodhNewsArray[0].newsId}
+                  categoryName={itihasbodhNewsArray[0].categoryName}
+                />
+              )}
             </div>
           </div>
           <div className="flex lg:w-[442px] xl:w-[614px]  ">
@@ -60,6 +67,8 @@ const ItihasBodh = () => {
                       }
                       heading={news.heading}
                       headingStyle={"text-sm  font-[300] line-clamp-3"}
+                      newsId={news.newsId}
+                      categoryName={news.categoryName}
                     />
                   </div>
                 ))}

@@ -44,7 +44,7 @@ const prerak = [
 
 const Kala = () => {
   const { homepageNews } = useSelector((state) => state.news);
-  const kalaData = getCategorySubcategoryNews(homepageNews, "कला–मनोरन्जन", 1);
+  const kalaData = getCategorySubcategoryNews(homepageNews, "कला–मनाेरञ्जन", 1);
   const preyrakNewsArray = getNews(homepageNews, true, "प्रेरक प्रसङ्ग", 4);
   const leftData = kalaData.filter(
     (data) => data.subcategoryName != "गीतसङ्गीत"
@@ -59,7 +59,9 @@ const Kala = () => {
         <div className="flex lg:w-[660px] xl:w-[930px] ">
           <div className="flex  flex-col lg:flex-row ">
             <div className="flex flex-col">
-              <h3 className="heading-main  py-[1rem] px-px">कला–मनोरन्जन</h3>
+              <h3 className="heading-main  py-[1rem] px-px">
+                <Link to={"news/कला–मनाेरञ्जन"}>कला–मनाेरञ्जन</Link>
+              </h3>
               <div className="flex flex-col lg:flex-row ">
                 <div className="flex w-full lg:w-[247.5px] xl:w-[322px]">
                   <ul className="px-px w-full  lg:pr-[30px]">
@@ -78,11 +80,15 @@ const Kala = () => {
                         >
                           {value.subcategoryName}
                         </h3>
-                        <Link>
-                          <span className="text-sm inline-block py-[.5rem]">
+
+                        <span className="text-sm inline-block py-[.5rem]">
+                          <Link
+                            to={`news/${value.newsArray[0].categoryName}/${value.newsArray[0].newsId}`}
+                          >
                             {value.newsArray[0].heading}
-                          </span>
-                        </Link>
+                          </Link>
+                        </span>
+
                         <span className="font-[400] text-[0.875rem] mb-[.5rem] inline-block">
                           {value.newsArray[0].createdBy}
                         </span>
@@ -96,12 +102,14 @@ const Kala = () => {
             <div className="lg:w-[412.5px] xl:w-[579px]">
               <div className="w-full px-px py-[1rem] lg:px-0">
                 <NewsCard
-                  img={middleData.newsArray[0].coverImage}
+                  img={middleData?.newsArray[0].coverImage}
                   imgStyle={"h-[226px] lg:h-[400px]"}
-                  title={middleData.subcategoryName}
+                  title={middleData?.subcategoryName}
                   titleStyle={"text-sm text-heading-main"}
-                  heading={middleData.newsArray[0].heading}
+                  heading={middleData?.newsArray[0].heading}
                   headingStyle={"text-sm lg:heading-big line-clamp-3 "}
+                  newsId={middleData?.newsArray[0].newsId}
+                  categoryName={middleData?.newsArray[0].categoryName}
                 />
               </div>
             </div>
@@ -112,10 +120,12 @@ const Kala = () => {
         <div className="flex">
           <div className="flex lg:w-[330px] xl:w-[350px] px-px py-[1rem]">
             <div className="flex flex-col border border-[2px] border-black">
-              <h3 className="text-sm text-heading-main px-px pt-[1rem]">प्रेरक प्रसङ्ग</h3>
+              <h3 className="text-sm text-heading-main px-px pt-[1rem]">
+                प्रेरक प्रसङ्ग
+              </h3>
               <div className="flex">
                 <ul className="px-px">
-                  {preyrakNewsArray.map((news, index) => (
+                  {preyrakNewsArray?.map((news, index) => (
                     <li
                       className="flex items-center h-[98px] my-[1.5rem] "
                       key={index}
@@ -127,6 +137,8 @@ const Kala = () => {
                         }
                         heading={news.heading}
                         headingStyle={"text-sm line-clamp-4"}
+                        newsId={news.newsId}
+                        categoryName={news.categoryName}
                       />
                       {/* <Link>{value.heading}</Link> */}
                     </li>

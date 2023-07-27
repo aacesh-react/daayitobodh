@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { updateState } from "../../../utilities/state";
 import newsService from "./newsService";
-import subcategoryService from "./newsService";
 
 const initialState = {
   news: [],
@@ -22,7 +21,7 @@ export const getSubcategoryNews = createAsyncThunk(
   "news/subcategories",
   async ({ limit, page, subcategoryId, content }, thunkAPI) => {
     try {
-      return await subcategoryService.getSubcategoryNews(
+      return await newsService.getSubcategoryNews(
         limit,
         page,
         subcategoryId,
@@ -38,29 +37,19 @@ export const getHomepageNews = createAsyncThunk(
   "news/homepage",
   async (limit, thunkAPI) => {
     try {
-      return await subcategoryService.getHomepageNews(limit);
+      return await newsService.getHomepageNews(limit);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
-// export const getSubcategories = createAsyncThunk(
-//   "subcategories/getAll",
-//   async ({ limit, page }, thunkAPI) => {
-//     try {
-//       return await subcategoryService.getSubcategories(limit, page);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
 
-// export const updateSubcategory = createAsyncThunk(
+// export const updateNews = createAsyncThunk(
 //   "subcategories/update",
 //   async (data, thunkAPI) => {
 //     try {
-//       return await subcategoryService.updateSubcategory(data);
+//       return await newsService.updateNews(data);
 //     } catch (error) {
 //       return thunkAPI.rejectWithValue(error.response.data);
 //     }
@@ -119,23 +108,10 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
       })
-
-      // .addCase(getSubcategories.pending, (state) => {
+      // .addCase(updateNews.pending, (state) => {
       //   state.isLoading = true;
       // })
-      // .addCase(getSubcategories.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.hasError = false;
-      //   state.subcategories = action.payload.data;
-      // })
-      // .addCase(getSubcategories.rejected, (state) => {
-      //   state.isLoading = false;
-      //   state.hasError = true;
-      // })
-      // .addCase(updateSubcategory.pending, (state) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(updateSubcategory.fulfilled, (state, action) => {
+      // .addCase(updateNews.fulfilled, (state, action) => {
       //   state.isLoading = false;
       //   state.hasError = false;
       //   state.subcategories = updateState(
@@ -143,7 +119,7 @@ export const newsSlice = createSlice({
       //     action.payload.data
       //   );
       // })
-      // .addCase(updateSubcategory.rejected, (state) => {
+      // .addCase(updateNews.rejected, (state) => {
       //   state.isLoading = false;
       //   state.hasError = true;
       // })

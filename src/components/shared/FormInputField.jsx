@@ -35,7 +35,7 @@ const FormInputField = ({
         onBlur={onBlurHandler}
         readOnly={readonly}
       />
-      <span className={`${validationError ? "block" : "hidden"} mb-[1rem] pt-[4px] font-[300]`}>
+      <span className={`${validationError ? "block" : "hidden"} mb-[1rem] pt-[4px] font-[300] text-red-700`}>
         {errorMessage}
       </span>
     </div>

@@ -49,7 +49,7 @@ const baalSansaar = [
 const Sahitya = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const sahityaData = getCategorySubcategoryNews(homepageNews, "साहित्य", 2);
-  const leftNews = sahityaData[0].newsArray[1];
+  const leftNews = sahityaData[0]?.newsArray[1];
   const baalSansaarNewsArray = getNews(homepageNews, true, "बालसंसार", 5);
 
   return (
@@ -57,16 +57,22 @@ const Sahitya = () => {
       <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p">
         {/* left */}
         <div className="flex flex-col lg:w-[660px] xl:w-[941px]">
-          <h3 className="heading-main py-[1rem] px-px">साहित्य</h3>
+          <h3 className="heading-main py-[1rem] px-px">
+            <Link to={`news/साहित्य`}>साहित्य</Link>
+          </h3>
           <div className="flex flex-col lg:flex-row ">
             <div className="flex lg:w-[330px]  xl:w-[588px] ">
               <div className="flex  w-full px-px ">
-                <NewsCard
-                  img={leftNews.coverImage}
-                  imgStyle={"w-full  h-[256px] lg:h-[422px] object-cover"}
-                  heading={leftNews.heading}
-                  headingStyle={" text-md lg:heading-big text-30 line-clamp-4"}
-                />
+                {leftNews && (
+                  <NewsCard
+                    img={leftNews.coverImage}
+                    imgStyle={"w-full  h-[256px] lg:h-[422px] object-cover"}
+                    heading={leftNews.heading}
+                    headingStyle={
+                      " text-md lg:heading-big text-30 line-clamp-4"
+                    }
+                  />
+                )}
               </div>
             </div>
             <div className="flex w-full lg:w-[330px] xl:w-[353px]  p-px lg:p-0">
@@ -83,18 +89,26 @@ const Sahitya = () => {
                         {value.subcategoryName}
                       </h3>
                       <h3 className=" text-end text-sm pt-[.5rem] line-clamp-2">
-                        {value.newsArray[0].heading}
+                        <Link
+                          to={`news/${value.newsArray[0].categoryName}/${value.newsArray[0].newsId}`}
+                        >
+                          {value.newsArray[0].heading}
+                        </Link>
                       </h3>
                       <h3 className="text-end font-[400]">
                         {value.newsArray[0].createdBy}
                       </h3>
                     </div>
                     <div className="h-full shrink-0">
-                      <img
-                        className="h-full w-[143px] object-cover rounded"
-                        src={value.newsArray[0].coverImage}
-                        alt="img"
-                      />
+                      <Link
+                        to={`news/${value.newsArray[0].categoryName}/${value.newsArray[0].newsId}`}
+                      >
+                        <img
+                          className="h-full w-[143px] object-cover rounded"
+                          src={value.newsArray[0].coverImage}
+                          alt="img"
+                        />
+                      </Link>
                     </div>
                   </li>
                 ))}
@@ -110,7 +124,7 @@ const Sahitya = () => {
 
               <div className="flex">
                 <ul>
-                  {baalSansaarNewsArray.map((news, index) =>
+                  {baalSansaarNewsArray?.map((news, index) =>
                     index == 0 ? (
                       <NewsCard
                         img={news.coverImage}
@@ -121,15 +135,18 @@ const Sahitya = () => {
                         }
                         author={news.createdBy}
                         authorStyle={"font-[400]"}
+                        newsId={news.newsId}
+                        categoryName={news.categoryName}
                         key={index}
                       />
                     ) : (
                       <li className="my-[1rem]" key={index}>
-                        <Link>
-                          <h3 className="heading-big text-sm py-[4px]">
+                        <h3 className="heading-big text-sm py-[4px]">
+                          <Link to={`news/${news.categoryName}/${news.newsId}`}>
                             {news.heading}
-                          </h3>
-                        </Link>
+                          </Link>
+                        </h3>
+
                         <h3 className="font-[400]">{news.createdBy}</h3>
                       </li>
                     )

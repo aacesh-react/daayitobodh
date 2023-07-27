@@ -1,4 +1,12 @@
-const Select = ({ data, style, changeHandler, name, defaultOption, id }) => {
+const Select = ({
+  data,
+  style,
+  changeHandler,
+  name,
+  defaultOption,
+  id,
+  value,
+}) => {
   return (
     <div className="relative w-full ">
       <select
@@ -8,7 +16,7 @@ const Select = ({ data, style, changeHandler, name, defaultOption, id }) => {
         onChange={(e) => {
           changeHandler(e);
         }}
-        // value={value ? value : defaultOption}
+        value={value}
       >
         {defaultOption && (
           <option value={""} selected disabled>

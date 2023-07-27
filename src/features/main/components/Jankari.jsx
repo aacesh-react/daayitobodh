@@ -43,26 +43,36 @@ const Jankari = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const rajneetiNewsArray = getNews(homepageNews, false, "राजनीति", 5);
   const bichitraNewsArray = getNews(homepageNews, true, "विचित्र संसार", 5);
-  const leftNews = rajneetiNewsArray[0];
-  const middleNewsArray = rajneetiNewsArray.slice(1, 5);
+  console.log("rajneetiNewsArray", rajneetiNewsArray);
+  const leftNews = rajneetiNewsArray && rajneetiNewsArray[0];
+  const middleNewsArray = rajneetiNewsArray?.slice(1, 5);
   return (
     <div className="flex w-full bg-white justify-center pt-[1rem]">
       <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p ">
         {/* left */}
         <div className="flex flex-col lg:w-[660px] xl:w-[930px]">
-          <h3 className="heading-main py-[1rem] px-px">राजनीति</h3>
+          <h3 className="heading-main py-[1rem] px-px">
+            <Link to={"news/राजनीति"}>राजनीति</Link>
+          </h3>
           <div className="flex flex-col lg:flex-row ">
             <div className="w-full lg:w-[360px] xl:w-[560px] px-px">
-              <NewsCard
-                img={leftNews.coverImage}
-                imgStyle={"w-full h-[256px] lg:h-[422px]"}
-                heading={leftNews.heading}
-                headingStyle={"text-md py-[1rem]  lg:heading-big"}
-              />
+              {leftNews &&
+              (
+                <NewsCard
+                  img={leftNews.coverImage}
+                  imgStyle={"w-full h-[256px] lg:h-[422px]"}
+                  heading={leftNews.heading}
+                  headingStyle={
+                    "text-md py-[1rem]  lg:heading-big line-clamp-3"
+                  }
+                  newsId={leftNews.newsId}
+                  categoryName={leftNews.categoryName}
+                />
+              )}
             </div>
             <div className="flex">
               <ul className=" px-px pb-[1rem] lg:px-0 lg:w-[300px] xl:w-[370px]">
-                {middleNewsArray.map((news, index) => (
+                {middleNewsArray?.map((news, index) => (
                   <li
                     className={`my-[1rem] ${index == 0 && "mt-0"} 
                     ${index == jankari.length - 1 && "mb-0"} 
@@ -76,6 +86,8 @@ const Jankari = () => {
                       headingStyle={
                         "text-sm font-[300] line-clamp-3 lg:line-clamp-5"
                       }
+                      newsId={news.newsId}
+                      categoryName={news.categoryName}
                     />
                   </li>
                 ))}
@@ -94,7 +106,7 @@ const Jankari = () => {
 
               <div className="flex">
                 <ul>
-                  {bichitraNewsArray.map((news, index) =>
+                  {bichitraNewsArray?.map((news, index) =>
                     index == 0 ? (
                       <NewsCard
                         img={news.coverImage}
@@ -104,6 +116,8 @@ const Jankari = () => {
                         author={news.createdBy}
                         authorStyle={"font-[400] pt-[.5rem]"}
                         key={index}
+                        newsId={news.newsId}
+                        categoryName={news.categoryName}
                       />
                     ) : (
                       <li className="my-[1rem] h-[4rem]" key={index}>
@@ -114,6 +128,8 @@ const Jankari = () => {
                           headingStyle={"font-[700] line-clamp-2"}
                           author={news.createdBy}
                           authorStyle={"font-[300] pt-[4px]"}
+                          newsId={news.newsId}
+                          categoryName={news.categoryName}
                         />
                       </li>
                     )

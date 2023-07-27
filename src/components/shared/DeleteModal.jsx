@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteModal = ({ closeModal, okButtonHandler }) => {
+const DeleteModal = ({ closeModal, okButtonHandler, message, btnText }) => {
   return (
     <div className="flex flex-col bg-white md:w-[400px] py-[1rem]">
       <span
@@ -9,13 +9,15 @@ const DeleteModal = ({ closeModal, okButtonHandler }) => {
       >
         ✕
       </span>
-      <span className="self-center pb-[2rem] text-black">Are you sure?</span>
+      <span className="self-center pb-[2rem] text-black">
+        {message ? message : "Are you sure?"}{" "}
+      </span>
       <div className="flex justify-between px-[1rem] w-full">
         <button className="btn rounded" onClick={closeModal}>
           Cancel
         </button>
         <button className="btn bg-red-700 rounded" onClick={okButtonHandler}>
-          Delete
+          {btnText ? btnText : "Delete"}
         </button>
       </div>
     </div>

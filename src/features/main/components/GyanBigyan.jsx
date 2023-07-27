@@ -40,7 +40,9 @@ const GyanBigyan = () => {
   return (
     <div className="flex justify-center">
       <div className=" w-full  flex flex-col lg:w-lg-p xl:w-xl-p">
-        <h1 className="heading-main py-[1rem] px-[15px]">ज्ञान–विज्ञान</h1>
+        <h1 className="heading-main py-[1rem] px-[15px]">
+          <Link to={"news/ज्ञान–विज्ञान"}>ज्ञान–विज्ञान</Link>
+        </h1>
         <div className="flex flex-col lg:flex-row ">
           {/*left  */}
           <div className="flex w-full pb-[1rem]  lg:w-[240px] xl:w-[278px]">
@@ -48,17 +50,19 @@ const GyanBigyan = () => {
               <ul>
                 {leftNewsArray.map((news, index) =>
                   index == 0 ? (
-                    <div className="w-full px-[15px]" key={index}>
+                    <div className="w-full pb-[12px] px-[15px]" key={index}>
                       <NewsCard
                         img={news.coverImage}
                         imgStyle={" h-[256px] lg:h-[146px] object-cover"}
                         heading={news.heading}
-                        headingStyle={"text-md line-clamp-3 "}
+                        headingStyle={"text-md ] line-clamp-3 "}
+                        newsId={news.newsId}
+                        categoryName={news.categoryName}
                       />
                     </div>
                   ) : (
                     <li className="px-px" key={index}>
-                      <Link>
+                      <Link to={`/news/${news.categoryName}/${news.newsId}`}>
                         <h3 className="text-sm line-clamp-3 font-[300] py-[10px]">
                           {news.heading}
                         </h3>
@@ -101,14 +105,18 @@ const GyanBigyan = () => {
           {/*middle  */}
           <div className="flex lg:w-[400px] xl:w-[536px] px-[15px]">
             <div className="flex">
-              <NewsCard
-                img={newsArray[4].coverImage}
-                imgStyle={"h-[256px] lg:h-[364px] object-cover"}
-                heading={newsArray[4].heading}
-                headingStyle={
-                  "text-md line-clamp-3 lg:leading-[1.4] lg:heading-big"
-                }
-              />
+              {newsArray[4] && (
+                <NewsCard
+                  img={newsArray[4].coverImage}
+                  imgStyle={"h-[256px] lg:h-[364px] object-cover"}
+                  heading={newsArray[4].heading}
+                  headingStyle={
+                    "text-md line-clamp-3 lg:leading-[1.4] lg:heading-big"
+                  }
+                  newsId={newsArray[4].newsId}
+                  categoryName={newsArray[4].categoryName}
+                />
+              )}
             </div>
           </div>
 
@@ -131,6 +139,8 @@ const GyanBigyan = () => {
                       headingStyle={
                         "text-sm w-full line-clamp-3 font-[300]  lg:leading-[1.4] "
                       }
+                      newsId={news.newsId}
+                      categoryName={news.categoryName}
                     />
                   </li>
                 ))}

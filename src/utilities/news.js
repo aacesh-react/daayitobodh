@@ -6,7 +6,7 @@ export const getNewsData = (homepageNews, hasSubcategory, name) => {
 
 export const getNews = (homepageNews, hasSubcategory, name, limit) => {
   const newsData = getNewsData(homepageNews, hasSubcategory, name);
-  return newsData.newsArray.slice(0, limit);
+  return newsData?.newsArray.slice(0, limit);
 };
 
 export const getCategoryNews = (

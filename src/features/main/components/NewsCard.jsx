@@ -8,16 +8,18 @@ const NewsCard = ({
   titleStyle,
   heading,
   headingStyle,
-  news,
+  content,
   newsStyle,
   author,
   authorStyle,
   titleDivStyle,
+  newsId,
+  categoryName,
 }) => {
   return (
     <div className={`${type == "row" ? "flex" : "flex flex-col "} w-full `}>
       <div className="shrink-0">
-        <Link to={"news/category/news"}>
+        <Link to={`/news/${categoryName}/${newsId}`}>
           <img
             className={` ${
               type == "row" ? "w-[120px]" : "w-full"
@@ -34,18 +36,15 @@ const NewsCard = ({
             : "flex flex-col pt-[.5rem] pb-[1rem] lg:pb-[0rem]"
         } w-full `}
       >
-        <Link>
-          <h3 className={titleStyle}>{title} </h3>
-        </Link>
-        <Link className="" to={"news/category/news"}>
+        <h3 className={titleStyle}>{title} </h3>
+
+        <Link to={`/news/${categoryName}/${newsId}`}>
           <h3 className={headingStyle}>{heading} </h3>
         </Link>
         <Link>
-          <h3 className={newsStyle}>{news} </h3>
+          <h3 className={newsStyle}>{content} </h3>
         </Link>
-        <Link>
-          <h3 className={authorStyle}>{author} </h3>
-        </Link>
+        <h3 className={authorStyle}>{author} </h3>
       </div>
     </div>
   );

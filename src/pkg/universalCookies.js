@@ -6,9 +6,23 @@ export function getCookie(key) {
 }
 
 export function setCookie(key, value, options) {
-  cookies.set(key, value, options);
+  let tokenOptions = {
+    path: "/",
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+  };
+  cookies.set(key, value, {
+    path: "/",
+    sameSite: "none",
+    httpOnly: false,
+    secure: false,
+  });
 }
 
 export function removeCookie(key, tokenOptions) {
-  cookies.remove(key, tokenOptions);
+  cookies.remove(key, {
+    path: "/",
+    sameSite: "none",
+    httpOnly: false,
+    secure: false,
+  });
 }

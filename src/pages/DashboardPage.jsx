@@ -125,7 +125,7 @@ const DashboardPage = () => {
               <div
                 className={` ${
                   showItems && itemId == "news"
-                    ? "max-h-[100px] duration-1000"
+                    ? "max-h-[150px] duration-1000"
                     : "max-h-0 duration-1000"
                 } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-px bg-gray-100 `}
               >
@@ -142,6 +142,13 @@ const DashboardPage = () => {
                   to={"/admin/dashboard/addNews"}
                 >
                   Add News
+                </Link>
+                <Link
+                  className="pb-[1rem]"
+                  // onClick={(e) => itemClickHandler("addNews")}
+                  to={"/admin/dashboard/breaking-news"}
+                >
+                  Breaking News
                 </Link>
               </div>
             </div>

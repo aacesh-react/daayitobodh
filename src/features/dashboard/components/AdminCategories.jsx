@@ -123,7 +123,7 @@ const AdminCategories = () => {
   }, []);
 
   return (
-    <div className="flex w-full bg-white p-px ">
+    <div className="flex w-full bg-white p-px text-black">
       <div className="flex flex-col w-full py-[15px] border ">
         <h3 className=" px-px text-[1.5rem] font-[500] pb-[1rem] ">
           Categories
@@ -143,7 +143,10 @@ const AdminCategories = () => {
           </thead>
           <tbody>
             {categories.map((category, index) => (
-              <tr key={index}>
+              <tr
+                className={`${index % 2 === 0 && "bg-bg-brown"}`}
+                key={index}
+              >
                 <td className="border p-[.5rem]">
                   {(page - 1) * limit + index + 1}
                 </td>

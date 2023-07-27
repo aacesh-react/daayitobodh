@@ -3,6 +3,7 @@ import NewsCard from "./NewsCard";
 import img from "../../../assets/img.jpg";
 import { useSelector } from "react-redux";
 import { getNewsData } from "../../../utilities/news";
+import { Link } from "react-router-dom";
 
 const data = [
   "ताइवान मुद्दामा बढ्दाे चीन–अमेरिकी तनावका खतरनाक पहलुहरु",
@@ -14,23 +15,29 @@ const data = [
 const Golardha = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const newsData = getNewsData(homepageNews, false, "गाेलार्द्ध");
-  const newsArray = newsData.newsArray.slice(0, 5);
+  const newsArray = newsData?.newsArray.slice(0, 5) || [];
 
   return (
     <div className="flex justify-center bg-white w-full">
       <div className="flex w-full lg:w-lg-p xl:w-xl-p ">
         <div className="flex w-full flex-col">
-          <h3 className="heading-main py-[1rem]  px-[15px]">गाेलार्द्ध</h3>
+          <h3 className="heading-main py-[1rem]  px-[15px]">
+            <Link to={"news/गाेलार्द्ध"}>गाेलार्द्ध</Link>
+          </h3>
           <div className=" w-full flex flex-col lg:flex-row">
             {/* left side */}
             <div className="w-full lg:w-[495px] xl:w-[666px] px-[15px]">
               <div className="w-full">
-                <NewsCard
-                  img={newsArray[0].coverImage}
-                  imgStyle={"w-full h-[256px] xl:h-[407px] object-cover"}
-                  heading={newsArray[0].heading}
-                  headingStyle={" text-md py-[.4rem] xl:heading-big"}
-                />
+                {newsArray[0] && (
+                  <NewsCard
+                    img={newsArray[0].coverImage}
+                    imgStyle={"w-full h-[256px] xl:h-[407px] object-cover"}
+                    heading={newsArray[0].heading}
+                    headingStyle={" text-md py-[.4rem] xl:heading-big"}
+                    newsId={newsArray[0].newsId}
+                    categoryName={newsArray[0].categoryName}
+                  />
+                )}
               </div>
             </div>
             {/* right side */}
@@ -50,6 +57,8 @@ const Golardha = () => {
                           imgStyle={" h-[120px] xl:h-[192px] object-cover"}
                           heading={news.heading}
                           headingStyle={"text-sm font-[300] line-clamp-3"}
+                          newsId={news.newsId}
+                          categoryName={news.categoryName}
                         />
                       </li>
                     ))}

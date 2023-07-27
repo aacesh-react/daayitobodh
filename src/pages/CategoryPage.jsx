@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "../components/layouts/Navbar";
 import { MultiAdd } from "../components/shared/MultiAdd";
 import SingleAdd from "../components/shared/SingleAdd";
@@ -8,6 +9,9 @@ import SubCategory from "../features/category/components/SubCategory";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="flex flex-col">
       <Navbar />
