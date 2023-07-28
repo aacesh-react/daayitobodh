@@ -1,6 +1,4 @@
 import NewsCard from "./NewsCard";
-
-import img from "../../../assets/img.jpg";
 import { useSelector } from "react-redux";
 import { getNewsData } from "../../../utilities/news";
 import { Link } from "react-router-dom";

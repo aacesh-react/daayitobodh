@@ -55,7 +55,7 @@ const AdminSubcategories = () => {
   const [activeSubcategory, setActiveSubcategory] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [activePage, setActivePage] = useState(1);
-  const [totalNoOfPage, settTotalNoOfPage] = useState(null);
+  const [totalNoOfPage, setTotalNoOfPage] = useState(null);
 
   const closeModal = () => {
     setShowModal(false);
@@ -113,7 +113,7 @@ const AdminSubcategories = () => {
         ).unwrap();
         const totalLength = result.totalLength;
         const totalNoOfPage = Math.ceil(totalLength / limit);
-        settTotalNoOfPage(totalNoOfPage);
+        setTotalNoOfPage(totalNoOfPage);
       } catch (error) {
         console.log("error:", error);
       }

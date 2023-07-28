@@ -105,6 +105,7 @@ const AdminNews = () => {
           false
         );
         // console.log("result:", result.data);
+        
         setNews(result.data);
         const totalLength = result.totalLength;
         const totalNoOfPage = Math.ceil(totalLength / limit);

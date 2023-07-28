@@ -14,6 +14,7 @@ const FormInputField = ({
   labelClassName,
   inputClassName,
   readonly,
+  optional,
 }) => {
   return (
     <div className={className}>
@@ -22,7 +23,7 @@ const FormInputField = ({
         htmlFor={name}
       >
         {label}
-        <span className="text-[red] ">&nbsp;*</span>
+        {!optional && <span className={` text-[red]`}>&nbsp;*</span>}
       </label>
       <input
         className={` h-[41px] w-full border-b-2 focus:border-black  focus:border-b-[1px] pl-[0.6rem] text-[1em]    outline-none focus:border-border-green  placeholder:text-gray-400 placeholder:font-[300] placeholder:text-xs  font-[300] ${inputClassName} `}
@@ -35,7 +36,11 @@ const FormInputField = ({
         onBlur={onBlurHandler}
         readOnly={readonly}
       />
-      <span className={`${validationError ? "block" : "hidden"} mb-[1rem] pt-[4px] font-[300] text-red-700`}>
+      <span
+        className={`${
+          validationError ? "block" : "hidden"
+        } mb-[1rem] pt-[4px] font-[300] text-red-700`}
+      >
         {errorMessage}
       </span>
     </div>

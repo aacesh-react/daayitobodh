@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
 import { getCategorySubcategoryNews } from "../../../utilities/news";
 
@@ -26,8 +25,8 @@ const Swasthya = () => {
     "स्वास्थ्य–जीवनशैली",
     1
   );
-  const leftNews = newsArray[0] ;
-  const rightNews = newsArray.slice(1, 5) ;
+  const leftNews = newsArray[0];
+  const rightNews = newsArray.slice(1, 5);
 
   return (
     <div className="flex justify-center bg-yellow-bg w-full">
@@ -43,9 +42,9 @@ const Swasthya = () => {
           <div className="flex w-full px-px lg:w-[577.5px] xl:w-[755px] relative ">
             {leftNews?.newsArray[0] && (
               <>
-                <div className="flex w-full">
+                <div className="flex w-full image-container">
                   <img
-                    className=" h-full w-full object-cover radius-2 rounded  brightness-75"
+                    className=" h-full w-full object-cover radius-2 rounded "
                     src={leftNews.newsArray[0].coverImage}
                     alt="img"
                   />
@@ -71,19 +70,21 @@ const Swasthya = () => {
               {rightNews.map((value, index) => (
                 <li
                   key={index}
-                  className={`h-[110px] lg:h-[130px] px-[15px]   ${
+                  className={`h-[86.667px] lg:h-[130px] px-[15px]   ${
                     index > 0 && "mt-[1rem]"
                   } ${index == 2 && "mb-0"} `}
                 >
                   <CardRow
                     img={value.newsArray[0].coverImage}
-                    imgStyle={"w-[175px] h-full  object-cover"}
+                    imgStyle={"w-[130px] lg:w-[175px] h-full  object-cover"}
                     title={value.subcategoryName}
                     titleStyle={
                       "title-small text-sm text-heading-main xl:text-md"
                     }
                     heading={value.newsArray[0].heading}
-                    headingStyle={" text-sm font-[300] xl:text-md line-clamp-3"}
+                    headingStyle={
+                      " text-sm font-[300] xl:text-md  line-clamp-2 lg:line-clamp-3"
+                    }
                     newsId={value.newsArray[0].newsId}
                     categoryName={value.newsArray[0].categoryName}
                   />

@@ -9,7 +9,7 @@ const Trending = () => {
     (async function () {
       try {
         const trendingResult = await newsService.getBreakingNews();
-        console.log("trendingResult:", trendingResult.data);
+        // console.log("trendingResult:", trendingResult.data);
         setTrendingNews(trendingResult.data);
         setIsLoading(false);
       } catch (error) {
@@ -25,12 +25,17 @@ const Trending = () => {
     <div className="flex w-full  flex-col">
       <h3 className="heading-main pt-[12px]">ब्रेकिंग</h3>
       <ul>
-        {trendingNews.map((value, index) => (
+        {trendingNews.map((news, index) => (
           <li
             className="bg-bg-brown p-px my-[1rem] rounded font-[600] "
             key={index}
           >
-            <Link className="line-clamp-3">{value.heading}</Link>
+            <Link
+              className="line-clamp-3"
+              to={`/news/${news.categoryName}/${news.newsId}`}
+            >
+              {news.heading}
+            </Link>
           </li>
         ))}
       </ul>

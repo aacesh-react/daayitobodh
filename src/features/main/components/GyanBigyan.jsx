@@ -1,35 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
 import { getCategoryNews } from "../../../utilities/news";
-
-const gyanRight = [
-  {
-    heading:
-      "जर्मनीले युक्रेनलाई दिने भनिएकाे लियाेपर्ड –२ ट्याङ्क के हाे? किन खतरनाक मानिन्छ याे ट्याङ्क ?",
-  },
-  {
-    heading:
-      "माेबाइल फाेन चलाउँदा अपनाउनाेस् यी सावधानीहरु ! अन्यथा ह्याकरले लुट्ला नि !",
-  },
-  {
-    heading:
-      "तपाईकाे कम्प्युटर ल्यापटप सुस्त चल्छ ? मिलाउनाेस् यी सेटिङ्गहरु ! स्पीडमा चल्न थाल्छ !",
-  },
-  {
-    heading:
-      "माेबाइल फाेन चलाउँदा अपनाउनाेस् यी सावधानीहरु ! अन्यथा ह्याकरले लुट्ला नि !",
-  },
-  {
-    heading:
-      "तपाईकाे कम्प्युटर ल्यापटप सुस्त चल्छ ? मिलाउनाेस् यी सेटिङ्गहरु ! स्पीडमा चल्न थाल्छ !",
-  },
-  // {
-  //   heading:
-  //     "माेबाइल फाेन चलाउँदा अपनाउनाेस् यी सावधानीहरु ! अन्यथा ह्याकरले लुट्ला नि !",
-  // },
-];
 
 import NewsCard from "./NewsCard";
 const GyanBigyan = () => {
@@ -126,14 +98,14 @@ const GyanBigyan = () => {
               <ul>
                 {rightNewsArray.map((news, index) => (
                   <li
-                    className="flex  px-px h-[80px]  xl:h-[100px] w-full mb-[1rem]"
+                    className="flex  px-px h-[86.667px]  xl:h-[100px] w-full mb-[1rem]"
                     key={index}
                   >
                     <NewsCard
                       type={"row"}
                       img={news.coverImage}
                       imgStyle={
-                        "h-full w-[80px] lg:w-[100px] xl:w-[150px] object-cover"
+                        "h-full w-[130px] lg:w-[100px] xl:w-[150px] object-cover"
                       }
                       heading={news.heading}
                       headingStyle={

@@ -17,6 +17,7 @@ const Carausel = ({ children }) => {
     (async function getLatestNews() {
       try {
         const result = await newsService.getBreakingNews();
+        // console.log("result in carausel:", result)
         setLatestNews(result.data);
       } catch (error) {
         console.log("error:", error);
@@ -25,9 +26,9 @@ const Carausel = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full  ">
       <Swiper
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         autoplay={{
           delay: 2500,
@@ -36,24 +37,26 @@ const Carausel = ({ children }) => {
         breakpoints={{
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            // spaceBetween: 20,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 40,
+            // spaceBetween: 40,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 30,
+            // spaceBetween: 30,
           },
           1280: {
             slidesPerView: 4,
-            spaceBetween: 40,
+            // spaceBetween: 40,
           },
         }}
         modules={[Autoplay]}
       >
-        <ul>
+        <ul
+          className=" w-full"
+        >
           {latestNews?.map((news, index) => (
             <SwiperSlide key={index}>
               <CarouselCard news={news} />

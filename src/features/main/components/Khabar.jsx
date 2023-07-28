@@ -1,6 +1,4 @@
 import NewsCard from "./NewsCard";
-
-import img from "../../../assets/img.jpg";
 import { Link } from "react-router-dom";
 import CardRow from "../../../components/shared/CardRow";
 import { useSelector } from "react-redux";
@@ -76,17 +74,17 @@ const Khabar = () => {
             <ul>
               {arthaJagatArray.map((value, index) => (
                 <li
-                  className="px-px h-[120px] lg:h-[150x] mb-[1rem] lg:mb-[2rem]"
+                  className="px-px h-[86.667px] lg:h-[150px] mb-[1rem] lg:mb-[2rem]"
                   key={index}
                 >
                   <CardRow
                     img={value.newsArray[0].coverImage}
-                    imgStyle={"w-[189px] h-full object-cover"}
+                    imgStyle={"w-[130px] lg:w-[189px] h-full object-cover"}
                     title={value.subcategoryName}
                     titleStyle={"text-heading-main  text-[1.5rem]"}
                     heading={value.newsArray[0].heading}
                     headingStyle={
-                      "heading-big font-[300] text-sm lg:text-[1.5rem] line-clamp-3"
+                      "heading-big font-[300] text-sm lg:text-[1.5rem] line-clamp-2 lg:line-clamp-3"
                     }
                     newsId={value.newsArray[0].newsId}
                     categoryName={value.newsArray[0].categoryName}

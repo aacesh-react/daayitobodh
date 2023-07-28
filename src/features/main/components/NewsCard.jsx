@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import defaultImg from "../../../assets/defaultImg.jpg";
 
 const NewsCard = ({
   type,
@@ -16,6 +17,7 @@ const NewsCard = ({
   newsId,
   categoryName,
 }) => {
+  const coverImage = img || defaultImg;
   return (
     <div className={`${type == "row" ? "flex" : "flex flex-col "} w-full `}>
       <div className="shrink-0">
@@ -23,9 +25,9 @@ const NewsCard = ({
           <img
             className={` ${
               type == "row" ? "w-[120px]" : "w-full"
-            } object-cover rounded ${imgStyle}`}
-            src={img}
-            alt="img"
+            } object-cover rounded ${imgStyle} bg-bg-brown`}
+            src={coverImage}
+            alt=""
           />
         </Link>
       </div>

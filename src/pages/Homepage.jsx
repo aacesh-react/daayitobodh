@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Navbar from "../components/layouts/Navbar";
+import CustomSelect from "../components/shared/CustomSelect";
 import { MultiAdd } from "../components/shared/MultiAdd";
 import SingleAdd from "../components/shared/SingleAdd";
 import YoutubePlayer from "../components/shared/YoutubePlayer";
@@ -31,7 +33,6 @@ const Homepage = () => {
       <Sahitya />
       <Kala />
       <Jankari />
-      {/* <NewsContent /> */}
     </div>
   );
 };

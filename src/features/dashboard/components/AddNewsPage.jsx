@@ -218,6 +218,7 @@ const AddNews = () => {
               />
 
               <FormInputField
+                optional
                 name={"subheading"}
                 label={"Sub Heading"}
                 placeholder={"Enter news sub heading"}

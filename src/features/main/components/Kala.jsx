@@ -1,46 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NewsCard from "./NewsCard";
-import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
 import { useSelector } from "react-redux";
 import { getCategorySubcategoryNews, getNews } from "../../../utilities/news";
-
-const kalaData = [
-  {
-    type: `चलचित्र`,
-    title: `एउटा दुर्दान्त युद्धकाे कथा: नायककाे सिर्जना र त्यसले परिणाममा ल्याएकाे असर`,
-    writer: `एनिमी एट द गेट`,
-  },
-  {
-    type: `सिफारिश`,
-    title: `हेर्नै पर्ने तीन इरानी चलचित्रहरु जसले जीवनलाई फरक ढङ्गले हेर्न र जिउन सिकाउँछ`,
-    writer: `हर्कबहादुर प्रधान`,
-  },
-  {
-    type: `चलचित्र`,
-    title: `बलिउड र हलिउडका मनाेवृत्तिबाट कहिले र कसरी हाेला नेपाली चलचित्रहरु पनि ?`,
-    writer: `कमल सुवेदी`,
-  },
-  // {
-  //   type: `बहस`,
-  //   title: `विवाहपछि हिराे चल्ने हिराेनी नचल्ने ! याे विभेदले संकेत गरेका पक्षहरु`,
-  //   writer: `कमल सुवेदी`,
-  // },
-];
-
-const prerak = [
-  {
-    heading: `जब भगतसिंहरु अङ्ग्रेजकाे घेराउमा परे`,
-  },
-  {
-    heading: `जापानी केटाकाे त्याे दृढता र देशभक्तिकाे नमूना`,
-  },
-  {
-    heading: `चार्ली च्याप्लिनले किन गर्छन् नाजीलाई घृणा ?`,
-  },
-  { heading: `वर्नाड शा र सुन्दरीकाे विवाह प्रस्ताव` },
-];
 
 const Kala = () => {
   const { homepageNews } = useSelector((state) => state.news);
@@ -90,7 +53,7 @@ const Kala = () => {
                         </span>
 
                         <span className="font-[400] text-[0.875rem] mb-[.5rem] inline-block">
-                          {value.newsArray[0].createdBy}
+                          {value.newsArray[0].author}
                         </span>
                       </li>
                     ))}
@@ -118,8 +81,8 @@ const Kala = () => {
         {/* right */}
 
         <div className="flex">
-          <div className="flex lg:w-[330px] xl:w-[350px] px-px py-[1rem]">
-            <div className="flex flex-col border border-[2px] border-black">
+          <div className="flex w-full lg:w-[330px] xl:w-[350px] px-px py-[1rem]">
+            <div className="flex flex-col w-full border border-[2px] border-heading-main rounded">
               <h3 className="text-sm text-heading-main px-px pt-[1rem]">
                 प्रेरक प्रसङ्ग
               </h3>

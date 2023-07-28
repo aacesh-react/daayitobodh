@@ -1,17 +1,15 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import img from "../../../assets/img.jpg";
 import CardRow from "../../../components/shared/CardRow";
 import { getNews } from "../../../utilities/news";
-// import { baicharik } from "../data/heroData";
 import { mukhya, baicharik } from "../data/heroData";
 import NewsCard from "./NewsCard";
 
 const Hero = () => {
   const { homepageNews } = useSelector((state) => state.news);
   console.log("homepagenews:", homepageNews);
-  const mukhyaNewsArray = getNews(homepageNews, true, "मुख्य", 3);
-  const aparadhNewsArray = getNews(homepageNews, true, "अपराध", 1);
+  const ghatanaNewsArray = getNews(homepageNews, true, "घटना र प्रवृत्ति", 3);
+  const mukhyaNewsArray = getNews(homepageNews, true, "मुख्य", 1);
   const baicharikiNewsArray = getNews(homepageNews, true, "वैचारिकी", 3);
   return (
     <div className="flex justify-center bg-white w-full">
@@ -20,10 +18,10 @@ const Hero = () => {
         {/* <div className="flex "> */}
         {/* MUKHYA */}
         <div className="flex w-full flex-col px-[15px] lg:w-[320px] xl:w-[360px]">
-          <h3 className="heading-main py-[1rem]">मुख्य</h3>
+          <h3 className="heading-main py-[1rem]">घटना र प्रवृत्ति</h3>
           <div className="flex w-full">
             <ul>
-              {mukhyaNewsArray?.map((news, index) =>
+              {ghatanaNewsArray?.map((news, index) =>
                 index == 0 ? (
                   <li key={index}>
                     <div className="flex w-full  ">
@@ -52,22 +50,22 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Features */}
+        {/* Mukhya */}
         <div className="flex w-full lg:w-[400px] xl:w-[590px] px-px">
           <div className="flex w-full  flex-col ">
-            <h3 className="heading-main  py-[1rem]">अपराध</h3>
+            <h3 className="heading-main  py-[1rem]">मुख्य</h3>
             <div className="flex w-full flex-col ">
               <div className=" w-full ">
-                {aparadhNewsArray && (
+                {mukhyaNewsArray && (
                   <NewsCard
-                    heading={aparadhNewsArray[0].heading}
-                    img={aparadhNewsArray[0].coverImage}
+                    heading={mukhyaNewsArray[0].heading}
+                    img={mukhyaNewsArray[0].coverImage}
                     headingStyle={" text-md lg:text-[3rem]"}
                     imgStyle={" w-full aspect-[1.65]"}
-                    author={aparadhNewsArray[0].createdBy}
+                    author={mukhyaNewsArray[0].author}
                     authorStyle={"font-[300] text-[1.5rem] "}
-                    newsId={aparadhNewsArray[0].newsId}
-                    categoryName={aparadhNewsArray[0].categoryName}
+                    newsId={mukhyaNewsArray[0].newsId}
+                    categoryName={mukhyaNewsArray[0].categoryName}
                   />
                 )}
               </div>
@@ -78,7 +76,7 @@ const Hero = () => {
         {/* Baicharik */}
         <div className="flex w-full lg:w-[270px] xl:w-[330px] px-px">
           <div className="flex w-full  flex-col">
-            <h3 className="heading-main lg:py-[1rem]">वैचारिकी</h3>
+            <h3 className="heading-main pb-[1rem] lg:py-[1rem]">वैचारिकी</h3>
             <div className="flex flex-col">
               <div className="flex w-full">
                 <ul className="w-full">
@@ -91,7 +89,7 @@ const Hero = () => {
                             img={news.coverImage}
                             headingStyle={"text-md leading-[1.3]"}
                             imgStyle={" w-full aspect-[1.65] "}
-                            author={news.createdBy}
+                            author={news.author}
                             authorStyle={"font-[300] text-[1rem] "}
                             newsId={news.newsId}
                             categoryName={news.categoryName}

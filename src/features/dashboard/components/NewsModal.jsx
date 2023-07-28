@@ -20,7 +20,7 @@ const NewsModal = ({
   useEffect(() => {
     (async function fetchData() {
       try {
-        const result = await newsService.getAllNews(limit, 1, false);
+        const result = await newsService.getAllNews(limit, 1, false, true);
         setNews(result.data);
       } catch (error) {
       }

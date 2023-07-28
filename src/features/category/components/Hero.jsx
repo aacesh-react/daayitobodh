@@ -1,7 +1,5 @@
 import React from "react";
 import NewsCard from "../../main/components/NewsCard";
-
-import img from "../../../assets/img.jpg";
 import { useSelector } from "react-redux";
 import { getCategoryNews, getNews } from "../../../utilities/news";
 
@@ -34,8 +32,8 @@ const Hero = ({ categoryName }) => {
                 imgStyle={"w-full h-[256px] lg:h-[407px]"}
                 heading={leftNews.heading}
                 headingStyle={"text-md lg:text-lg pt-[1rem]"}
-                author={leftNews.createdBy}
-                authorStyle={"text-sm"}
+                author={leftNews.author}
+                authorStyle={"text-sm font-[300]"}
                 newsId={leftNews.newsId}
                 categoryName={leftNews.categoryName}
               />

@@ -16,6 +16,26 @@ const addNews = async (data) => {
   return response.data;
 };
 
+const getCategoryNews = async (
+  limit,
+  page,
+  categoryId,
+  content,
+  isPublished
+) => {
+  // const accessToken = getCookie("accessToken");
+  // const headers = { Authorization: `Bearer ${accessToken}` };
+  const response = await axios.get(`${API_URL}/categories`, {
+    params: {
+      limit,
+      page,
+      categoryId,
+      isPublished,
+      content,
+    },
+  });
+  return response.data;
+};
 const getSubcategoryNews = async (limit, page, subCategoryId, content) => {
   const accessToken = getCookie("accessToken");
   const headers = { Authorization: `Bearer ${accessToken}` };
@@ -84,7 +104,7 @@ const updatePublishNews = async (data) => {
   const accessToken = getCookie("accessToken");
   console.log("data in service:", data);
   const headers = {
-    Authorization: `Bearer ${accessToken}`
+    Authorization: `Bearer ${accessToken}`,
   };
   console.log("data:", data);
   const response = await axios.patch(`${API_URL}/published`, data, {
@@ -124,6 +144,7 @@ const deleteBreakingNews = async (id) => {
 
 const newsService = {
   addNews,
+  getCategoryNews,
   getSubcategoryNews,
   getHomepageNews,
   getLatestNews,

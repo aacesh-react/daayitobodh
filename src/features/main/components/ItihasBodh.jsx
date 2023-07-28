@@ -1,27 +1,7 @@
 import NewsCard from "./NewsCard";
-
-import img from "../../../assets/img.jpg";
-import img2 from "../../../assets/img2.jpg";
 import { useSelector } from "react-redux";
 import { getCategoryNews } from "../../../utilities/news";
 import { Link } from "react-router-dom";
-
-const data = [
-  {
-    heading: "समाजवाद नै किन ? अल्बर्ट आइन्स्टाइनका विचाराेत्तेजक रचना",
-  },
-  {
-    heading: "एमसीसीकाे शल्यक्रिया: यसकारण खतरनाक छ याे !",
-  },
-  {
-    heading:
-      "के नेपाल महामन्दीकाे चपेटामा पर्दै गइरहेकाे हाे ?समाजवाद नै किन ? अल्बर्ट आइन्स्टाइनका विचाराेत्तेजक रचना",
-  },
-  {
-    heading:
-      "समाजवाद नै किछाेसेमाेसे बजेटले जनता थाङ्नामा सुत्ने ! समाजवादाेन्मुख मुलुककाे घाेर पुँजीवादी बजेट",
-  },
-];
 
 const ItihasBodh = () => {
   const { homepageNews } = useSelector((state) => state.news);
@@ -42,7 +22,7 @@ const ItihasBodh = () => {
                   imgStyle={"h-[256px] lg:h-[407px] object-cover"}
                   heading={itihasbodhNewsArray[0].heading}
                   headingStyle={" text-md pt-[1rem] lg:heading-big"}
-                  author={itihasbodhNewsArray[0].createdBy}
+                  author={itihasbodhNewsArray[0].author}
                   authorStyle={"text-[1.125rem] lg:leading-[1.5]"}
                   newsId={itihasbodhNewsArray[0].newsId}
                   categoryName={itihasbodhNewsArray[0].categoryName}

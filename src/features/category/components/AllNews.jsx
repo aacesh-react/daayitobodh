@@ -1,83 +1,81 @@
-import img from "../../../assets/img.jpg";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
 import NewsCard from "../../main/components/NewsCard";
 import Pagination from "../../../components/shared/Paginaton";
+import MyPagination from "../../../components/shared/MyPagination";
+import newsService from "../../../app/features/news/newsService";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+const limit = 12;
+const pageToShow = 4;
 const AllNews = () => {
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-  const data = [
-    {
-      heading: `यसरी रोप्न र हुर्काउन सकिन्छ शुभकार्यमा प्रयोग हुने फूल जर्बेरा`,
-      news: `विवाह होस् या अरु कुनै पनि शुभकार्य, मञ्चको सजावट गर्न तथा बुकेका रुपमा दिन फूलको प्रयोग हुने गर्छ। त्यसरी प्रयोग हुनेहरुमध्ये एउटा प्रमुख फूल हो जर्बेरा।`,
-    },
-    {
-      heading: `सम्भोगदेखि गर्भाधानसम्मः सन्तानोत्पत्तिको रोमाञ्चकारी यात्रा`,
-      news: `मानवमा सन्तानोत्पत्तिको प्रक्रिया गज्जबैको हुनेगर्छ । गर्भाधान गर्नको लागि महिलाको शरीरमा एक महिनावारीको चक्रभित्र (औसत रुपमा करिब २८ देखि ३५ दिनभित्र) एउटा मात्रै अण्डा निस्कने गर्छ `,
-    },
-    {
-      heading: `अजिनोमोटोको आतङ्क : कत्तिको खतरनाक छ यसको असर ?`,
-      news: `के साँच्चै नै आम मानिसहरुले सोचे जस्तै, हल्ला गरिएजस्तै खतरनाक छ त अजिनोमोटो ? के यसले साँच्चै नै मानव स्वास्थ्यलाई खतरनाक असर पुर्याउँछ त ? `,
-    },
-    {
-      heading: `कोरोनाको अचूक औषधि ? खोजी हुँदैछ, फेला परेकै छैन !`,
-      news: `ढुक्क हुनुहोस्– गोमूत्र सेवन गर्दैमा, गोबर घस्दैमा, मन्त्र जप्दैमा, प्रार्थना गर्दैमा र रुमाल हल्लाउँदैमा कोरोना भाग्दैन !`,
-    },
-    {
-      heading: `यसरी रोप्न र हुर्काउन सकिन्छ शुभकार्यमा प्रयोग हुने फूल जर्बेरा`,
-      news: `विवाह होस् या अरु कुनै पनि शुभकार्य, मञ्चको सजावट गर्न तथा बुकेका रुपमा दिन फूलको प्रयोग हुने गर्छ। त्यसरी प्रयोग हुनेहरुमध्ये एउटा प्रमुख फूल हो जर्बेरा।`,
-    },
-    {
-      heading: `सम्भोगदेखि गर्भाधानसम्मः सन्तानोत्पत्तिको रोमाञ्चकारी यात्रा`,
-      news: `मानवमा सन्तानोत्पत्तिको प्रक्रिया गज्जबैको हुनेगर्छ । गर्भाधान गर्नको लागि महिलाको शरीरमा एक महिनावारीको चक्रभित्र (औसत रुपमा करिब २८ देखि ३५ दिनभित्र) एउटा मात्रै अण्डा निस्कने गर्छ `,
-    },
-    {
-      heading: `अजिनोमोटोको आतङ्क : कत्तिको खतरनाक छ यसको असर ?`,
-      news: `के साँच्चै नै आम मानिसहरुले सोचे जस्तै, हल्ला गरिएजस्तै खतरनाक छ त अजिनोमोटो ? के यसले साँच्चै नै मानव स्वास्थ्यलाई खतरनाक असर पुर्याउँछ त ? `,
-    },
-    {
-      heading: `कोरोनाको अचूक औषधि ? खोजी हुँदैछ, फेला परेकै छैन !`,
-      news: `ढुक्क हुनुहोस्– गोमूत्र सेवन गर्दैमा, गोबर घस्दैमा, मन्त्र जप्दैमा, प्रार्थना गर्दैमा र रुमाल हल्लाउँदैमा कोरोना भाग्दैन !`,
-    },
-    {
-      heading: `यसरी रोप्न र हुर्काउन सकिन्छ शुभकार्यमा प्रयोग हुने फूल जर्बेरा`,
-      news: `विवाह होस् या अरु कुनै पनि शुभकार्य, मञ्चको सजावट गर्न तथा बुकेका रुपमा दिन फूलको प्रयोग हुने गर्छ। त्यसरी प्रयोग हुनेहरुमध्ये एउटा प्रमुख फूल हो जर्बेरा।`,
-    },
-    {
-      heading: `सम्भोगदेखि गर्भाधानसम्मः सन्तानोत्पत्तिको रोमाञ्चकारी यात्रा`,
-      news: `मानवमा सन्तानोत्पत्तिको प्रक्रिया गज्जबैको हुनेगर्छ । गर्भाधान गर्नको लागि महिलाको शरीरमा एक महिनावारीको चक्रभित्र (औसत रुपमा करिब २८ देखि ३५ दिनभित्र) एउटा मात्रै अण्डा निस्कने गर्छ `,
-    },
-    {
-      heading: `अजिनोमोटोको आतङ्क : कत्तिको खतरनाक छ यसको असर ?`,
-      news: `के साँच्चै नै आम मानिसहरुले सोचे जस्तै, हल्ला गरिएजस्तै खतरनाक छ त अजिनोमोटो ? के यसले साँच्चै नै मानव स्वास्थ्यलाई खतरनाक असर पुर्याउँछ त ? `,
-    },
-    {
-      heading: `कोरोनाको अचूक औषधि ? खोजी हुँदैछ, फेला परेकै छैन !`,
-      news: `ढुक्क हुनुहोस्– गोमूत्र सेवन गर्दैमा, गोबर घस्दैमा, मन्त्र जप्दैमा, प्रार्थना गर्दैमा र रुमाल हल्लाउँदैमा कोरोना भाग्दैन !`,
-    },
-  ];
+  const [activePage, setActivePage] = useState(1);
+  const { categoryName } = useParams();
+  const { homepageNews } = useSelector((state) => state.news);
+  const [totalNoOfPage, setTotalNoOfPage] = useState(0);
+  const [newsArray, setNewsArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const category = homepageNews.find(
+    (news) => news.categoryName == categoryName
+  );
+
+  const pageHandler = (page) => {
+    setActivePage(page);
+  };
+
+  useEffect(() => {
+    (async function fetchData() {
+      try {
+        const result = await newsService.getCategoryNews(
+          limit,
+          activePage,
+          category.categoryId,
+          false,
+          true
+        );
+        console.log("result:", result);
+        setNewsArray(result.data);
+        const totalLength = result.totalLength;
+        const totalNoOfPage = Math.ceil(totalLength / limit);
+        setTotalNoOfPage(totalNoOfPage);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("err:", error);
+      }
+    })();
+  }, [activePage]);
+
+  if (isLoading) {
+    <div></div>;
+  }
   return (
     <div className="flex bg-white justify-center w-full py-[1rem]">
       <div className="flex w-full flex-col lg:w-lg-p xl:w-xl-p  ">
         <ul className="flex flex-col lg:flex-row w-full flex-wrap ">
-          {data.map((item, index) => (
+          {newsArray.map((news, index) => (
             <li key={index} className="w-full lg:w-1/3  px-px pb-[1rem]">
               <NewsCard
-                img={img}
+                img={news.coverImage}
                 imgStyle={"h-[186px] w-full"}
-                heading={item.heading}
+                heading={news.heading}
                 headingStyle={"text-sm py-[.5rem]"}
-                news={item.news}
-                newsStyle={
-                  "text-xs font-[300] leading-[1.5] clamp-custom"
-                }
+                newsStyle={"text-xs font-[300] leading-[1.5] clamp-custom"}
+                newsId={news.newsId}
+                categoryName={categoryName}
               />
             </li>
           ))}
         </ul>
         {/* Pagination */}
-        <div className="flex w-full px-px h-[41px] lg:w-[506px] ">
-          <Pagination itemsPerPage={1} />
+        <div className="w-[500px] py-[1rem]">
+          <MyPagination
+            pageToShow={pageToShow}
+            totalNoOfPage={totalNoOfPage}
+            pageClickHandler={pageHandler}
+          />
         </div>
       </div>
     </div>

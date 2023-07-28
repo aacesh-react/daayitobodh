@@ -1,5 +1,4 @@
 import NewsCard from "./NewsCard";
-import img from "../../../assets/img.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCategorySubcategoryNews, getNews } from "../../../utilities/news";
@@ -85,7 +84,7 @@ const Sahitya = () => {
                     key={index}
                   >
                     <div className="flex flex-col w-full pr-[10px]">
-                      <h3 className="heading-main text-sm p-0 border-b  border-b-red-primary border-b-[2px] line-clamp-2">
+                      <h3 className="heading-main text-sm p-0 border-b  border-b-heading-main border-b-[2px] line-clamp-2">
                         {value.subcategoryName}
                       </h3>
                       <h3 className=" text-end text-sm pt-[.5rem] line-clamp-2">
@@ -96,7 +95,7 @@ const Sahitya = () => {
                         </Link>
                       </h3>
                       <h3 className="text-end font-[400]">
-                        {value.newsArray[0].createdBy}
+                        {value.newsArray[0].author}
                       </h3>
                     </div>
                     <div className="h-full shrink-0">
@@ -119,7 +118,7 @@ const Sahitya = () => {
         {/* right */}
         <div className="flex w-full lg:w-[330px] xl:w-[339px]">
           <div className="flex px-px w-full ">
-            <div className=" w-full px-px border border-black border-[2px] flex flex-col">
+            <div className=" w-full px-px border border-heading-main rounded border-[2px] flex flex-col">
               <h3 className="heading-main py-[1rem]">बालसंसार</h3>
 
               <div className="flex">
@@ -133,7 +132,7 @@ const Sahitya = () => {
                         headingStyle={
                           "heading-big text-[1.5rem] pb-[0px] line-clamp-3"
                         }
-                        author={news.createdBy}
+                        author={news.author}
                         authorStyle={"font-[400]"}
                         newsId={news.newsId}
                         categoryName={news.categoryName}
@@ -147,7 +146,7 @@ const Sahitya = () => {
                           </Link>
                         </h3>
 
-                        <h3 className="font-[400]">{news.createdBy}</h3>
+                        <h3 className="font-[400]">{news.author}</h3>
                       </li>
                     )
                   )}
