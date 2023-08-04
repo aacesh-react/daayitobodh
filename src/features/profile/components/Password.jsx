@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { updateUser } from "../../../app/features/auth/authSlice";
 // import { updateUser } from "../../../app/features/auth/authSlice";
 import FormInputField from "../../../components/shared/FormInputField";
@@ -82,15 +83,16 @@ const Password = () => {
 
   const saveButtonHandler = async (e) => {
     e.preventDefault();
-    console.log("form data:", formData);
-    // formData.email = user.email;
     try {
       let data = await dispatch(
         updateUser({ userData: formData, type: "changePassword" })
       ).unwrap();
       console.log("data:", data);
+      toast.success("Password changed");
+      setFormData(initialValues);
     } catch (error) {
       console.log("error:", error);
+      toast.error("Error occurred!");
     }
     // setFormData(initialValues);
   };

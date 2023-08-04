@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CustomSelect = ({ multiple, options, value, onChange }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -33,7 +33,7 @@ const CustomSelect = ({ multiple, options, value, onChange }) => {
 
   return (
     <div
-      className="font-[300] flex gap-[.5em] cursor-pointer text-neutral-900 border border-neutral-400 rounded relative min-h-[1.5em] items-center w-[20rem] p-[.25em]"
+      className="font-[300]  flex gap-[.5em] cursor-pointer text-neutral-900 border border-neutral-400 rounded relative min-h-[1.5em] items-center w-[20rem] p-[.25em]"
       tabIndex={"0"}
       onClick={showOptionsHandler}
       onBlur={(e) => {
@@ -68,12 +68,13 @@ const CustomSelect = ({ multiple, options, value, onChange }) => {
       <ul
         className={`${
           showOptions ? "block" : "hidden"
-        } max-h-[15em] absolute top-[calc(100%+.25rem)] overflow-y-auto w-full border border-neutral-400 rounded  p-[.25em] left-0 `}
+        } bg-white max-h-[15em] absolute top-[calc(100%+.25rem)] overflow-y-auto w-full border border-neutral-400 rounded  p-[.25em] left-0 `}
       >
         {options.map((option, index) => (
           <li
             className={`${
-              ((multiple && value.map(o => o.value ).includes(option.value)) || value.value == option.value) &&
+              ((multiple && value.map((o) => o.value).includes(option.value)) ||
+                value.value == option.value) &&
               "bg-bg-brown "
             } px-[.25rem] py-[.5rem] cursor-pointer hover:bg-heading-main hover:text-white`}
             key={index}

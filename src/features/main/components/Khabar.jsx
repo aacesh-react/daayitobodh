@@ -18,7 +18,7 @@ const Khabar = () => {
   );
 
   return (
-    <div className="flex w-full bg-[#CFD6E4] justify-center">
+    <div className="flex w-full bg-bg-brown justify-center">
       <div className=" w-full flex-col lg:flex-row lg:w-lg-p xl:w-xl-p  flex">
         {/* khabar */}
         <div className="flex flex-col lg:w-[578px] xl:w-[820px]">

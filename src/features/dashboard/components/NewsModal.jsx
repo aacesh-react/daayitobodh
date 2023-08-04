@@ -3,7 +3,7 @@ import { useState } from "react";
 import newsService from "../../../app/features/news/newsService";
 import { nepalDate } from "../../../utilities/date";
 
-const limit = 25;
+const limit = 150;
 
 const isBreakingNews = (breakingNewsList, news) => {
   return breakingNewsList.includes(news.newsId);

@@ -6,7 +6,7 @@ export const validateForm = (formData, setValidationError) => {
       value
         ? setValidationError((prev) => ({ ...prev, [name]: false }))
         : setValidationError((prev) => ({ ...prev, [name]: true }));
-      if (!value) {
+      if (!value || value.length == 0) {
         hasEmptyData = true;
       }
     }

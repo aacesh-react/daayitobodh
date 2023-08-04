@@ -20,6 +20,8 @@ import { getCookie } from "./pkg/universalCookies";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/layouts/Footer";
+import HamroTeam from "./components/HamroTeam";
+import HamroBare from "./components/HamroBare";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -59,6 +61,9 @@ function App() {
           <Route element={<ProtectedRoutesComponent reader={true} />}>
             <Route path="/user/:id" element={<Profile />} />
           </Route>
+          <Route path="/page/हाम्रो-टीम" element={<HamroTeam />} />
+          <Route path="/page/हाम्राे-बारेमा" element={<HamroBare />} />
+
           {/* <Route
             path="/user/:id"
             element={

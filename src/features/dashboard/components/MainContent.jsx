@@ -12,6 +12,7 @@ import AdminCategories from "./AdminCategories";
 import AdminNews from "./AdminNews";
 import AdminSubcategories from "./AdminSubCategories";
 import AdminUsers from "./AdminUsers";
+import Advertisements from "./Advertisements";
 import BreakingNews from "./BreakingNews";
 const MainContent = ({ itemName }) => {
   const [showProfile, setShowProfile] = useState(false);
@@ -49,6 +50,9 @@ const MainContent = ({ itemName }) => {
       break;
     case "addUser":
       mainElement = <AddUser />;
+      break;
+    case "advertisements":
+      mainElement = <Advertisements />;
       break;
 
     default:

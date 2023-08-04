@@ -189,6 +189,42 @@ const DashboardPage = () => {
               </div>
             </div>
           </li>
+          <li className="" id="advertisements">
+            <div
+              className="flex justify-between px-px items-center py-[1rem]"
+              onClick={(e) => {
+                selectItemsHandler(e.currentTarget.parentElement.id);
+              }}
+            >
+              <span>Advertisements</span>
+              <span className="text-[12px]">
+                <BsChevronDown />
+              </span>
+            </div>
+            <div className=" w-full bg-gray-100 ">
+              <div
+                className={` ${
+                  showItems && itemId == "advertisements"
+                    ? "max-h-[100px] duration-1000"
+                    : "max-h-0 duration-1000"
+                } flex flex-col w-full text-[0.93rem]  overflow-hidden  ease-in-out px-[2rem]  `}
+              >
+                <Link
+                  className="py-[1rem]"
+                  // onClick={(e) => itemClickHandler("users")}
+                  to={"/admin/dashboard/advertisements"}
+                >
+                  Advertisements
+                </Link>
+                {/* <span
+                  className="pb-[1rem]"
+                  onClick={(e) => itemClickHandler("addUser")}
+                >
+                  Add Users
+                </span> */}
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
       {/* right  */}

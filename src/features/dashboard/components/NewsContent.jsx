@@ -1,5 +1,3 @@
-import React from "react";
-import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -27,8 +25,7 @@ const modules = {
   toolbar: toolbarOptions,
 };
 const NewsContent = ({ newsContent, newsContentHandler }) => {
-  const [content, setContent] = useState("");
-
+  // const [content, setContent] = useState("");
   return (
     <div className="flex  w-full p-px  font-[300] min-h-[200px]">
       <ReactQuill
@@ -36,7 +33,6 @@ const NewsContent = ({ newsContent, newsContentHandler }) => {
         theme="snow"
         value={newsContent}
         onChange={(newValue) => {
-          console.log(newValue);
           newsContentHandler(newValue);
         }}
         modules={modules}

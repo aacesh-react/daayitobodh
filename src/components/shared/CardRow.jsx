@@ -19,7 +19,7 @@ const CardRow = ({
     <div className="flex w-full h-full">
       <div className="flex shrink-0 h-full ">
         <Link to={`/news/${categoryName}/${newsId}`}>
-          <img className={`${imgStyle} rounded bg-bg-brown`} src={coverImage} alt="" />
+          <img className={`${imgStyle} object-cover rounded bg-bg-brown`} src={coverImage} alt="" />
         </Link>
       </div>
       <div className="flex flex-col pl-[10px] rounded ">

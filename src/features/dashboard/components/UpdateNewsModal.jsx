@@ -20,7 +20,7 @@ const validationData = {
   subcategoryId: false,
 };
 const UpdateNewsModal = ({ news, closeModal, setActivePage }) => {
-  console.log("news:", news.newsId);
+  console.log("news:", news.newsId, news.subheading);
   const initialValues = {
     heading: news.heading,
     subheading: news.subheading,
@@ -126,12 +126,12 @@ const UpdateNewsModal = ({ news, closeModal, setActivePage }) => {
     // console.log("hasEmptyData:", hasEmptyData);
 
     if (!hasEmptyData) {
-      console.log("passed");
+      // console.log("passed");
       const data = new FormData();
       data.append("image", selectedImage);
       data.append("newsId", news.newsId);
       data.set("heading", formData.heading);
-      data.set("subheading", formData.subheading);
+      data.set("subheading", formData.subheading || "");
       data.set("author", formData.author);
       data.set("content", formData.content);
       data.set("categoryId", formData.categoryId);

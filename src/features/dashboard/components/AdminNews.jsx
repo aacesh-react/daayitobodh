@@ -52,10 +52,10 @@ const AdminNews = () => {
   //   }
   // };
 
-  const deletIconHandler = (subcategory) => {
+  const deletIconHandler = (news) => {
     setShowModal(true);
     setModalType("delete");
-    setActiveNews(subcategory);
+    setActiveNews(news);
   };
 
   const deleteButtonHandler = async () => {

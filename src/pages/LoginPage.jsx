@@ -1,20 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { login } from "../app/features/auth/authSlice";
 import FormInputField from "../components/shared/FormInputField";
-
-function setWithExpiry(key, value, ttl) {
-  const now = new Date();
-
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire
-  const item = {
-    value: value,
-    expiry: now.getTime() + ttl,
-  };
-  localStorage.setItem(key, JSON.stringify(item));
-}
 
 const LoginPage = () => {
   const initialValues = {
@@ -56,9 +45,12 @@ const LoginPage = () => {
     try {
       let data = await dispatch(login(formData)).unwrap();
       console.log("data:", data);
+      toast.success("Logged in");
+
       navigate(location.state?.from.pathname || "/");
     } catch (error) {
       console.log("err:", error);
+      toast.error("Invalid credentials");
     }
   };
   return (
@@ -108,7 +100,7 @@ const LoginPage = () => {
                   type={"password"}
                   className={"flex flex-col px-[15px] w-full mb-[28.8px] "}
                 />
-                <div className="px-[15px] flex items-center mb-[0.5rem]">
+                {/* <div className="px-[15px] flex items-center mb-[0.5rem]">
                   <input
                     className="text-red-200"
                     type="checkbox"
@@ -118,7 +110,7 @@ const LoginPage = () => {
                   <label className="font-[300]" htmlFor="aggreement">
                     &nbsp;&nbsp;Remember me
                   </label>
-                </div>
+                </div> */}
               </div>
               <div className=" w-full px-px py-[.5rem]">
                 <button
@@ -136,7 +128,7 @@ const LoginPage = () => {
           <div className="px-[15px]">
             <hr className=" px-[15px] my-[15px]"></hr>
           </div>
-          <div className="flex flex-col font-[300]">
+          {/* <div className="flex flex-col font-[300]">
             <div className="flex flex-col px-[15px] items-center ">
               <div className="flex flex-col justify-center items-center px-[15px] w-full">
                 <p className="mb-[1rem]">
@@ -154,7 +146,7 @@ const LoginPage = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

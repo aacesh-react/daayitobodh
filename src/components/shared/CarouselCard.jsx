@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import defaultImg from "../../assets/defaultImg.jpg";
+import defaultImg from "../../assets/defaultImgSquare.jpg";
 
 const CarouselCard = ({ news }) => {
   const coverImage = news.coverImage || defaultImg;

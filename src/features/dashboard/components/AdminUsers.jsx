@@ -89,6 +89,7 @@ const AdminUsers = () => {
       userId: user.id,
       role: role.name,
     };
+    console.log("data: ", data)
     try {
       let result = await dispatch(addUserRole(data)).unwrap();
       setUsers((prev) =>

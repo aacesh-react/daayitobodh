@@ -3,48 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCategorySubcategoryNews, getNews } from "../../../utilities/news";
 
-const data = [
-  {
-    type: `कथा`,
-    name: `क्लियापाट्रा`,
-    writer: `कन्हैया नासननी`,
-  },
-  {
-    type: `कविता`,
-    name: `चुनावमा`,
-    writer: `विनाेदविक्रम केसी`,
-  },
-  {
-    type: `समालाेचना`,
-    name: `पारिजातका कथाहरुमा महिला समानताका कुराहरु`,
-    writer: `शारदारमण नेपाल`,
-  },
-  {
-    type: `अनुदित`,
-    name: `जामुनकाे रुख`,
-    writer: `कृष्णचन्दर`,
-  },
-];
-
-const baalSansaar = [
-  {
-    title: `संसारमा सबैभन्दा निडर काे ?`,
-    heading: `अकबर–वीरबलकाे किस्सा`,
-  },
-  {
-    title: `संसारमा सबैभन्दा निडर काे ?`,
-    heading: `चिनियाँ नीतिकथा`,
-  },
-  {
-    title: `संसारमा सबैभन्दा निडर काे ?`,
-    heading: `नसरुद्दिन हाेजाकाे किस्सा`,
-  },
-  {
-    title: `रमिलाकाे खैलाैना`,
-    heading: `बालकथा`,
-  },
-];
-
 const Sahitya = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const sahityaData = getCategorySubcategoryNews(homepageNews, "साहित्य", 2);
@@ -79,7 +37,7 @@ const Sahitya = () => {
                 {sahityaData.map((value, index) => (
                   <li
                     className={`my-[1rem] ${index == 0 && "mt-0"} 
-                    ${index == data.length - 1 && "mb-0"} 
+                    ${index == sahityaData.length - 1 && "mb-0"} 
                     flex h-[113px] justify-between`}
                     key={index}
                   >

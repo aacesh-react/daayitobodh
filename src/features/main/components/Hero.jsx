@@ -7,7 +7,7 @@ import NewsCard from "./NewsCard";
 
 const Hero = () => {
   const { homepageNews } = useSelector((state) => state.news);
-  console.log("homepagenews:", homepageNews);
+  // console.log("homepagenews:", homepageNews);
   const ghatanaNewsArray = getNews(homepageNews, true, "घटना र प्रवृत्ति", 3);
   const mukhyaNewsArray = getNews(homepageNews, true, "मुख्य", 1);
   const baicharikiNewsArray = getNews(homepageNews, true, "वैचारिकी", 3);
@@ -98,12 +98,12 @@ const Hero = () => {
                       </div>
                     ) : (
                       <li className="py-[15px] w-full " key={index}>
-                        <Link to={`/news/${news.categoryName}/${news.id}`}>
+                        <Link to={`/news/${news.categoryName}/${news.newsId}`}>
                           <h3 className="text-sm line-clamp-3">
                             {news.heading}
                           </h3>
                         </Link>
-                        <span className="font-[300]">{news.createdBy}</span>
+                        <span className="font-[300]">{news.author}</span>
                       </li>
                     )
                   )}

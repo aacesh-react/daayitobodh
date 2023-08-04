@@ -16,12 +16,20 @@ const CategoryPage = () => {
     <div className="flex flex-col">
       <Navbar />
       <Hero categoryName={categoryName} />
-      <SingleAdd />
+
+      <div className="flex justify-center my-[1.5rem] px-px w-full h-[100px] ">
+        <SingleAdd data={{ id: "c-1" }} />
+      </div>
+
       <SubCategory categoryName={categoryName} />
-      <MultiAdd addData={[1, 2, 3]} />
+      <MultiAdd addData={[{ id: "c-2" }, { id: "c-3" }, { id: "c-4" }]} />
       <AllNews />
-      <SingleAdd />
-      <MultiAdd addData={[1, 2, 3]} />
+
+      <div className="flex justify-center my-[1.5rem] px-px w-full h-[100px] ">
+        <SingleAdd data={{ id: "c-5" }} />
+      </div>
+
+      <MultiAdd addData={[{ id: "c-6" }, { id: "c-7" }, { id: "c-8" }]} />
     </div>
   );
 };

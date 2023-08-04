@@ -10,16 +10,25 @@ import Select from "../../../components/shared/Select";
 import { validateForm } from "../../../utilities/formValidaton";
 import NewsContent from "./NewsContent";
 import { toast } from "react-toastify";
+import CustomSelect from "../../../components/shared/CustomSelect";
 
 // export const categories = ["sahitye", "bigyan"];
+
+// const initialValues = {
+//   heading: null,
+//   subheading: null,
+//   author: null,
+//   content: null,
+//   categoryId: null,
+//   subcategoryId: null,
+// };
 
 const initialValues = {
   heading: null,
   subheading: null,
   author: null,
   content: null,
-  categoryId: null,
-  subcategoryId: null,
+  options: null,
 };
 
 const validationData = {
@@ -27,14 +36,23 @@ const validationData = {
   subheading: false,
   author: false,
   content: false,
-  categoryId: false,
-  subcategoryId: false,
+  options: false,
 };
+// const validationData = {
+//   heading: false,
+//   subheading: false,
+//   author: false,
+//   content: false,
+//   categoryId: false,
+//   subcategoryId: false,
+// };
 const AddNews = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState(initialValues);
   const [validationError, setValidationError] = useState(validationData);
   const [categories, setCategories] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [tags, setTags] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const dispatch = useDispatch();
   console.log("C:", categories);
@@ -53,6 +71,12 @@ const AddNews = () => {
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
       : setValidationError((prev) => ({ ...prev, [name]: true }));
+  };
+
+  const multiSelectHander = (options) => {
+    // console.log("multi select clicked:", options);
+    setFormData((prev) => ({ ...prev, options }));
+    setTags(options);
   };
 
   const selectHandler = (e) => {
@@ -98,7 +122,7 @@ const AddNews = () => {
 
   const imageHandler = (e) => {
     let file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     setSelectedImage(file);
   };
 
@@ -108,13 +132,20 @@ const AddNews = () => {
 
   const formSubmitHanlder = async (e) => {
     e.preventDefault();
-    console.log("formdata:", formData);
+    // console.log("formdata:", formData);
     const dataToValidate = {
       heading: formData.heading,
       author: formData.author,
       content: formData.content,
-      categoryId: formData.categoryId,
+      options: formData.options,
     };
+
+    // const dataToValidate = {
+    //   heading: formData.heading,
+    //   author: formData.author,
+    //   content: formData.content,
+    //   categoryId: formData.categoryId,
+    // };
     const hasEmptyData = validateForm(dataToValidate, setValidationError);
     console.log("hasEmptyData:", hasEmptyData);
 
@@ -123,20 +154,35 @@ const AddNews = () => {
       const data = new FormData();
       data.append("image", selectedImage);
       data.set("heading", formData.heading);
-      data.set("subheading", formData.subheading);
+      data.set("subHeading", formData.subheading || "");
       data.set("author", formData.author);
       data.set("content", formData.content);
-      data.set("categoryId", formData.categoryId);
-      data.set("subcategoryId", formData.subcategoryId);
+      const promises = [];
+      formData.options.map((option) => {
+        console.log("option:", option);
+        data.set("categoryId", option.categoryId);
+        data.set("subcategoryId", option.subcategoryId);
+        const result = dispatch(addNews(data));
+        promises.push(result);
+      });
+
       console.log("data:", data);
       try {
-        const result = await dispatch(addNews(data)).unwrap();
-        console.log("result:", result);
+        const results = await Promise.all(promises);
+        console.log("results:", results);
         toast.success("News added!");
       } catch (error) {
         console.log("Err:", error);
         toast.error("Error!");
       }
+      // try {
+      //   const result = await dispatch(addNews(data)).unwrap();
+      //   console.log("result:", result);
+      //   toast.success("News added!");
+      // } catch (error) {
+      //   console.log("Err:", error);
+      //   toast.error("Error!");
+      // }
     }
 
     // try {
@@ -156,7 +202,34 @@ const AddNews = () => {
     (async function () {
       try {
         const result = await dispatch(getCategories({ sub: true })).unwrap();
-        console.log("result:", result.data);
+        console.log("result:", result.data);const options = [];
+        result.data.map((category) => {
+          if (category.subcategories) {
+            category.subcategories.map((sub) => {
+              const option = {
+                label: sub.subcategoryName,
+                value: sub.subcategoryId,
+                type: "subcategory",
+                categoryId: category.id,
+                subcategoryId: sub.subcategoryId,
+              };
+
+              options.push(option);
+            });
+          } else {
+            const option = {
+              label: category.name,
+              value: category.id,
+              type: "category",
+              categoryId: category.id,
+              subcategoryId: null,
+            };
+            options.push(option);
+          }
+        });
+        // console.log("options:", options);
+        setOptions(options);
+        // setTags([options[0]]);
         setCategories(result.data);
         setSelectedCategory(result.data[0]);
       } catch (error) {
@@ -178,6 +251,18 @@ const AddNews = () => {
           >
             <div className="flex flex-col  w-full sm:w-[510px] md:w-full ">
               <div className="flex flex-col w-full pb-[1rem] px-px">
+                <label className={` text-xs py-[.5rem]  `}>
+                  Categories/Subcategories
+                  <span className={` text-[red]`}>&nbsp;*</span>
+                </label>
+                <CustomSelect
+                  multiple
+                  options={options}
+                  value={tags}
+                  onChange={multiSelectHander}
+                />
+              </div>
+              {/* <div className="flex flex-col w-full pb-[1rem] px-px">
                 <label className="py-[1rem] text-xs">Select Category:</label>
                 <Select
                   data={categories.map((category) => category.name)}
@@ -202,7 +287,7 @@ const AddNews = () => {
                   defaultOption={"Select a subcategory"}
                   id={"selectSubcategory"}
                 />
-              </div>
+              </div> */}
 
               <FormInputField
                 name={"heading"}

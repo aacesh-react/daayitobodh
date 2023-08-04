@@ -3,21 +3,6 @@ import { Link } from "react-router-dom";
 import CardRow from "../../../components/shared/CardRow";
 import { getCategorySubcategoryNews } from "../../../utilities/news";
 
-const data = [
-  {
-    title: `स्वास्थ्य`,
-    heading: `औषधीसँग यी सप्लिमेन्टहरु खान खतरनाक हुन सक्छ !`,
-  },
-  {
-    title: `जीवनशैली`,
-    heading: `कोठामा राख्नाेस् हावा शुद्ध पार्ने यी पाँच विरुवाहरु`,
-  },
-  {
-    title: `जीवनशैली`,
-    heading: `माेटाेपनले सतायाे ? ताैल घटाउने पाँच उपायहरु`,
-  },
-];
-
 const Swasthya = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const newsArray = getCategorySubcategoryNews(
@@ -29,9 +14,9 @@ const Swasthya = () => {
   const rightNews = newsArray.slice(1, 5);
 
   return (
-    <div className="flex justify-center bg-yellow-bg w-full">
+    <div className="flex justify-center bg-bg-brown w-full">
       <div className="flex flex-col w-full lg:w-lg-p xl:w-xl-p lg:py-[2rem]">
-        <h3 className="heading-main py-[1rem] px-[15px]">
+        <h3 className="heading-main  py-[1rem] px-[15px]">
           <Link className="inline-block " to={"/news/स्वास्थ्य–जीवनशैली"}>
             स्वास्थ्य–जीवनशैली
           </Link>
@@ -50,7 +35,7 @@ const Swasthya = () => {
                   />
                 </div>
                 <div className="absolute  px-[2rem] left-0 bottom-[8%] lg:left-[10%]">
-                  <h3 className=" heading-main font-[poppins] py-[1rem]">
+                  <h3 className=" heading-main  font-[poppins] py-[1rem]">
                     {leftNews.subcategoryName}
                   </h3>
                   <h3 className=" text-lg xl:heading-big text-white xl:w-[469px] lg:text-[1.875rem] font-[poppins]">

@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getHomepageNews } from "../app/features/news/newsSlice";
 import Navbar from "../components/layouts/Navbar";
+import MetaComponent from "../components/MetaComponent";
 import CustomSelect from "../components/shared/CustomSelect";
 import { MultiAdd } from "../components/shared/MultiAdd";
 import SingleAdd from "../components/shared/SingleAdd";
@@ -16,20 +19,44 @@ import Sahitya from "../features/main/components/Sahitya";
 import Swasthya from "../features/main/components/Swasthya";
 
 const Homepage = () => {
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   (async function fetchData() {
+  //     try {
+  //       const limit = 10;
+  //       await dispatch(getHomepageNews(limit)).unwrap();
+  //     } catch (error) {
+  //       console.log("err:", error);
+  //     }
+  //   })();
+  // }, []);
   return (
     <div>
+      {/* <MetaComponent /> */}
       <Navbar />
       <Hero />
-      <MultiAdd addData={[1, 2, 3]} />
+      <MultiAdd addData={[{ id: "h-1" }, { id: "h-2" }, { id: "h-3" }]} />
       <Khabar />
-      <SingleAdd />
+
+      <div className="flex justify-center my-[1.5rem] px-px w-full h-[32px] lg:h-[100px] ">
+        <SingleAdd data={{ id: "h-4" }} />
+      </div>
+
       <ItihasBodh />
-      <SingleAdd />
+
+      <div className="flex justify-center my-[1.5rem] px-px w-full h-[32px] lg:h-[100px] ">
+        <SingleAdd data={{ id: "h-5" }} />
+      </div>
+
       <GyanBigyan />
-      <SingleAdd />
+
+      <div className="flex justify-center my-[1.5rem] px-px w-full h-auto lg:h-[100px] ">
+        <SingleAdd data={{ id: "h-6" }} />
+      </div>
+
       <Golardha />
       <Swasthya />
-      <MultiAdd addData={[1, 2, 3]} />
+      <MultiAdd addData={[{ id: "h-7" }, { id: "h-8" }, { id: "h-9" }]} />
       <Sahitya />
       <Kala />
       <Jankari />

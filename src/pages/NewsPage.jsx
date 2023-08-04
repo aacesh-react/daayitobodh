@@ -20,8 +20,11 @@ const NewsPage = () => {
           {/* right     */}
           <div className="flex flex-col px-px  flex-col w-full lg:w-[300px] xl:w-[320px]">
             <Trending />
-            <div className="flex my-[2rem] justify-center items-center w-full h-[170px] bg-bg-gray">
-              advertisement
+            <div
+              className="flex my-[2rem] px-px justify-center items-center w-full h-[170px] "
+              id="n-1"
+            >
+              <SingleAdd data={{ id: "n-1" }} />
             </div>
           </div>
         </div>

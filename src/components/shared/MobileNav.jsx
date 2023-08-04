@@ -10,7 +10,7 @@ const MobileNav = ({ showMenuItems, closeMenuItems, menuItems }) => {
         className="absolute top-3 right-6 z-[6] text-[2.5rem] text-heading-main cursor-pointer"
         onClick={closeMenuItems}
       >
-        ×
+        &times;
       </span>
       <div
         id="side-menu"
@@ -21,7 +21,11 @@ const MobileNav = ({ showMenuItems, closeMenuItems, menuItems }) => {
             {menuItems.map((item, index) => (
               <li key={index} className="flex items-center">
                 <div className="py-[.5rem] flex items-center ">
-                  <Link className=" text-[1.4rem] font-[500] " href="">
+                  <Link
+                    className=" text-[1.4rem] font-[500] bg-red-200"
+                    to={`/news/${item}`}
+                    onClick={closeMenuItems}
+                  >
                     {item}
                   </Link>
                 </div>
