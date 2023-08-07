@@ -5,38 +5,7 @@ import newsService from "../../../app/features/news/newsService";
 import { getCategoryNews } from "../../../utilities/news";
 import NewsCard from "../../main/components/NewsCard";
 import defaultImgSquare from "../../../assets/defaultImgSquare.jpg";
-import NepaliDate from "nepali-date-converter";
-import { nepalDate, convertToNepaliDate } from "../../../utilities/date";
-
-// const convertTimteToNepali = () => {
-//   let time = " 16:43:04";
-//   time= time.replaceAll("0", "०");
-//   time= time.replaceAll("1", "१");
-//   time= time.replaceAll("2", "२");
-//   time= time.replaceAll("3", "३");
-//   time= time.replaceAll("4", "४");
-//   time= time.replaceAll("5", "५");
-//   time= time.replaceAll("6", "६");
-//   time= time.replaceAll("7", "७");
-//   time= time.replaceAll("8", "८");
-//   time= time.replaceAll("9", "९");
-//   return time;
-// };
-
-// const convertToNepaliDate = (date) => {
-//   const nepaliTime = nepalDate(date);
-//   const time = nepaliTime.split(",")[1];
-//   console.log("time:", time);
-//   const nepaliTimeOnly = convertTimteToNepali();
-//   console.log("nepaliTimeOnly:", nepaliTimeOnly);
-
-//   const eDate = new Date(date);
-//   let a = new NepaliDate(eDate);
-//   NepaliDate.language = "np";
-//   let neapaliDate = a.format("ddd DD, MMMM YYYY");
-//   console.log("date:", neapaliDate);
-//   return new NepaliDate("2051/02/01"); //
-// };
+import { convertToNepaliDate } from "../../../utilities/date";
 
 const News = () => {
   const { categoryName, newsId } = useParams();
@@ -44,7 +13,6 @@ const News = () => {
   const [news, setNews] = useState({});
   const { homepageNews } = useSelector((state) => state.news);
   const sambandhitNewsArray = getCategoryNews(homepageNews, categoryName, 3);
-  console.log("newsArray:", sambandhitNewsArray);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -53,7 +21,6 @@ const News = () => {
     (async function () {
       try {
         const result = await newsService.getNewsById(newsId);
-        console.log("result:", result.data);
         setNews(result.data);
         setIsLoading(false);
       } catch (error) {
@@ -91,7 +58,6 @@ const News = () => {
             {news.createdAt && (
               <span>{convertToNepaliDate(news.createdAt)}</span>
             )}
-            {/* <div>{convertToNepaliDate(new Date())}</div> */}
           </div>
           <hr className=" border-heading-main mx-px" />
 

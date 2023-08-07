@@ -1,21 +1,17 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CardRow from "../../../components/shared/CardRow";
 import { getNews } from "../../../utilities/news";
-import { mukhya, baicharik } from "../data/heroData";
 import NewsCard from "./NewsCard";
 
 const Hero = () => {
   const { homepageNews } = useSelector((state) => state.news);
-  // console.log("homepagenews:", homepageNews);
   const ghatanaNewsArray = getNews(homepageNews, true, "घटना र प्रवृत्ति", 3);
   const mukhyaNewsArray = getNews(homepageNews, true, "मुख्य", 1);
   const baicharikiNewsArray = getNews(homepageNews, true, "वैचारिकी", 3);
   return (
     <div className="flex justify-center bg-white w-full">
       <div className="flex w-full lg:w-lg-p flex-col lg:flex-row  xl:w-xl-p">
-        {/* <div className="flex flex-col"> */}
-        {/* <div className="flex "> */}
+
         {/* MUKHYA */}
         <div className="flex w-full flex-col px-[15px] lg:w-[320px] xl:w-[360px]">
           <h3 className="heading-main py-[1rem]">घटना र प्रवृत्ति</h3>

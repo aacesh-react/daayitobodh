@@ -1,6 +1,3 @@
-import { RxCross2 } from "react-icons/rx";
-
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const MobileNav = ({ showMenuItems, closeMenuItems, menuItems }) => {

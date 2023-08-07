@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import newsService from "../../../app/features/news/newsService";
 
@@ -9,7 +9,6 @@ const Trending = () => {
     (async function () {
       try {
         const trendingResult = await newsService.getBreakingNews();
-        // console.log("trendingResult:", trendingResult.data);
         setTrendingNews(trendingResult.data);
         setIsLoading(false);
       } catch (error) {

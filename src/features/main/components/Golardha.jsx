@@ -3,13 +3,6 @@ import { useSelector } from "react-redux";
 import { getNewsData } from "../../../utilities/news";
 import { Link } from "react-router-dom";
 
-const data = [
-  "ताइवान मुद्दामा बढ्दाे चीन–अमेरिकी तनावका खतरनाक पहलुहरु",
-  "सुडान गृहयुद्ध: कारण र परिणाम, पर्दापछाडि भइरहेका खतरनाक चलखेल",
-  "टर्कीकाे चुनाव परिणाम: युराेपमा अमेरिकी स्वार्थमा नमीठाे धक्का !",
-  "युक्रेन युद्ध: निजी सेनाकाे समूहसँग संसारकै सबैभन्दा प्रशिक्षित सेनाकाे पराजयकाे दुखद कथा",
-];
-
 const Golardha = () => {
   const { homepageNews } = useSelector((state) => state.news);
   const newsData = getNewsData(homepageNews, false, "गाेलार्द्ध");

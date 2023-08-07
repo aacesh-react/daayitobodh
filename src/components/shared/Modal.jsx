@@ -5,7 +5,6 @@ const Modal = ({ showModal, children }) => {
         ${showModal ? "z-10 bg-[rgba(0,0,0,0.6)]" : "-z-20"} 
       `}
     >
-      {/* content */}
       <div> {children} </div>
     </div>
   );

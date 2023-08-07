@@ -1,4 +1,3 @@
-import React from "react";
 import { MdOutlineDelete, MdOutlineModeEdit } from "react-icons/md";
 
 const TableAction = ({ hideEdit, editButtonHandler, deleteButtonHandler }) => {
@@ -6,7 +5,7 @@ const TableAction = ({ hideEdit, editButtonHandler, deleteButtonHandler }) => {
     <td className="border  p-[.5rem]  ">
       <div className="flex justify-center">
         <MdOutlineModeEdit
-          className={` ${
+        className={` ${
             hideEdit ? "hidden" : "block"
           } text-green-500 cursor-pointer`}
           onClick={(e) => {

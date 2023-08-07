@@ -1,13 +1,10 @@
 import logo from "../../assets/logo.png";
-import bitsolutionnepal from "../../assets/bitsolutionnepal.png";
 import fb from "../../assets/fb.svg";
 import twitter from "../../assets/twitter.svg";
 import youtube from "../../assets/youtube.svg";
 import tiktok from "../../assets/tiktok.svg";
 import { Link } from "react-router-dom";
 
-const text =
-  "दायित्वबोध प्रकाशन प्रा‍‍.लि. बालकुमारी– ९, ललितपुर नेपाल । फोन: ९८४३४८४८४०, ९८५१०९१२९२, ९८४३४७४५४२ Email: dayitwabodh@gmail.com";
 const Footer = () => {
   return (
     <div className="flex flex-col items-center mt-[2rem] pt-[1rem] w-full bg-bg-brown">

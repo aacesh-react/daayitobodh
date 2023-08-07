@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getHomepageNews } from "../app/features/news/newsSlice";
+import { getAdvertisements } from "../app/features/advertisement/advertisementSlice";
 import Navbar from "../components/layouts/Navbar";
-import MetaComponent from "../components/MetaComponent";
-import CustomSelect from "../components/shared/CustomSelect";
+import Carausel from "../components/shared/Caraousel";
 import { MultiAdd } from "../components/shared/MultiAdd";
 import SingleAdd from "../components/shared/SingleAdd";
-import YoutubePlayer from "../components/shared/YoutubePlayer";
-import NewsContent from "../features/dashboard/components/NewsContent";
+import Title from "../components/shared/Title";
 import Golardha from "../features/main/components/Golardha";
 import GyanBigyan from "../features/main/components/GyanBigyan";
 import Hero from "../features/main/components/Hero";
@@ -19,38 +17,38 @@ import Sahitya from "../features/main/components/Sahitya";
 import Swasthya from "../features/main/components/Swasthya";
 
 const Homepage = () => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   (async function fetchData() {
-  //     try {
-  //       const limit = 10;
-  //       await dispatch(getHomepageNews(limit)).unwrap();
-  //     } catch (error) {
-  //       console.log("err:", error);
-  //     }
-  //   })();
-  // }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async function fetchData() {
+      try {
+        const result = await dispatch(getAdvertisements()).unwrap();
+      } catch (error) {
+        console.log("err:", error);
+      }
+    })();
+  }, []);
   return (
     <div>
-      {/* <MetaComponent /> */}
+      <Title />
       <Navbar />
+      <Carausel />
       <Hero />
       <MultiAdd addData={[{ id: "h-1" }, { id: "h-2" }, { id: "h-3" }]} />
       <Khabar />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full h-[32px] lg:h-[100px] ">
+      <div className="flex justify-center my-[1.5rem] px-px w-full ">
         <SingleAdd data={{ id: "h-4" }} />
       </div>
 
       <ItihasBodh />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full h-[32px] lg:h-[100px] ">
+      <div className="flex justify-center my-[1.5rem] px-px w-full ">
         <SingleAdd data={{ id: "h-5" }} />
       </div>
 
       <GyanBigyan />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full h-auto lg:h-[100px] ">
+      <div className="flex justify-center my-[1.5rem] px-px w-full  ">
         <SingleAdd data={{ id: "h-6" }} />
       </div>
 

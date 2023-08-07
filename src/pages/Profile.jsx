@@ -1,28 +1,17 @@
-// import EditProfile from "../features/profile/components/EditProfile";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { MdOutlinePerson, MdOutlineLock } from "react-icons/md";
 
-import {
-  MdOutlineShoppingBag,
-  MdOutlinePerson,
-  MdOutlineLock,
-} from "react-icons/md";
-// import Password from "../features/profile/components/Password";
-import { useEffect, useState } from "react";
-import Navbar from "../components/layouts/Navbar";
+import { useState } from "react";
 import EditProfile from "../features/profile/components/EditProfile";
 import Password from "../features/profile/components/Password";
 import Title from "../components/shared/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../app/features/auth/authSlice";
-// import { useDispatch, useSelector } from "react-redux";
-// import { logout } from "../app/features/auth/authSlice";
-// import { toast } from "react-toastify";
 
 const Profile = () => {
   const { id } = useParams();
   const { user } = useSelector((state) => state.auth);
   const [activeNavItem, setActiveNavItem] = useState(id);
-  const [role, setRole] = useState("user");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -129,13 +118,7 @@ const Profile = () => {
                 </li>
               </ul>
             </div>
-
-            {/* import here */}
             {navItemComponent}
-            {/* <div className="flex w-full  justify-center">
-        
-              <Password />
-            </div> */}
           </div>
         </div>
       </div>

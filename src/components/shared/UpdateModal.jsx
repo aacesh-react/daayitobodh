@@ -3,7 +3,6 @@ import { validateForm } from "../../utilities/formValidaton";
 import FormInputField from "./FormInputField";
 
 const UpdateModal = ({ closeModal, updateButtonHandler, inputFieldData }) => {
-  console.log("input data:", inputFieldData);
   const initialFormData = {
     [inputFieldData.name]: inputFieldData.value,
   };
@@ -12,10 +11,8 @@ const UpdateModal = ({ closeModal, updateButtonHandler, inputFieldData }) => {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [validationError, setValidationError] = useState(initialErrorData);
-  console.log("formdata:", formData, validationError);
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
     blurHandler(e);
     inputFieldData;
@@ -23,7 +20,6 @@ const UpdateModal = ({ closeModal, updateButtonHandler, inputFieldData }) => {
 
   const blurHandler = (e) => {
     const { name, value } = e.target;
-    console.log("blur handler:", name, value, validationError);
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
       : setValidationError((prev) => ({ ...prev, [name]: true }));

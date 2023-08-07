@@ -59,7 +59,6 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     return await authService.logout();
   } catch (err) {
-    //  console.error(err)
     return thunkAPI.rejectWithValue(err.response.data);
   }
 });
@@ -152,7 +151,6 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
-        // state.isLoginLoading = false;
         state.hasError = false;
         state.user = null;
         state.loggedIn = false;
@@ -207,8 +205,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.hasError = false;
         state.user = { ...state.user, ...action.payload.data };
-        // state.user = action.payload.data;
-        // state.loggedIn = true;
       })
       .addCase(updateUser.rejected, (state) => {
         state.isLoading = false;

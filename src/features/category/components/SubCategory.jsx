@@ -1,4 +1,3 @@
-import React from "react";
 import NewsCard from "../../main/components/NewsCard";
 import { useSelector } from "react-redux";
 import { getCategorySubcategoryNews } from "../../../utilities/news";
@@ -20,7 +19,6 @@ const SubCategory = ({ categoryName }) => {
                 <NewsCard
                   img={item.newsArray[0].coverImage}
                   imgStyle={"aspect-[3/2]"}
-                  // imgStyle={"h-[256px] lg:h-[122px] aspect-video w-full"}
                   title={item.subcategoryName}
                   titleStyle={"text-sm text-heading-main py-[.5rem]"}
                   heading={item.newsArray[0].heading}

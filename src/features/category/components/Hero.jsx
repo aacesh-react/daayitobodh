@@ -3,17 +3,9 @@ import NewsCard from "../../main/components/NewsCard";
 import { useSelector } from "react-redux";
 import { getCategoryNews, getNews } from "../../../utilities/news";
 
-const data = [
-  "समाजवाद नै किन ? अल्बर्ट आइन्स्टाइनका विचाराेत्तेजक रचना",
-  "एमसीसीकाे शल्यक्रिया: यसकारण खतरनाक छ याे !",
-  "के नेपाल महामन्दीकाे चपेटामा पर्दै गइरहेकाे हाे ?",
-  "छाेसेमाेसे बजेटले जनता थाङ्नामा सुत्ने ! समाजवादाेन्मुख मुलुककाे घाेर पुँजीवादी बजेट",
-];
-
 const Hero = ({ categoryName }) => {
   const { homepageNews } = useSelector((state) => state.news);
   const newsArray = getCategoryNews(homepageNews, categoryName, 5);
-  console.log("news array:", newsArray);
   const leftNews = newsArray[0];
   const rightNewsArray = newsArray.slice(1, 5);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import NewsCard from "./NewsCard";
 import CardRow from "../../../components/shared/CardRow";
@@ -103,7 +102,6 @@ const Kala = () => {
                         newsId={news.newsId}
                         categoryName={news.categoryName}
                       />
-                      {/* <Link>{value.heading}</Link> */}
                     </li>
                   ))}
                 </ul>

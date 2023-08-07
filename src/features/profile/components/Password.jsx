@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateUser } from "../../../app/features/auth/authSlice";
-// import { updateUser } from "../../../app/features/auth/authSlice";
 import FormInputField from "../../../components/shared/FormInputField";
-// import { toast } from "react-toastify";
 const Password = () => {
   const initialValues = {
     oldPassword: "",
@@ -24,21 +22,17 @@ const Password = () => {
   };
 
   const [formData, setFormData] = useState(initialValues);
-  // const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
   const [inputErr, setInputErr] = useState(errorInitialValue);
   const dispatch = useDispatch();
-  //   const { user } = useSelector((state) => state.auth);
-  // console.log("formdata change password:", formData);
+
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
     inputBlurHandler(e);
   };
 
   const inputBlurHandler = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
     if (name == "confirmPassword") {
       if (formData.newPassword != value) {
         setInputErr((prev) => ({
@@ -87,14 +81,12 @@ const Password = () => {
       let data = await dispatch(
         updateUser({ userData: formData, type: "changePassword" })
       ).unwrap();
-      console.log("data:", data);
       toast.success("Password changed");
       setFormData(initialValues);
     } catch (error) {
       console.log("error:", error);
       toast.error("Error occurred!");
     }
-    // setFormData(initialValues);
   };
   return (
     <div className="flex justify-center py-[1rem] w-full md:w-[480px] lg:w-[640px] xl:w-[760px] text-gray-500 ">

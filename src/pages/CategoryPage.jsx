@@ -6,6 +6,8 @@ import SingleAdd from "../components/shared/SingleAdd";
 import AllNews from "../features/category/components/AllNews";
 import Hero from "../features/category/components/Hero";
 import SubCategory from "../features/category/components/SubCategory";
+import Title from "../components/shared/Title";
+import Carausel from "../components/shared/Caraousel";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
@@ -14,10 +16,12 @@ const CategoryPage = () => {
   }, []);
   return (
     <div className="flex flex-col">
+      <Title />
       <Navbar />
+      <Carausel />
       <Hero categoryName={categoryName} />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full h-[100px] ">
+      <div className="flex justify-center  px-px w-full ">
         <SingleAdd data={{ id: "c-1" }} />
       </div>
 
@@ -25,7 +29,7 @@ const CategoryPage = () => {
       <MultiAdd addData={[{ id: "c-2" }, { id: "c-3" }, { id: "c-4" }]} />
       <AllNews />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full h-[100px] ">
+      <div className="flex justify-center my-[1.5rem] px-px w-full  ">
         <SingleAdd data={{ id: "c-5" }} />
       </div>
 

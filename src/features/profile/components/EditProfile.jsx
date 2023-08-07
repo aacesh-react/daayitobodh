@@ -69,17 +69,6 @@ const EditProfile = () => {
                 }
                 labelClassName={"text-gray-500"}
               />
-              {/* <FormInputField
-                name={"number"}
-                label={"phone number"}
-                placeholder={""}
-                onchangeHandler={inputChangeHandler}
-                value={formData.number}
-                className={
-                  "flex flex-col px-[15px] w-full mb-[28.8px] md:w-1/2 text-gray-500 "
-                }
-                labelClassName={"text-gray-500"}
-              /> */}
               <FormInputField
                 name={"email"}
                 label={"email"}

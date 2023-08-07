@@ -49,8 +49,6 @@ export const nepalDate = (dateToConvert) => {
   // Set the time zone to Nepal (GMT+5:45)
   date.setUTCHours(date.getUTCHours() + 5);
   date.setUTCMinutes(date.getUTCMinutes() + 45);
-
-  // Get the time and date in Nepal
   const options = {
     // timeZone: "Asia/Kathmandu",
     year: "numeric",
@@ -92,12 +90,9 @@ export const convertToNepaliDate = (date) => {
 
 export const getDate = (dateToConvert) => {
   let date = new Date(dateToConvert);
-
-  // Set the time zone to Nepal (GMT+5:45)
   date.setUTCHours(date.getUTCHours() + 5);
   date.setUTCMinutes(date.getUTCMinutes() + 45);
 
-  // Get the time and date in Nepal
   const options = {
     // timeZone: "Asia/Kathmandu",
     year: "numeric",

@@ -14,7 +14,6 @@ const CustomSelect = ({ multiple, options, value, onChange }) => {
   const selectOptionsHandler = (e, option) => {
     e.stopPropagation();
     if (multiple) {
-      console.log("multiple");
       if (value.includes(option)) {
         onChange(value.filter((o) => o != option));
       } else {
@@ -37,7 +36,6 @@ const CustomSelect = ({ multiple, options, value, onChange }) => {
       tabIndex={"0"}
       onClick={showOptionsHandler}
       onBlur={(e) => {
-        console.log("blur clidked");
         setShowOptions(false);
       }}
     >

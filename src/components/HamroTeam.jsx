@@ -1,5 +1,5 @@
 import Navbar from "./layouts/Navbar";
-import test from "../assets/test.gif";
+import Title from "./shared/Title";
 
 const data = [
   "ajay sharma",
@@ -13,6 +13,7 @@ const data = [
 const HamroTeam = () => {
   return (
     <div>
+      <Title />
       <Navbar />
       <div className="flex justify-center w-full">
         <div className="flex flex-col lg:flex-row w-full items-center  lg:w-lg  xl:w-xl">
@@ -27,7 +28,7 @@ const HamroTeam = () => {
                   {data.map((name, index) => (
                     <li key={index}>{name}</li>
                   ))}
-              </ul>
+                </ul>
               </div>
               <div>
                 <ul>

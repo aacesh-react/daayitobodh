@@ -1,25 +1,17 @@
 import { useState } from "react";
 
-// const totalNoOfPage = 3;
-// const pageToShow = 4;
 const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
   let pages = Array.from({ length: pageToShow }, (x, i) => i + 1);
   const [activePage, setActivePage] = useState(1);
-  // const [activeIndex, setActiveIndex] = useState(0);
   const [pagesToShow, setPagesToShow] = useState(pages);
-  // console.log("pages:", pagesToShow);
 
   const prevButtonHandler = () => {
-    // console.log(activePage, totalNoOfPage);
     if (activePage == 1) {
       return;
     }
-    // console.log("passed");
     if (activePage > 1) {
       setActivePage(activePage - 1);
-      // console.log(activePage - 1);
       if (activePage == pagesToShow[0]) {
-        // console.log("updating pages to show");
         setPagesToShow((prev) => [...prev].map((value) => value - pageToShow));
       }
       if (activePage == 5) {
@@ -31,16 +23,12 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
   };
 
   const nextButtonHandler = () => {
-    // console.log(activePage, totalNoOfPage);
     if (activePage == totalNoOfPage) {
       return;
     }
-    // console.log("passed");
     if (activePage < totalNoOfPage) {
       setActivePage(activePage + 1);
-      // console.log(activePage + 1);
       if (activePage == pagesToShow[pageToShow - 1]) {
-        // console.log("updating pages to show");
         setPagesToShow((prev) => [...prev].map((value) => value + pageToShow));
       }
       if (activePage == totalNoOfPage - pageToShow) {
@@ -48,7 +36,6 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
           { length: pageToShow },
           (x, i) => totalNoOfPage - i
         ).reverse();
-        // console.log("pages:", pages);
         setPagesToShow(pages);
       }
       pageClickHandler(activePage + 1);
@@ -56,18 +43,15 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
   };
 
   const clickHandler = (page) => {
-    // console.log("page:", page);
     setActivePage(page);
     if (page == totalNoOfPage) {
       let pages = Array.from(
         { length: pageToShow },
         (x, i) => totalNoOfPage - i
       ).reverse();
-      // console.log("pages:", pages);
       setPagesToShow(pages);
     }
     if (page == 1) {
-      // console.log("pages:", pages);
       setPagesToShow(pages);
     }
     pageClickHandler(page);
@@ -86,7 +70,6 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
               w-[30px]  h-[full] border pt-[2px] rounded-full text-center mx-[.5rem] cursor-pointer`}
               onClick={(e) => {
                 clickHandler(1);
-                // pageClickHandler(1);
               }}
             >
               {1}
@@ -102,7 +85,6 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
             w-[30px]  h-full border pt-[2px] rounded-full text-center mx-[.5rem] cursor-pointer`}
             onClick={(e) => {
               clickHandler(index + 1);
-              //   pageClickHandler(index + 1);
             }}
           >
             <span>{index + 1}</span>
@@ -120,7 +102,6 @@ const MyPagination = ({ totalNoOfPage, pageToShow, pageClickHandler }) => {
               w-[30px]  h-full border pt-[2px] rounded-full text-center mx-[.5rem] cursor-pointer`}
             onClick={(e) => {
               clickHandler(totalNoOfPage);
-              // pageClickHandler(totalNoOfPage);
             }}
           >
             {totalNoOfPage}

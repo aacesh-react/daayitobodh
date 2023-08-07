@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import newsService from "../app/features/news/newsService";
 import Navbar from "../components/layouts/Navbar";
+import Carausel from "../components/shared/Caraousel";
 import SingleAdd from "../components/shared/SingleAdd";
+import Title from "../components/shared/Title";
 import News from "../features/mainNews/components/News";
 import Trending from "../features/mainNews/components/Trending";
 
 const NewsPage = () => {
   return (
     <div>
+      <Title />
       <Navbar />
+      <Carausel />
       <div className="flex  w-full justify-center pt-[1rem] text-sm">
         <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p  ">
           {/* left     */}

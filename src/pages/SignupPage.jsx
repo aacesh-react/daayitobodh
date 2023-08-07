@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../app/features/auth/authSlice";
@@ -29,11 +29,9 @@ const SignupPage = () => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log("sign up page");
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    // console.log(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
     value
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
@@ -56,10 +54,7 @@ const SignupPage = () => {
       ? setValidationError((prev) => ({ ...prev, [name]: false }))
       : setValidationError((prev) => ({ ...prev, [name]: true }));
     if (name == "confirmPassword") {
-      console.log("name fonfirm password");
-      console.log("value:", value);
       if (value != formData.password) {
-        console.log("np match");
         setValidationError((prev) => ({ ...prev, [name]: true }));
         setConPassErrMessage("No Match!");
       }
@@ -77,16 +72,8 @@ const SignupPage = () => {
 
   const formSubmitHanlder = async (e) => {
     e.preventDefault();
-    console.log("form submit handler");
-    // navigate("/user/profile");
     try {
-      console.log("form data:", formData);
       const result = await dispatch(register(formData)).unwrap();
-      console.log(
-        "result in signup form fubmit handler: ",
-        result
-        // result.token
-      );
       navigate("/");
     } catch (error) {
       console.log(":", error);
@@ -156,19 +143,6 @@ const SignupPage = () => {
                     "flex flex-col px-[15px] w-full mb-[28.8px] sm:w-1/2 "
                   }
                 />
-                {/* <FormInputField
-                  name={"number"}
-                  label={"Number"}
-                  placeholder={"98XXXXXXXX"}
-                  onchangeHandler={inputChangeHandler}
-                  value={formData.number}
-                  onBlurHandler={validationOutput}
-                  validationError={validationError.number}
-                  errorMessage={"Valid number is required."}
-                  className={
-                    "flex flex-col px-[15px] w-full mb-[28.8px] sm:w-1/2 "
-                  }
-                /> */}
                 <FormInputField
                   name={"password"}
                   label={"Choose a password"}

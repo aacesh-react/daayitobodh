@@ -7,10 +7,9 @@ import {
 import endpoints from "../../endpoints";
 
 const API_URL = `${endpoints.apiBaseURL}/auth`;
-// const API_URL = "http://localhost:5000/api";
+
 const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
-  console.log("access token:", response.data.accessToken);
   if (response.data) {
     let tokenOptions = {
       path: "/",
@@ -24,13 +23,12 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   const response = await axios.post(`${API_URL}/login`, userData);
-  console.log("access token:", response.data.accessToken);
   if (response.data) {
     let tokenOptions = {
       path: "/",
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     };
-    setCookie("accessToken", response.data.accessToken, {tokenOptions});
+    setCookie("accessToken", response.data.accessToken, { tokenOptions });
     localStorage.setItem("user", JSON.stringify(response.data.data));
   }
   return response.data;
@@ -59,7 +57,6 @@ const resetPassword = async (userData) => {
 };
 
 const getMe = async (accessToken) => {
-  // console.log("access token:", accessToken);
   const headers = { Authorization: `Bearer ${accessToken}` };
   const response = await axios.get(`${API_URL}/me`, { headers });
   if (response.date) {

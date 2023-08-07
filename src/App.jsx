@@ -3,14 +3,8 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { getMe } from "./app/features/auth/authSlice";
 import { getHomepageNews } from "./app/features/news/newsSlice";
-import Navbar from "./components/layouts/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedRoutesComponent from "./components/ProtectedRouteComponent";
-import Caraousel from "./components/shared/Caraousel";
-import Pagination from "./components/shared/Paginaton";
-import AdminUsers from "./features/dashboard/components/AdminUsers";
 import CategoryPage from "./pages/CategoryPage";
-import DashboardPage from "./pages/DashboardPage";
 import Homepage from "./pages/Homepage";
 import LoginPage from "./pages/LoginPage";
 import NewsPage from "./pages/NewsPage";
@@ -53,7 +47,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/users" element={<AdminUsers />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/news/:categoryName" element={<CategoryPage />} />
@@ -63,21 +56,6 @@ function App() {
           </Route>
           <Route path="/page/हाम्रो-टीम" element={<HamroTeam />} />
           <Route path="/page/हाम्राे-बारेमा" element={<HamroBare />} />
-
-          {/* <Route
-            path="/user/:id"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          /> */}
-          {/* <Route element={<ProtectedRoutesComponent admin={true} />}> */}
-          <Route
-            path="/admin/dashboard/:contentId"
-            element={<DashboardPage />}
-          />
-          {/* </Route> */}
         </Routes>
         <Footer />
       </Router>

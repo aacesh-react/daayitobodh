@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import ReactPaginate from "react-paginate";
 import NewsCard from "../../main/components/NewsCard";
-import Pagination from "../../../components/shared/Paginaton";
 import MyPagination from "../../../components/shared/MyPagination";
 import newsService from "../../../app/features/news/newsService";
 import { useParams } from "react-router-dom";
@@ -36,7 +33,6 @@ const AllNews = () => {
           false,
           true
         );
-        console.log("result:", result);
         setNewsArray(result.data);
         const totalLength = result.totalLength;
         const totalNoOfPage = Math.ceil(totalLength / limit);

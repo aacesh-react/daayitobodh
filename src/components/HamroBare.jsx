@@ -1,4 +1,5 @@
 import Navbar from "./layouts/Navbar";
+import Title from "./shared/Title";
 
 const data = [
   "हाम्रो पहिलो पाइला",
@@ -15,6 +16,7 @@ const data = [
 const HamroBare = () => {
   return (
     <div>
+      <Title />
       <Navbar />
       <div className="flex justify-center w-full">
         <div className="flex flex-col pt-[1rem] w-full px-px  lg:justify-end lg:w-lg-p  xl:w-xl-p">
