@@ -48,7 +48,7 @@ const Homepage = () => {
 
       <GyanBigyan />
 
-      <div className="flex justify-center my-[1.5rem] px-px w-full  ">
+      <div className="flex justify-center my-[1.5rem] px-px w-full ">
         <SingleAdd data={{ id: "h-6" }} />
       </div>
 

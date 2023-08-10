@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SingleAdd = ({ data }) => {
   const { advertisements, isLoading } = useSelector(
@@ -20,16 +21,14 @@ const SingleAdd = ({ data }) => {
         advertisement.image ? "block" : "hidden"
       } w-full lg:w-lg xl:w-xl h-[32px] lg:h-[78px] xl:h-[100px] `}
     >
-      <div className="w-full">
+      <Link target={"_blank"} to={advertisement.advertisementLink}>
         <img
           className="h-full w-full object-cover"
           src={advertisement.image}
-          alt=""
+          alt="advertisement"
         />
-      </div>
+      </Link>
     </div>
-
-    // </div>
   );
 };
 

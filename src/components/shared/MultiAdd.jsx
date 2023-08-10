@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const MultiAdd = ({ addData }) => {
   const { advertisements, isLoading } = useSelector(
@@ -22,16 +23,18 @@ export const MultiAdd = ({ addData }) => {
             <li
               className={`
             ${getAdvertisement(data.id)?.image ? "block" : "hidden"}
-            w-full p-px h-[244px]  my-[1rem] `}
+            w-full p-px h-[244px] lg:w-1/3 my-[1rem] `}
               key={index}
               id={data.id}
             >
               <div className={`   w-full h-full `}>
-                <img
-                  className="h-full w-full object-cover"
-                  src={getAdvertisement(data.id).image}
-                  alt=""
-                />
+                <Link target={"_blank"} to={getAdvertisement(data.id).advertisementLink}>
+                  <img
+                    className="h-full w-full object-cover"
+                    src={getAdvertisement(data.id).image}
+                    alt="advertisement"
+                  />
+                </Link>
               </div>
             </li>
           ))}
