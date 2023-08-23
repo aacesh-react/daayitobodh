@@ -21,8 +21,8 @@ const Carausel = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center bg-white my-[1rem]">
-      <div className="flex  w-full lg:w-lg-p  xl:w-xl-p px-px bg-white  items-center justify-center ">
+    <div className="w-full flex justify-center h-[65px] bg-white my-[1rem]">
+      <div className="flex   w-full lg:w-lg-p  xl:w-xl-p pl-px bg-white  items-center justify-center ">
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -42,14 +42,17 @@ const Carausel = ({ children }) => {
             },
             1280: {
               slidesPerView: 4,
+
             },
           }}
           modules={[Autoplay]}
         >
-          <ul className=" w-full">
+          <ul className="">
             {latestNews?.map((news, index) => (
-              <SwiperSlide key={index}>
-                <CarouselCard news={news} />
+              <SwiperSlide
+                className=""
+              key={index}>
+                <CarouselCard news={news}  />
               </SwiperSlide>
             ))}
           </ul>

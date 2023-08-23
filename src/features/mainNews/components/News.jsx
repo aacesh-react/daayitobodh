@@ -55,9 +55,9 @@ const News = () => {
               />
             </div>
             <span>{news.author}</span>
-            {news.createdAt && (
+            {/* {news.createdAt && (
               <span>{convertToNepaliDate(news.createdAt)}</span>
-            )}
+            )} */}
           </div>
           <hr className=" border-heading-main mx-px" />
 
@@ -74,7 +74,7 @@ const News = () => {
           )}
         </div>
         <div className="flex">
-          <div className="w-[600px] hidden lg:block "></div>
+          <div className="w-[100px] hidden lg:block shrink-0"></div>
           <div
             className="px-px pt-[2rem]"
             id="news-content-container"

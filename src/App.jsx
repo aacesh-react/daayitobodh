@@ -28,9 +28,9 @@ function App() {
         const limit = 10;
         const homepageNews = await dispatch(getHomepageNews(limit)).unwrap();
         setIsLoading(false);
-        if (accessToken) {
-          const result = await dispatch(getMe(accessToken)).unwrap();
-        }
+        // if (accessToken) {
+        //   const result = await dispatch(getMe(accessToken)).unwrap();
+        // }
       } catch (error) {
         console.log("err:", error);
       } finally {

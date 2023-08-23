@@ -14,7 +14,7 @@ const CarouselCard = ({ news }) => {
           />
         </Link>
       </div>
-      <div className="w-full pl-px lg:px-px ">
+      <div className="w-full px-px  ">
         <p className="px-[1rem] border border-bg-brown rounded h-full  overflow line-clamp-3 text-justify leading-[1.3]">
           <Link to={`/news/${news.categoryName}/${news.newsId}`}>
             {news.heading}

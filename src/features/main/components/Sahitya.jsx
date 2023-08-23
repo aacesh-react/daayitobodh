@@ -28,6 +28,8 @@ const Sahitya = () => {
                     headingStyle={
                       " text-md lg:heading-big text-30 line-clamp-4"
                     }
+                    newsId={leftNews.newsId}
+                    categoryName={leftNews.categoryName}
                   />
                 )}
               </div>
@@ -36,8 +38,9 @@ const Sahitya = () => {
               <ul className="w-full ">
                 {sahityaData.map((value, index) => (
                   <li
-                    className={`my-[1rem] ${index == 0 && "mt-0"} 
+                    className={`my-[1rem] ${index == 0 && "mt-0 "} 
                     ${index == sahityaData.length - 1 && "mb-0"} 
+                    ${value.subcategoryName == "समालोचना" && "hidden"} 
                     flex h-[113px] justify-between`}
                     key={index}
                   >

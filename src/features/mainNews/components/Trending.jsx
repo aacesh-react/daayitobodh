@@ -21,7 +21,7 @@ const Trending = () => {
     return <div></div>;
   }
   return (
-    <div className="flex w-full px-px flex-col">
+    <div className="flex w-full  flex-col">
       <h3 className="heading-main pt-[12px]">ब्रेकिंग</h3>
       <ul>
         {trendingNews.map((news, index) => (

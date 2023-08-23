@@ -14,7 +14,7 @@ const NewsPage = () => {
       <div className="flex  w-full justify-center pt-[1rem] text-sm">
         <div className="flex flex-col lg:flex-row w-full lg:w-lg-p xl:w-xl-p  ">
           {/* left     */}
-          <div className="flex lg:w-[690px] xl:w-[950px] felx-col ">
+          <div className="flex lg:w-[690px] xl:w-[980px] felx-col">
             <News />
           </div>
           {/* right     */}

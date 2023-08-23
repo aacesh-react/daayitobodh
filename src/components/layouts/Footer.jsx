@@ -13,7 +13,7 @@ const Footer = () => {
           <img className="w-full h-full" src={logo} alt="" />
         </div>
         <div className="flex flex-col items-center lg:items-start pb-[1rem] ">
-          <h3> {"दायित्वबोध प्रकाशन प्रा‍‍.लि."} </h3>
+          <h3> {"मन्थन प्रकाशन प्रा. लि."} </h3>
           <span className="font-[300]">{"बालकुमारी– ९, ललितपुर नेपाल ।"}</span>
           <span className="font-[300]">
             {"फोन: ९८४३४८४८४०, ९८५१०९१२९२, ९८४३४७४५४२"}
