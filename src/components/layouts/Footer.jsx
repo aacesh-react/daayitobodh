@@ -41,22 +41,25 @@ const Footer = () => {
         <div className="flex flex-col">
           <div className="flex gap-[1rem] pt-[1rem] lg:pt-[0]">
             <div className="h-[30px] w-[30px] ">
-              <Link>
+              <Link
+                target="_blank"
+                to="https://www.facebook.com/profile.php?id=100093287186375"
+              >
                 <img className="h-full w-full" src={fb} alt="" />
               </Link>
             </div>
             <div className="h-[30px] w-[30px] ">
-              <Link>
+              <Link target="_blank" to="https://www.twitter.com/dayitwabodh">
                 <img className="h-full w-full" src={twitter} alt="" />
               </Link>
             </div>
             <div className="h-[30px] w-[30px] ">
-              <Link>
+              <Link target="_blank" to="https://www.youtube.com/@dayitwabodh">
                 <img className="h-full" src={youtube} alt="" />
               </Link>
             </div>
             <div className="h-[30px] w-[30px]">
-              <Link>
+              <Link target="_blank" to="https://www.tiktok.com/@dayitwabodh">
                 <img className="h-full" src={tiktok} alt="" />
               </Link>
             </div>

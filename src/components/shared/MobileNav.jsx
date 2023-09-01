@@ -19,7 +19,7 @@ const MobileNav = ({ showMenuItems, closeMenuItems, menuItems }) => {
               <li key={index} className="flex items-center">
                 <div className="py-[.5rem] flex items-center ">
                   <Link
-                    className=" text-[1.4rem] font-[500] bg-red-200"
+                    className=" text-[1.4rem] font-[500]"
                     to={`/news/${item}`}
                     onClick={closeMenuItems}
                   >

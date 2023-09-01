@@ -7,6 +7,9 @@ import NewsCard from "../../main/components/NewsCard";
 import defaultImgSquare from "../../../assets/defaultImgSquare.jpg";
 import { convertToNepaliDate } from "../../../utilities/date";
 
+import fb from "../../../assets/fb.svg";
+import twitter from "../../../assets/twitter.svg";
+
 const News = () => {
   const { categoryName, newsId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -30,11 +33,28 @@ const News = () => {
   }, [newsId]);
 
   if (isLoading) {
-    <div></div>;
+    return <div className="h-screen bg-white w-full"></div>;
   }
+  const shareOnFacebook = () => {
+    let actualUrl = decodeURIComponent(window.location.href);
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${actualUrl}`,
+      "_blank",
+      "width=800,height=570"
+    );
+  };
+  const shareOnTwitter = () => {
+    let actualUrl = decodeURIComponent(window.location.href);
+    window.open(
+      `https://twitter.com/intent/tweet?text=${news.heading}&url=${actualUrl}`,
+      "_blank",
+      "width=800,height=570"
+    );
+  };
+
   return (
     <div className="flex flex-col w-full">
-      <div className="flex w-full flex-col font-[400] text-[1.375rem]">
+      <div className="flex w-full flex-col font-[400] text-[1.375rem]  ">
         <div className="flex flex-col">
           <h3 className="text-[2rem] lg:text-xxl px-px py-[1rem] font-[700]">
             {news.heading}
@@ -49,7 +69,7 @@ const News = () => {
           <div className="flex px-px gap-[1rem] items-center text-[1rem] py-[1rem]">
             <div className="h-[45px] w-[45px]   ">
               <img
-                className="w-full h-full object-coverbg-bg-brown border rounded-full  "
+                className="w-full h-full object-cover bg-bg-brown border rounded-full  "
                 src={defaultImgSquare}
                 alt=""
               />
@@ -73,10 +93,24 @@ const News = () => {
             </div>
           )}
         </div>
-        <div className="flex">
-          <div className="w-[100px] hidden lg:block shrink-0"></div>
+        <div className="flex flex-col lg:flex-row">
+          {/* share */}
+          <div className="w-full flex px-px py-[1rem] gap-[1rem] top-[40px] lg:sticky lg:flex-col lg:items-center lg:w-[100px] lg:h-[500px] lg:pt-[3rem] shrink-0    ">
+            <div
+              className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] cursor-pointer"
+              onClick={shareOnFacebook}
+            >
+              <img src={fb} alt="" />
+            </div>
+            <div
+              className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] cursor-pointer"
+              onClick={shareOnTwitter}
+            >
+              <img src={twitter} alt="" />
+            </div>
+          </div>
           <div
-            className="px-px pt-[2rem]"
+            className="px-px lg:pt-[2rem]"
             id="news-content-container"
             dangerouslySetInnerHTML={{ __html: news.content }}
           />
